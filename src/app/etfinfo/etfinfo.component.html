@@ -1,0 +1,66 @@
+<div class="grid-container">
+  <div class="grid-x grid-margin-x grid-padding-y">
+    <div class="cell small-4 medium-4 large-4">
+
+      <div class="card" id="all-etfs">
+        <div class="card-divider">
+          <h4>Alle ETFs</h4>
+        </div>
+        <div class="card-section">
+          <!--<app-cart></app-cart>-->
+          <div class="cell" *ngFor="let info of etfinfos">
+            <div class="cell">
+            </div>
+            <a (click)="onClick(info)"> {{info?.name}} ({{info?.isin}})</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cell small-8 medium-8 large-8" data-sticky-container>
+      <div class="sticky" data-sticky data-margin-top="4.35" data-anchor="all-etfs">
+      <div class="card" *ngIf="selectedETF">
+        <div class="card-divider">
+          <h4>Details {{selectedETF?.name}} ({{selectedETF.isin}})</h4>
+        </div>
+        <div class="card-section">
+
+          <div class="grid-x" id="info-card">
+            <div class="cell small-6">
+              <div class="cell large-auto">Emittent: {{selectedETF.issuer}}</div>
+              <div class="cell large-auto">TER: {{selectedETF?.ter / 100 | percent:'1.2-4'}}</div>
+              <div class="cell large-auto">AuM: {{selectedETF?.aum_mn_eur * 1000000 | currency:'EUR':'symbol':'4.0-0'}}</div>
+              <div class="cell large-auto">Auflagedatum: {{selectedETF?.inception}}</div>
+              <div class="cell large-auto">Ausschüttungsart: {{selectedETF?.distribution}}</div>
+              <!--<div class="cell large-auto">Replikationsart: {{selectedETF?.replication_kind}}</div>-->
+              <div class="cell large-auto">Replikation: {{selectedETF?.replication_detail}}</div>
+              <div class="cell large-auto">Produkttyp: {{selectedETF?.product_type}} </div>
+              <div class="cell large-auto">Assetklasse: {{selectedETF?.asset_class}}</div>
+              <div class="cell large-auto">Region: {{selectedETF?.region}}</div>
+              <div class="cell large-auto">Land: {{selectedETF?.country}}</div>
+              <div class="cell large-auto">Sektor: {{selectedETF?.sector}}</div>
+              <div class="cell large-auto">Indexname: {{selectedETF?.index_name}}</div>
+              <div class="cell large-auto">Indexart: {{selectedETF?.index_type}}</div>
+              <div class="cell large-auto">Indexreplikation: {{selectedETF?.index_replication}}</div>
+              <div class="cell large-auto">Fondswährung: {{selectedETF?.fund_currency}}</div>
+              <div class="cell large-auto">Handelswährung: {{selectedETF?.trade_currency}}</div>
+              <div class="cell large-auto">Strategie: {{selectedETF?.strategy}}</div>
+            </div>
+            <div class="cell small-6">
+              <div class="cell large-auto">Zugelassen in: {{selectedETF?.sale_permit}}</div>
+              <div class="cell large-auto">Swap-Gegenpartei: {{selectedETF?.swap_counterpart}}</div>
+              <div class="cell large-auto">Wertpapierleihe: {{selectedETF?.securities_lending}}</div>
+              <div class="cell large-auto">Leihe-Gegenpartei: {{selectedETF?.lending_counterpart}}</div>
+              <div class="cell large-auto">Wertpapiermanager: {{selectedETF?.securities_manager}}</div>
+              <div class="cell large-auto"><a href="{{selectedETF?.pdf}}" target="_blank">PDF</a></div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="thumbnail">
+  <h3> {{product?.isin}} </h3>
+  <div class="caption clearfix">
+    <h5><a href={{product?.isin}}>{{product?.name}}</a></h5>
+    <div class="product__price">{{product?.aum_mn_eur}} {{product?.currency}}</div>
+    <div class="product__button-wrap">
+      <button  *ngIf="product.added"  (click)="RemoveProduct(product)" class="alert button">Remove
+      </button>
+      <button  *ngIf="! product.added"  (click)="AddProduct(product)" class="button">Add to cart
+      </button>
+    </div>
+  </div>
+</div>

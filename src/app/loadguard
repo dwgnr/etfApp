@@ -1,0 +1,16 @@
+import {Injectable} from '@angular/core';
+import {CanLoad} from '@angular/router';
+import {UsersService} from './shared/services/usersService';
+
+@Injectable()
+export class SettingsGuard implements CanLoad {
+
+  constructor(private usersService: UsersService) {}
+
+  canLoad() {
+    // Settings will be cached in UsersService
+    return this.usersService
+      .getSettings()
+      .map(() => true);
+  }
+}
