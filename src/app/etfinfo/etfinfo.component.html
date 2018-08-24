@@ -6,17 +6,18 @@
         <div class="card-divider">
           <h4>Alle ETFs</h4>
         </div>
-        <div class="card-section">
+        <div *ngIf="etfinfos; else loading" class="card-section">
+        <!--<div *ngIf="etfinfos | async; else loading"class="card-section">-->
           <!--<app-cart></app-cart>-->
-          <div class="cell" *ngFor="let info of etfinfos">
-            <div class="cell">
-            </div>
+          <div class="cell" *ngFor="let info of etfinfos[0]">
             <a (click)="onClick(info)"> {{info?.name}} ({{info?.isin}})</a>
+            <!--<a (click)="onClick(info[0])"> {{info[0]?.name}} ({{info[0]?.isin}})</a>-->
           </div>
         </div>
       </div>
-
     </div>
+
+    <!--</div>-->
 
     <div class="cell small-8 medium-8 large-8" data-sticky-container>
       <div class="sticky" data-sticky data-margin-top="4.35" data-anchor="all-etfs">
@@ -64,3 +65,8 @@
       </div>
   </div>
 </div>
+
+
+<ng-template #loading>
+  Loading stuff...
+</ng-template>

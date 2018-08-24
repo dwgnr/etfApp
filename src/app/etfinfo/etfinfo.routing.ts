@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { EtfinfoComponent} from './etfinfo.component';
 
 const routes: Routes = [
-  { path: 'etfinfo', component: EtfinfoComponent }
+  { path: '', component: EtfinfoComponent }
 ];
 
 @NgModule({

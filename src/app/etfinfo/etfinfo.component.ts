@@ -1,8 +1,10 @@
-import {Component, Input, OnInit, AfterViewInit} from '@angular/core';
+import {Component, Input, OnInit, AfterViewInit, AfterViewChecked, NgModule} from '@angular/core';
 // import {InfoService} from '../services/info.service';
-import {EtfInfo, InfoState} from '../models/etfinfo.model';
+import {CartState, EtfInfo, InfoState} from '../models/etfinfo.model';
 import {InfoService} from '../services/info.service';
 import {Subscription} from '../../../node_modules/rxjs/Subscription';
+import {EtfinfoRoutingModule} from './etfinfo.routing';
+import {ValuesPipe} from './values.pipe';
 
 declare var $: any;
 
@@ -11,38 +13,72 @@ declare var $: any;
   selector: 'app-etfinfo',
   templateUrl: './etfinfo.component.html',
   styleUrls: ['./etfinfo.component.css'],
-  providers: []
+  providers: [],
 })
-export class EtfinfoComponent implements OnInit, AfterViewInit {
+
+export class EtfinfoComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
   // @Input()
   // product: EtfInfo;
-
-  etfinfos: EtfInfo[];
+  etfinfos: EtfInfo[] = [];
   selectedETF: EtfInfo;
+  ready = false;
 
   constructor(private infoService: InfoService) { }
   private subscription: Subscription;
 
   ngOnInit() {
+    // setTimeout(500);
     console.log('Init ETFInfo Component');
     // this.getETFInfoList();
     $(document).foundation();
-    this.etfinfos = this.infoService.ETFInfos;
+    //this.infoService.AllInfoState.subscribe(info => this.etfinfos = info.products);
+    // this.etfinfos = this.infoService.ETFInfos;
+    // this.handleAllETFInfoSubscription();
+    this.etfinfos = this.infoService.ETFInfos as EtfInfo[];
+    // if (this.etfinfos.length > 0) {
+    //   setTimeout(() => this.ready = true, 0);
+    // }
+    console.log(this.etfinfos);
 
 
-    // this.infoService.getETFInfos().subscribe(
-    //   data => this.etfinfos = data, // Bind to view
-    //   err => {
-    //     // Log errors if any
-    //     console.log(err);
+
+    // this.subscription = this
+    //   .infoService
+    //   .AllInfoState
+    //   .subscribe((state: InfoState) => {
+    //     this.etfinfos = state.products;
     //   });
   }
 
   ngAfterViewInit() {
-    //this.handleAllETFInfoSubscription();
-    console.log('AfterInit ETFInfo Component');
+    // setTimeout(() => {
+    //   this.ready = true;
+    //   // this.subscription = this
+    //   //   .infoService
+    //   //   .AllInfoState
+    //   //   .subscribe((state: InfoState) => {
+    //   //     this.etfinfos = state.products;
+    //   //   });
+    // });
 
+    // setTimeout(5000);
+    // this.handleAllETFInfoSubscription();
+    // console.log('AfterInit ETFInfo Component');
+    // this.ready = true;
+
+  }
+
+  ngAfterViewChecked() {
+    // setTimeout(5000);
+    console.log('AfterViewChecked ETFInfo Component');
+    //console.log(this.etfinfos);
+    // setTimeout(() => {
+    //   this.ready = true;
+    // });
+    // this.ready = true;
+    // console.log(this.etfinfos);
+    // console.log(this.infoService.ETFInfos);
   }
 
   handleAllETFInfoSubscription() {
@@ -53,6 +89,7 @@ export class EtfinfoComponent implements OnInit, AfterViewInit {
       .AllInfoState
       .subscribe((state: InfoState) => {
         this.etfinfos = state.products;
+        console.log(this.etfinfos);
       });
     console.log(this.etfinfos);
   }

@@ -42,7 +42,7 @@ export class InfoService {
         console.log(err);
       });
     console.log('Done initializing all ETF Infos');
-    //console.log(this.ETFInfos);
+    // console.log(this.ETFInfos);
   }
 
   addProduct(_product: any) {
