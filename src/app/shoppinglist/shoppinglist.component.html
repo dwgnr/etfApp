@@ -1,11 +1,15 @@
 <button class="button" type="button" data-toggle="shoppinglist-dropdown">ETF-Liste</button>
 <div class="dropdown-pane" id="shoppinglist-dropdown" data-dropdown data-hover="true" data-hover-pane="true">
-  <div *ngIf="products">
-  <ul>
-    <li *ngFor="let item of products"  class="cart-item">
-      <span class="cart-item__name">{{item.name}}</span>
-      <span class="cart-item__price">{{item.inception}}</span>
-    </li>
-  </ul>
+  <div *ngIf="products; else noelements">
+    <div *ngFor="let item of products"  class="cell">
+      {{item?.name}} ({{item?.isin}})
+    </div>
   </div>
 </div>
+
+
+<ng-template #noelements>
+  <div class="cell">
+    Liste leer
+  </div>
+</ng-template>

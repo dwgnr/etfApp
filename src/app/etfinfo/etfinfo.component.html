@@ -11,6 +11,7 @@
           <!--<app-cart></app-cart>-->
           <div class="cell" *ngFor="let info of etfinfos[0]">
             <a (click)="onClick(info)"> {{info?.name}} ({{info?.isin}})</a>
+            <app-cartitem [product]="info" ></app-cartitem>
             <!--<a (click)="onClick(info[0])"> {{info[0]?.name}} ({{info[0]?.isin}})</a>-->
           </div>
         </div>
@@ -68,5 +69,5 @@
 
 
 <ng-template #loading>
-  Loading stuff...
+  Lade Daten...
 </ng-template>

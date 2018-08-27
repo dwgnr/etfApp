@@ -27,11 +27,11 @@ export class CartComponent implements OnInit, OnDestroy {
     // this.infoService.AllInfoState.subscribe(info => this.ETFs = info);
     // console.log('Cart subscribed to ETFs');
     // console.log(this.ETFs);
-    this.handleAllETFInfoSubscription();
+    //this.handleAllETFInfoSubscription();
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+   //this.subscription.unsubscribe();
   }
 
   handleAllETFInfoSubscription() {

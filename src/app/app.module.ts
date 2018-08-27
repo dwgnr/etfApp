@@ -27,6 +27,8 @@ import { CartComponent } from './cart/cart.component';
 import { CartitemComponent } from './cartitem/cartitem.component';
 import { ShoppinglistComponent } from './shoppinglist/shoppinglist.component';
 import { AppRoutingModule } from './app-routing.module';
+import {EtfInfoModule} from './etfinfo/etfinfo.module';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 
@@ -42,11 +44,12 @@ registerLocaleData(localede);
     ClusterComponent,
     EtfdetailComponent,
     CartComponent,
-    CartitemComponent,
+    //CartitemComponent,
     ShoppinglistComponent,
   ],
   imports: [
     BrowserModule,
+    AgGridModule.withComponents([]),
     HttpClientModule,
     MatDatepickerModule,
     BrowserAnimationsModule,
@@ -58,6 +61,9 @@ registerLocaleData(localede);
     ReactiveFormsModule,
     AppRoutingModule,
   ],
+  // exports: [
+  //   CartitemComponent,
+  // ],
   bootstrap: [AppComponent],
   providers: [ApiService, PriceService, PortfolioService, InfoService,
     { provide: LOCALE_ID, useValue: 'de' }]

@@ -21,20 +21,24 @@
             <mat-datepicker-toggle matSuffix [for]="to_picker"></mat-datepicker-toggle>
             <mat-datepicker #to_picker></mat-datepicker>
           </mat-form-field>
+          <br>
+          <span class="secondary label">Anzahl Portfolios</span>
+            <mat-slider min="100" max="50000" step="5" value="5000" thumbLabel tickInterval="5"
+                        (input)="addNumPortfolios($event)">
 
-            <mat-slider min="1" max="100000" step="5" value="20000" thumbLabel tickInterval="1"
-                        (input)="addNumPortfolios($event)"></mat-slider>
+            </mat-slider>
 
           <a class="button primary" (click)="onButtonPressed()">Portfolios konstruieren</a>
-
-          <p>ETF Liste fehlt noch</p>
-
         </div>
-        <div class="cell">
-          <app-shoppinglist></app-shoppinglist>
-        </div>
-        <div class="cell">
-          <app-cart></app-cart>
+        <div class="card">
+          <div class="card-divider"> <h5>ETF-Liste</h5></div>
+          <div class="card-section">
+            <div *ngIf="etflist && etflist.length > 0; else noelements">
+              <div *ngFor="let etf of etflist">
+                <p>{{etf.name}} ({{etf.isin}})</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -46,11 +50,43 @@
       <h4>Alle Portfolios</h4>
     </div>
     <div class="card-section">
-      <div class="cell" *ngFor="let port of portfolios">
-        <p>{{port.ret}} | {{port.stdev}}</p>
+      <div *ngIf="chart">
+        <canvas id="canvas">{{ chart }}</canvas>
       </div>
+      <br>
+      <div class="card" *ngIf="maxSharpePortfolio">
+        <div class="card-divider">
+          <h5>Maximum Sharpe Ratio Portfolio</h5>
+        </div>
+        <div class="card-section">
+        <p>Erwartete Rendite (annualisiert): {{maxSharpePortfolio.ret | percent:'1.0-0'}}</p>
+        <p>Erwartete Volatilität (annualisiert): {{maxSharpePortfolio.stdev | percent:'1.0-0'}}</p>
+        <p *ngFor="let wgt of maxSharpePortfolio.weights">
+          {{wgt.isin}}: {{wgt.weight | percent:'1.0-0'}}
+        </p>
+        </div>
     </div>
+      <div class="card" *ngIf="minVolPortfolio">
+        <div class="card-divider">
+          <h5>Minimum Volatility Portfolio</h5>
+        </div>
+        <div class="card-section">
+        <p>Erwartete Rendite (annualisiert): {{minVolPortfolio.ret | percent:'1.0-0'}}</p>
+        <p>Erwartete Volatilität (annualisiert): {{minVolPortfolio.stdev | percent:'1.0-0'}}</p>
+        <p *ngFor="let wgt of minVolPortfolio.weights">
+          {{wgt.isin}}: {{wgt.weight | percent:'1.0-0'}}
+        </p>
+        </div>
+      </div>
   </div>
   </div>
 </div>
 </div>
+</div>
+
+
+<ng-template #noelements>
+  <div class="cell">
+    Liste leer
+  </div>
+</ng-template>

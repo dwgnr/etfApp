@@ -13,7 +13,9 @@ import { EtfInfo, CartState} from '../models/etfinfo.model';
 export class ShoppinglistComponent implements OnInit, OnDestroy {
 
   loaded: boolean;
+
   products: EtfInfo[];
+
   private subscription: Subscription;
   constructor(private _infoService: InfoService) {}
   ngOnInit() {

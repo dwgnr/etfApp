@@ -55,7 +55,7 @@ export class InfoService {
     console.log('added ETFINFO to info service');
     this.ETFInfos.push(_product);
     this.allInfoSubject.next(<InfoState>{loaded: true, products:  this.ETFInfos});
-    console.log(this.ETFInfos);
+    // console.log(this.ETFInfos);
     this.isLoaded = true;
   }
 

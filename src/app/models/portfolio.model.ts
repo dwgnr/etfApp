@@ -2,6 +2,8 @@ export interface Portfolio {
   'ret': number;
   'stdev': number;
   'sharpe': number;
+  'is_max_sharpe': boolean;
+  'is_min_vol': boolean;
   'weights': [
     {
       'isin': string;

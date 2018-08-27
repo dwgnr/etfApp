@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {EtfinfoComponent} from './etfinfo.component';
 import { EtfinfoRoutingModule } from './etfinfo.routing';
+import { CartitemComponent } from '../cartitem/cartitem.component';
 import {ValuesPipe} from './values.pipe';
 
 @NgModule({
@@ -11,8 +12,13 @@ import {ValuesPipe} from './values.pipe';
   ],
   declarations: [
     EtfinfoComponent,
+    CartitemComponent,
     ValuesPipe,
   ],
-  providers: [ValuesPipe]
+  exports: [
+    EtfinfoComponent,
+    CartitemComponent,
+  ],
+  providers: []
 })
 export class EtfInfoModule {}
