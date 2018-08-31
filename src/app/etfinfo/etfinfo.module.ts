@@ -4,11 +4,14 @@ import {EtfinfoComponent} from './etfinfo.component';
 import { EtfinfoRoutingModule } from './etfinfo.routing';
 import { CartitemComponent } from '../cartitem/cartitem.component';
 import {ValuesPipe} from './values.pipe';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     EtfinfoRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     EtfinfoComponent,

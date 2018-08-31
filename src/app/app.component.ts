@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import { CartService} from './services/cart.service';
 import {EtfInfo} from './models/etfinfo.model';
 import {InfoService} from './services/info.service';
 
@@ -22,7 +21,7 @@ export class AppComponent implements OnInit {
     moment.locale('de');
     $(document).foundation();
     this.infoService.initAllETFInfos();
-    //console.log(this.infoService.Data);
+    // console.log(this.infoService.Data);
     // this.getAllETFInfos();
   }
 

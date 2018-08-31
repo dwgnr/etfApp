@@ -17,8 +17,6 @@ export interface PortfolioWeight {
   weight: number;
 }
 
-
-
 export interface PortfolioInput {
   'num_portfolios': number;
   'price': string;

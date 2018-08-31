@@ -1,3 +1,4 @@
 #info-card {
-  overflow-y: scroll;
+  overflow-y: scroll !important;
+  max-height: 70vh;
 }

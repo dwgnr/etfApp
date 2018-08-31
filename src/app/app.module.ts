@@ -16,14 +16,13 @@ import localede from '@angular/common/locales/de';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
-//import { EtfinfoComponent } from './etfinfo/etfinfo.component';
+// import { EtfinfoComponent } from './etfinfo/etfinfo.component';
 import { ClusterComponent } from './cluster/cluster.component';
 import { EtfdetailComponent } from './etfdetail/etfdetail.component';
 import { ApiService } from './services/api.service';
 import { PriceService } from './services/price.service';
 import { PortfolioService } from './services/portfolio.service';
 import { InfoService } from './services/info.service';
-import { CartComponent } from './cart/cart.component';
 import { CartitemComponent } from './cartitem/cartitem.component';
 import { ShoppinglistComponent } from './shoppinglist/shoppinglist.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -40,11 +39,10 @@ registerLocaleData(localede);
     AppComponent,
     NavbarComponent,
     PortfolioComponent,
-    //EtfinfoComponent,
+    // EtfinfoComponent,
     ClusterComponent,
     EtfdetailComponent,
-    CartComponent,
-    //CartitemComponent,
+    // CartitemComponent,
     ShoppinglistComponent,
   ],
   imports: [

@@ -17,10 +17,7 @@ const httpOptions = {
 @Injectable()
 export class PortfolioService {
 
-  constructor(
-    private http: HttpClient
-  ) {
-  }
+  constructor(private http: HttpClient) {}
 
   // getETFPortfolios(num_portfolios, date_from, date_to, etfs, price): Observable<Portfolio[]> {
   //   return this.http.get<Portfolio[]>(API_URL + '/info');

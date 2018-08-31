@@ -1,4 +1,4 @@
-<div data-sticky-container>
+<div data-sticky-container id="nav">
   <div data-sticky data-margin-top="0">
 
     <div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
@@ -12,9 +12,7 @@
       <li class="has-submenu">
         <a routerLink="/portfolio">Portfolio</a>
         <ul class="submenu menu vertical" data-submenu>
-          <li><a routerLink="home">MVO</a></li>
-          <li><a routerLink="home">Maximum Sharpe Ratio</a></li>
-          <li><a routerLink="home">Minimum Volatility</a></li>
+          <li><a routerLink="/portfolio">MVO</a></li>
           <li><a routerLink="home">Black-Litterman</a></li>
           <li><a routerLink="home">Korrelationsmatrix</a></li>
         </ul>
@@ -22,14 +20,11 @@
       <li><a routerLink="/etfinfo">ETF-Überblick</a></li>
       <li><a routerLink="/etfdetail">ETF-Detailansicht</a></li>
       <li><a routerLink="/cluster">Cluster</a></li>
-      <li><a routerLink="/cart">Cart</a></li>
     </ul>
   </div>
   <div class="top-bar-right">
     <ul class="menu">
       <li><app-shoppinglist></app-shoppinglist></li>
-      <li><input type="search" placeholder="Suche"></li>
-      <li><button type="button" class="button">Suche</button></li>
     </ul>
   </div>
 </div>

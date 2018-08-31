@@ -1,9 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { Portfolio, PortfolioInput } from '../models/portfolio.model';
 import {PortfolioService} from '../services/portfolio.service';
-import {MatDatepickerInputEvent} from '@angular/material';
-import {MAT_MOMENT_DATE_FORMATS, MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter} from '@angular/material-moment-adapter';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {FormControl} from '@angular/forms';
 import {InfoService} from '../services/info.service';
 import {EtfInfo, CartState} from '../models/etfinfo.model';
@@ -13,20 +10,6 @@ import {Chart} from 'chart.js';
 declare var moment: any;
 
 const dateFormat = 'YYYY-MM-DD';
-
-
-export const MY_FORMATS = {
-  parse: {
-    dateInput: 'LL',
-  },
-  display: {
-    dateInput: 'LL',
-    monthYearLabel: 'MMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
-
 
 @Component({
   selector: 'app-portfolio',
@@ -43,7 +26,10 @@ export class PortfolioComponent implements OnInit, OnDestroy {
   from_date: string;
   to_date: string;
   num_portfolios: number;
-  chart = [];
+  chart = Chart;
+  chartCreated = false;
+  warning = false;
+  warnMessage = '';
 
   fromDateControl = new FormControl();
   toDateControl = new FormControl();
@@ -77,23 +63,35 @@ export class PortfolioComponent implements OnInit, OnDestroy {
 
   getPortfolios(num_portfolios: number, date_from: any, date_to: any, etfinfos: EtfInfo[], price: string): void {
     const etfs = [];
+    if (!num_portfolios || num_portfolios < 1) {
+      this.warning = true;
+      this.warnMessage = 'Keine Portfoliozahl gewählt. Setze mit 1.000 fort.';
+      num_portfolios = 1000;
+    }
+    if (!date_from || !date_to) {
+      this.warning = true;
+      this.warnMessage = 'Fehler bei der Datumseingabe. Portfolios werden nicht konstruiert.';
+      return;
+    }
     if (etfinfos && etfinfos.length > 0) {
       for (const etf of etfinfos) {
         etfs.push(etf.isin);
       }
       const newInput: PortfolioInput = {num_portfolios, price, date_from, date_to, etfs} as PortfolioInput;
       console.log(JSON.stringify(newInput));
+      this.warning = false;
       this.portfolioService.getETFPortfolios(newInput).subscribe(portfolio => this.handlePortfolioResponse(portfolio)
       );
     } else {
-      console.log('No ETFs selected!');
+      this.warning = true;
+      this.warnMessage = 'Keine ETFs gewählt. Portfolios werden nicht konstruiert.';
     }
   }
   handlePortfolioResponse(portfolios) {
     this.portfolios = portfolios;
     // const returns = [];
     // const stdevs = [];
-    const plotdata = []
+    const plotdata = [];
     for (const p of portfolios) {
       plotdata.push(
         {
@@ -101,8 +99,6 @@ export class PortfolioComponent implements OnInit, OnDestroy {
           y: p.ret
         }
       );
-      // stdevs.push(p.stdev);
-      // returns.push(p.ret);
     }
     this.plotPortfolios(plotdata);
     this.findMaxSharpePortfolio();
@@ -110,6 +106,9 @@ export class PortfolioComponent implements OnInit, OnDestroy {
   }
 
   plotPortfolios(plotdata) {
+    if (this.chartCreated) {
+      this.chart.destroy();
+    }
     this.chart = new Chart('canvas', {
       type: 'scatter',
       data: {
@@ -127,13 +126,14 @@ export class PortfolioComponent implements OnInit, OnDestroy {
         }
       }
     });
+    this.chartCreated = true;
   }
   findMaxSharpePortfolio() {
     // console.log(this.portfolios);
     for (const p of this.portfolios) {
       if (p.is_max_sharpe) {
         this.maxSharpePortfolio = p;
-        console.log('MaxSharpePort: ' + this.maxSharpePortfolio);
+        // console.log('MaxSharpePort: ' + JSON.stringify(this.maxSharpePortfolio));
       }
     }
   }
@@ -141,7 +141,7 @@ export class PortfolioComponent implements OnInit, OnDestroy {
     for (const p of this.portfolios) {
       if (p.is_min_vol) {
         this.minVolPortfolio = p;
-        console.log('MinVolPort: ' + this.minVolPortfolio);
+        // console.log('MinVolPort: ' + JSON.stringify(this.minVolPortfolio));
       }
     }
   }

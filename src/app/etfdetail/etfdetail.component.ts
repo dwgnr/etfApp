@@ -12,7 +12,7 @@ export class EtfdetailComponent implements OnInit {
   columnDefs = [
     {headerName: 'Make', field: 'make' },
     {headerName: 'Model', field: 'model' },
-    {headerName: 'Price', field: 'price'}
+    {headerName: 'PriceResponse', field: 'price'}
   ];
 
   rowData = [

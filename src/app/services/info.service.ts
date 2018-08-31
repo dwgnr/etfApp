@@ -26,6 +26,8 @@ export class InfoService {
   private allInfoSubject = new Subject<InfoState>();
   ETFShoppingList: EtfInfo[] = [];
   ETFInfos: EtfInfo[] = [];
+  SearchResult: EtfInfo[] = [];
+
   CartState = this.cartSubject.asObservable();
   AllInfoState = this.allInfoSubject.asObservable();
   isLoaded = false;
@@ -63,6 +65,15 @@ export class InfoService {
     console.log('removed from cart');
     this.ETFShoppingList = this.ETFShoppingList.filter((_item) =>  _item.isin !== isin );
     this.cartSubject.next(<CartState>{loaded: false , products:  this.ETFShoppingList});
+  }
+
+  search(query: string) {
+    console.log('searching for ' + query);
+    if (query.length > 0) {
+      return this.http.get<EtfInfo[]>(API_URL + '/info/search/' + query);
+    } else {
+      return [];
+    }
   }
 
   // getAllProducts(): Observable <any> {
