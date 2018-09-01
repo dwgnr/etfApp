@@ -10,7 +10,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import {PriceService} from '../services/price.service';
-import {PriceResponse} from '../models/price.model';
+import {MAResponse, PerformanceResponse, PriceResponse} from '../models/price.model';
 import {Chart} from 'chart.js';
 
 declare var $: any;
@@ -32,7 +32,13 @@ export class EtfinfoComponent implements OnInit {
 
   etfinfos: EtfInfo[] = [];
   selectedETF: EtfInfo;
-  prices: PriceResponse[];
+  // prices: PriceResponse[];
+  prices: MAResponse[];
+  performance6m: PerformanceResponse;
+  performance1y: PerformanceResponse;
+  performance3y: PerformanceResponse;
+  performance5y: PerformanceResponse;
+
   ready = false;
   chartCreated = false;
   chart = Chart;
@@ -68,9 +74,7 @@ export class EtfinfoComponent implements OnInit {
       .debounceTime(200)
       .distinctUntilChanged()
       .switchMap((query) =>  this.infoService.search(query))
-      .subscribe( result => {  if (!result) { return; } else { this.searchResults = result; }
-      });
-
+      .subscribe( result => this.searchResults = result);
   }
 
   plotPortfolios() {
@@ -78,21 +82,43 @@ export class EtfinfoComponent implements OnInit {
       this.chart.destroy();
     }
 
-    const plotdata = [];
+    const pricedata = [];
+    const ma_30 = [];
+    const ma_90 = [];
     const lbls = [];
     for (const p of this.prices) {
-      plotdata.push(p.last);
+      pricedata.push(p.price);
+      ma_30.push(p.ma_30);
+      ma_90.push(p.ma_90);
       lbls.push(this.parseDate(p.date));
     }
-    // console.log('plot data: ' + JSON.stringify(plotdata));
+    // console.log('plot data: ' + JSON.stringify(pricedata));
      this.chart = new Chart('canvas', {
       type: 'line',
        data: {
         labels: lbls,
         datasets: [{
           label: 'Preis',
-          data: plotdata,
-        }]
+          data: pricedata,
+        },
+          {
+            label: '30-Tage MA',
+            data: ma_30,
+            fill: false,
+            pointRadius: 0,
+            borderWidth: 1,
+            borderColor: '#F26968',
+            backgroundColor: '#F26968',
+          },
+          {
+            label: '90-Tage MA',
+            data: ma_90,
+            fill: false,
+            pointRadius: 0,
+            borderWidth: 1,
+            borderColor: '#1779ba',
+            backgroundColor: '#1779ba',
+          }]
       },
 
       // Configuration options go here
@@ -117,10 +143,31 @@ export class EtfinfoComponent implements OnInit {
   onClick(info: EtfInfo) {
     // console.log('clicked on ' + info.isin);
     this.selectedETF = info;
-    this.priceService.getAllPricesByISIN(info.isin).subscribe(price => this.prices = price,
-        error => console.log('Error: ', error),
+    // this.priceService.getAllPricesByISIN(info.isin).subscribe(price => this.prices = price,
+    //     error => console.log('Error: ', error),
+    //   () => this.plotPortfolios()
+    //   );
+
+    this.priceService.getMovingAverageByISIN(info.isin).subscribe(price => this.prices = price,
+      error => console.log('Error: ', error),
       () => this.plotPortfolios()
-      );
+    );
+
+    this.priceService.getPerformanceByISIN(info.isin, '2018-02-01', '2018-08-01').subscribe(performance => this.performance6m = performance,
+      error => console.log('Error: ', error)
+    );
+
+    this.priceService.getPerformanceByISIN(info.isin, '2017-08-01', '2018-07-31').subscribe(performance => this.performance1y = performance,
+      error => console.log('Error: ', error)
+    );
+
+    this.priceService.getPerformanceByISIN(info.isin, '2015-08-01', '2018-07-31').subscribe(performance => this.performance3y = performance,
+      error => console.log('Error: ', error)
+    );
+
+    this.priceService.getPerformanceByISIN(info.isin, '2013-08-01', '2018-07-31').subscribe(performance => this.performance5y = performance,
+      error => console.log('Error: ', error)
+    );
   }
 
   parseDate(mom) {

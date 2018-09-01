@@ -1,7 +1,3 @@
-<!--<div class="grid-container">-->
-<!--<input [formControl]="queryField" type="search" id="keyword" placeholder="Suche..."/>-->
-<!--</div>-->
-
 <div class="input-group">
   <input class="input-field" [formControl]="queryField" type="search" id="keyword" placeholder="Suche..."/>
 </div>
@@ -13,7 +9,7 @@
 
       <div class="card" id="searched-etfs" *ngIf="searchResults && searchResults.length > 0">
         <div class="card-divider">
-          <h4>Gefundene ETFs</h4>
+          <h4>{{searchResults.length}} ETFs gefunden</h4>
         </div>
 
         <div class="card-section" *ngIf="searchResults">
@@ -41,8 +37,6 @@
       </div>
 
     </div>
-
-    <!--</div>-->
 
     <div class="cell small-8 medium-8 large-8" data-sticky-container>
       <div class="sticky" data-sticky data-margin-top="4.35" data-anchor="all-etfs">
@@ -93,8 +87,42 @@
             <div class="card-divider">
               <h5>Chart</h5>
             </div>
-            <div class="card-section"></div>
+            <div class="card-section">
             <canvas id="canvas">{{ chart }}</canvas>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-divider">
+              <h5>Wertentwicklung und Risiko</h5>
+            </div>
+            <div class="card-section" *ngIf="performance6m">
+              <div class="cell">Performance 6 Monate (annualisiert): <b [ngClass]="{'positive' : performance6m.mean > 0,
+               'negative' : performance6m.mean < 0}">{{performance6m.mean | percent:'1.0-2'}}</b></div>
+              <div class="cell">Standardabweichung 6 Monate (annualisiert): <b>{{performance6m.std | percent:'1.0-2'}}
+              </b></div>
+              <div class="cell">Sharpe Ratio 6 Monate: <b>{{performance6m.sharpe | number:'1.2-2'}}</b></div>
+            </div>
+            <div class="card-section" *ngIf="performance1y">
+              <div class="cell">Performance 1 Jahr: <b [ngClass]="{'positive' : performance1y.mean > 0,
+              'negative' : performance1y.mean < 0}">{{performance1y.mean | percent:'1.0-2'}}</b></div>
+              <div class="cell">Standardabweichung 1 Jahr: <b>{{performance1y.std | percent:'1.0-2'}}</b></div>
+              <div class="cell">Sharpe Ratio 1 Jahr: <b>{{performance1y.sharpe | number:'1.2-2'}}</b></div>
+            </div>
+            <div class="card-section" *ngIf="performance3y">
+              <div class="cell">Performance 3 Jahre (annualisiert): <b [ngClass]="{'positive' : performance3y.mean > 0,
+              'negative' : performance3y.mean < 0}">{{performance3y.mean | percent:'1.0-2'}}</b></div>
+              <div class="cell">Standardabweichung 3 Jahre (annualisiert): <b>{{performance3y.std | percent:'1.0-2'}}
+              </b></div>
+              <div class="cell">Sharpe Ratio 3 Jahre: <b>{{performance3y.sharpe | number:'1.2-2'}}</b></div>
+            </div>
+            <div class="card-section" *ngIf="performance5y">
+              <div class="cell">Performance 5 Jahre (annualisiert): <b [ngClass]="{'positive' : performance5y.mean > 0,
+              'negative' : performance5y.mean < 0}">{{performance5y.mean | percent:'1.0-2'}}</b></div>
+              <div class="cell">Standardabweichung 5 Jahre (annualisiert): <b>{{performance5y.std | percent:'1.0-2'}}
+              </b></div>
+              <div class="cell">Sharpe Ratio 5 Jahre: <b>{{performance5y.sharpe | number:'1.2-2'}}</b></div>
+            </div>
           </div>
 
 

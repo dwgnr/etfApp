@@ -2,3 +2,11 @@
   overflow-y: scroll !important;
   max-height: 70vh;
 }
+
+.positive {
+  color: #1779ba;
+}
+
+.negative {
+  color: #F26968;
+}

@@ -10,3 +10,16 @@ export interface PriceResponse {
   'isin': string;
   'id': number;
 }
+
+export interface MAResponse {
+  'date': any;
+  'price': number;
+  'ma_30': number;
+  'ma_90': number;
+}
+
+export interface PerformanceResponse {
+  'mean': number;
+  'std': number;
+  'sharpe': number;
+}
