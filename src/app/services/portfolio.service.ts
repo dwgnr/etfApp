@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { environment } from 'environments/environment';
 import { Observable} from 'rxjs/';
-import { Portfolio, PortfolioInput } from '../models/portfolio.model';
+import { Portfolio, BlackLittermanPortfolio, PortfolioInput, BlackLittermanInput } from '../models/portfolio.model';
 import {HttpHeaders} from '../../../node_modules/@angular/common/http';
 
 const API_URL = environment.apiUrl;
@@ -28,6 +28,13 @@ export class PortfolioService {
     console.log('Portfolio Service called');
     return this.http
       .post<Portfolio[]>(API_URL + '/portfolio/', input);
+  }
+
+
+  public getBLPortfolios(input: BlackLittermanInput): Observable<BlackLittermanPortfolio[]> {
+    console.log('Black Litterman Portfolio Service called');
+    return this.http
+      .post<BlackLittermanPortfolio[]>(API_URL + '/portfolio/blacklitterman', input);
   }
 
 }

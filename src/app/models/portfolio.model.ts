@@ -12,6 +12,19 @@ export interface Portfolio {
     ];
 }
 
+export interface BlackLittermanPortfolio {
+  'tan_ret': number;
+  'tan_stdev': number;
+  'tan_weights': [
+    {
+      'isin': string;
+      'weight': number;
+    }
+    ];
+  'front_ret': number[];
+  'front_stdev': number[];
+}
+
 export interface PortfolioWeight {
   isin: string;
   weight: number;
@@ -23,4 +36,20 @@ export interface PortfolioInput {
   'date_from': any;
   'date_to': any;
   'etfs': string[];
+}
+
+export interface BlackLittermanInput {
+  'symbols': string[];
+  'views': [
+    {
+      'isin1': string;
+      'operator': string;
+      'isin2': string;
+      'adjustment': number;
+    }
+    ];
+  'date_from': any;
+  'date_to': any;
+  'rf': number;
+  'tau': number;
 }

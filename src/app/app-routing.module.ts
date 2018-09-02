@@ -5,6 +5,7 @@ import {ClusterComponent} from './cluster/cluster.component';
 import {EtfinfoComponent} from './etfinfo/etfinfo.component';
 import {EtfdetailComponent} from './etfdetail/etfdetail.component';
 import {LoadguardService} from './services/loadguard.service';
+import {BlacklittermanComponent} from './blacklitterman/blacklitterman.component';
 
 declare var $: any;
 
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'etfdetail',
     component: EtfdetailComponent
+  },
+  {
+    path: 'blacklitterman',
+    component: BlacklittermanComponent
   }
   ];
 

@@ -180,4 +180,6 @@ export class EtfinfoComponent implements OnInit {
 
 }
 
+// TODO: Build more sorting and filter capabilities e.g. sort by AuM or TER, filter by region etc.
+
 

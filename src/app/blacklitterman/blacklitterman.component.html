@@ -1,0 +1,116 @@
+<div class="grid-container">
+  <div class="warning callout" *ngIf="warning">
+    <p style="text-align: center">{{ warnMessage }}</p>
+  </div>
+</div>
+
+
+<div class="grid-container">
+  <div class="grid-x grid-margin-x grid-padding-y">
+
+    <div class="cell small-4 medium-4 large-4">
+      <div class="card">
+        <div class="card-divider">
+          <h4>Portfoliokonstruktion</h4>
+        </div>
+        <div class="card-section">
+          <div class="cell">
+            <mat-form-field>
+              <input matInput [formControl]="fromDateControl" [min]="minDate" [max]="maxDate"
+                     [matDatepicker]="from_picker" placeholder="Startdatum wählen">
+              <mat-datepicker-toggle matSuffix [for]="from_picker"></mat-datepicker-toggle>
+              <mat-datepicker #from_picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [formControl]="toDateControl" [min]="minDate" [max]="maxDate"
+                     [matDatepicker]="to_picker" placeholder="Enddatum wählen">
+              <mat-datepicker-toggle matSuffix [for]="to_picker"></mat-datepicker-toggle>
+              <mat-datepicker #to_picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [formControl]="rfControl" type="number" [max]="maxRf"
+                     placeholder="Risikoloser Zinssatz">
+              <span matSuffix>%</span>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [formControl]="tauControl" type="number" placeholder="Skalierungsfaktor Tau (z.B. 0,025)">
+            </mat-form-field>
+
+            <br>
+            <a class="button primary" (click)="onButtonPressed()">Portfolios konstruieren</a>
+          </div>
+          <div class="card">
+            <div class="card-divider"> <h5>ETF-Liste</h5></div>
+            <div class="card-section">
+              <div *ngIf="etflist && etflist.length > 0; else noelements">
+                <div *ngFor="let etf of etflist">
+                  <p>{{etf.name}} ({{etf.isin}})</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cell small-8 medium-8 large-8">
+      <div class="card" id="all-portfolios">
+        <div class="card-divider">
+          <h4>Ergebnisse</h4>
+        </div>
+        <div class="card-section">
+          <div *ngIf="chart">
+            <canvas id="canvas">{{ chart }}</canvas>
+          </div>
+          <br>
+          <div class="card" *ngIf="portfolios">
+            <div class="card-divider">
+              <h5>Mean-Variance Optimization basierend auf historischen Renditen</h5>
+            </div>
+            <div class="card-section">
+              <p>Erwartete Rendite (annualisiert): {{portfolios[0].tan_ret | percent:'1.0-0'}}</p>
+              <p>Erwartete Volatilität (annualisiert): {{portfolios[0].tan_stdev | percent:'1.0-0'}}</p>
+              <p *ngFor="let wgt of portfolios[0].tan_weights">
+                {{wgt.isin}}: {{wgt.weight | percent:'1.0-0'}}
+              </p>
+            </div>
+          </div>
+          <div class="card" *ngIf="portfolios">
+            <div class="card-divider">
+              <h5>Mean-variance Optimization basierend auf Gleichgewichtsrenditen</h5>
+            </div>
+            <div class="card-section">
+              <p>Erwartete Rendite (annualisiert): {{portfolios[1].tan_ret | percent:'1.0-0'}}</p>
+              <p>Erwartete Volatilität (annualisiert): {{portfolios[1].tan_stdev | percent:'1.0-0'}}</p>
+              <p *ngFor="let wgt of portfolios[1].tan_weights">
+                {{wgt.isin}}: {{wgt.weight | percent:'1.0-0'}}
+              </p>
+            </div>
+          </div>
+          <div class="card" *ngIf="portfolios">
+            <div class="card-divider">
+              <h5>Mean-variance Optimization based on Gleichgewichtsrenditen mit angepassten Views</h5>
+            </div>
+            <div class="card-section">
+              <p>Erwartete Rendite (annualisiert): {{portfolios[2].tan_ret | percent:'1.0-0'}}</p>
+              <p>Erwartete Volatilität (annualisiert): {{portfolios[2].tan_stdev | percent:'1.0-0'}}</p>
+              <p *ngFor="let wgt of portfolios[2].tan_weights">
+                {{wgt.isin}}: {{wgt.weight | percent:'1.0-0'}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #noelements>
+  <div class="cell">
+    Liste leer
+  </div>
+</ng-template>

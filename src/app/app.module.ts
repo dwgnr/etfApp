@@ -28,6 +28,7 @@ import { ShoppinglistComponent } from './shoppinglist/shoppinglist.component';
 import { AppRoutingModule } from './app-routing.module';
 import {EtfInfoModule} from './etfinfo/etfinfo.module';
 import { AgGridModule } from 'ag-grid-angular';
+import { BlacklittermanComponent } from './blacklitterman/blacklitterman.component';
 
 
 
@@ -44,6 +45,7 @@ registerLocaleData(localede);
     EtfdetailComponent,
     // CartitemComponent,
     ShoppinglistComponent,
+    BlacklittermanComponent,
   ],
   imports: [
     BrowserModule,
