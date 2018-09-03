@@ -47,7 +47,9 @@
             <div class="card-section">
               <div *ngIf="etflist && etflist.length > 0; else noelements">
                 <div *ngFor="let etf of etflist">
-                  <p>{{etf.name}} ({{etf.isin}})</p>
+                  <p>{{etf.name}} ({{etf.isin}})
+                    <small>Market Cap: {{etf.market_cap_eur / 1000000000 | number:'1.2-2'}} Mrd. EUR</small>
+                  </p>
                 </div>
               </div>
             </div>

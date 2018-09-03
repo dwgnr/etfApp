@@ -35,7 +35,7 @@ export interface EtfInfo {
   sector: string;
   company: string;
   fund_currency: string;
-  inception: string;
+  inception: any;
   index_name: string;
   index_replication: string;
   index_type: string;
@@ -49,6 +49,7 @@ export interface EtfInfo {
   strategy: string;
   swap_counterpart: string;
   trade_currency: string;
+  market_cap_eur: number;
   pdf: string;
   added: boolean;
 
@@ -63,6 +64,20 @@ export interface CartState {
 export interface InfoState {
   loaded: boolean;
   products: EtfInfo[];
+
+}
+
+export interface Region {
+  'region': string[];
+}
+
+export interface InfoFilter {
+  region: string;
+  age: any;
+  profit_use: string;
+  fund_size: number;
+  ter: number;
+  search: string;
 
 }
 

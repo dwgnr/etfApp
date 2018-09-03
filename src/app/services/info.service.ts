@@ -6,9 +6,10 @@ import { Observable} from 'rxjs/';
 import { HttpHeaders } from '@angular/common/http';
 
 
-import {EtfInfo, CartState, InfoState} from '../models/etfinfo.model';
+import {EtfInfo, CartState, InfoState, Region, InfoFilter} from '../models/etfinfo.model';
 // import {CartItem, CartState} from '../models/cart.model';
 import {Subject} from '../../../node_modules/rxjs/Subject';
+import {Portfolio, PortfolioInput} from '../models/portfolio.model';
 
 const API_URL = environment.apiUrl;
 
@@ -35,6 +36,11 @@ export class InfoService {
   getETFInfos(): Observable<EtfInfo[]> {
     return this.http.get<EtfInfo[]>(API_URL + '/info/');
   }
+
+  getAllRegions(): Observable<Region> {
+    return this.http.get<Region>(API_URL + '/info/regions/');
+  }
+
   initAllETFInfos() {
     console.log('Initializing all ETF Infos');
     this.getETFInfos().subscribe(
@@ -74,6 +80,11 @@ export class InfoService {
     } else {
       return [];
     }
+  }
+
+  public filter(input: InfoFilter): Observable<EtfInfo[]> {
+    console.log('Filter Service called');
+    return this.http.post<EtfInfo[]>(API_URL + '/info/filter/', input);
   }
 
   // getAllProducts(): Observable <any> {

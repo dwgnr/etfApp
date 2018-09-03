@@ -1,6 +1,6 @@
 import {Component, ViewChild, OnInit, OnDestroy, AfterViewInit, AfterViewChecked, NgModule} from '@angular/core';
 // import {InfoService} from '../services/info.service';
-import {CartState, EtfInfo, InfoState} from '../models/etfinfo.model';
+import {CartState, EtfInfo, InfoState, Region, InfoFilter} from '../models/etfinfo.model';
 import {InfoService} from '../services/info.service';
 import {Subscription} from '../../../node_modules/rxjs/Subscription';
 import {EtfinfoRoutingModule} from './etfinfo.routing';
@@ -28,7 +28,14 @@ const dateFormat = 'MMM YYYY';
 export class EtfinfoComponent implements OnInit {
 
   searchResults: EtfInfo[];
+  regions: Region;
   queryField: FormControl = new FormControl();
+  regionFilterField: FormControl = new FormControl();
+  ageFilterField: FormControl = new FormControl();
+  profitUseFilterField: FormControl = new FormControl();
+  fundSizeFilterField: FormControl = new FormControl();
+  terFilterField: FormControl = new FormControl();
+  filter = {  region: '', age: '', profit_use: '', fund_size: 0,  ter: 0, search: ''} as InfoFilter;
 
   etfinfos: EtfInfo[] = [];
   selectedETF: EtfInfo;
@@ -55,6 +62,12 @@ export class EtfinfoComponent implements OnInit {
     // this.etfinfos = this.infoService.ETFInfos;
     // this.handleAllETFInfoSubscription();
     this.etfinfos = this.infoService.ETFInfos as EtfInfo[];
+
+    this.infoService.getAllRegions().subscribe(region => this.regions = region,
+      error => console.log('Error: ', error),
+      () => this.onChangedRegion()
+    );
+
     // if (this.etfinfos.length > 0) {
     //   setTimeout(() => this.ready = true, 0);
     // }
@@ -69,12 +82,7 @@ export class EtfinfoComponent implements OnInit {
     //     this.etfinfos = state.products;
     //   });
 
-
-    this.queryField.valueChanges
-      .debounceTime(200)
-      .distinctUntilChanged()
-      .switchMap((query) =>  this.infoService.search(query))
-      .subscribe( result => this.searchResults = result);
+    this.onFilterChanges();
   }
 
   plotPortfolios() {
@@ -168,6 +176,41 @@ export class EtfinfoComponent implements OnInit {
     this.priceService.getPerformanceByISIN(info.isin, '2013-08-01', '2018-07-31').subscribe(performance => this.performance5y = performance,
       error => console.log('Error: ', error)
     );
+  }
+
+  onChangedRegion(): void {
+    this.regionFilterField.valueChanges.subscribe(val => {
+      this.filter.region = this.regionFilterField.value;
+      this.infoService.filter(this.filter).subscribe(result => this.searchResults = result);
+    });
+  }
+
+  onFilterChanges(): void {
+    this.ageFilterField.valueChanges.subscribe(val => {
+      this.filter.age = this.ageFilterField.value;
+      this.infoService.filter(this.filter).subscribe(result => this.searchResults = result);
+    });
+
+    this.profitUseFilterField.valueChanges.subscribe(val => {
+      this.filter.profit_use = this.profitUseFilterField.value;
+      this.infoService.filter(this.filter).subscribe(result => this.searchResults = result);
+    });
+
+    this.fundSizeFilterField.valueChanges.subscribe(val => {
+      this.filter.fund_size = Number(this.fundSizeFilterField.value).valueOf();
+      this.infoService.filter(this.filter).subscribe(result => this.searchResults = result);
+    });
+
+    this.terFilterField.valueChanges.subscribe(val => {
+      this.filter.ter = Number(this.terFilterField.value).valueOf();
+      this.infoService.filter(this.filter).subscribe(result => this.searchResults = result);
+    });
+
+    this.queryField.valueChanges
+      .debounceTime(200)
+      .distinctUntilChanged()
+      .switchMap((query) =>  this.infoService.search(query))
+      .subscribe( result => this.searchResults = result);
   }
 
   parseDate(mom) {

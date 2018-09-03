@@ -5,6 +5,8 @@ import { EtfinfoRoutingModule } from './etfinfo.routing';
 import { CartitemComponent } from '../cartitem/cartitem.component';
 import {ValuesPipe} from './values.pipe';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
+
 
 @NgModule({
   imports: [
@@ -12,6 +14,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     EtfinfoRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatSelectModule,
   ],
   declarations: [
     EtfinfoComponent,
