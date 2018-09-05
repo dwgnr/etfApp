@@ -29,15 +29,66 @@
               <mat-datepicker #to_picker></mat-datepicker>
             </mat-form-field>
 
-            <mat-form-field>
+            <form class="input-form">
+            <mat-form-field class="form-full-width">
               <input matInput [formControl]="rfControl" type="number" [max]="maxRf"
                      placeholder="Risikoloser Zinssatz">
               <span matSuffix>%</span>
             </mat-form-field>
+          </form>
 
-            <mat-form-field>
+            <form class="input-form">
+            <mat-form-field class="form-full-width">
               <input matInput [formControl]="tauControl" type="number" placeholder="Skalierungsfaktor Tau (z.B. 0,025)">
             </mat-form-field>
+            </form>
+
+            <mat-slide-toggle [(ngModel)]="shrinkageChecked">Shrinkage Estimator</mat-slide-toggle>
+            <mat-slide-toggle [(ngModel)]="recommendationsChecked">Vorschlagsliste verwenden</mat-slide-toggle>
+            <mat-slide-toggle [(ngModel)]="viewsChecked">Eigene Views verwenden</mat-slide-toggle>
+            <br>
+            <div *ngIf="viewsChecked && recommendationsChecked" class="cell">
+              <mat-form-field>
+                <mat-select placeholder="ETF" [formControl]="viewControlETF1">
+                  <mat-option *ngFor="let etf of recommendations" value="{{etf}}">{{etf}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-select placeholder="Performance" [formControl]="viewControlOperator">
+                  <mat-option value=">">outperformt</mat-option>
+                  <mat-option value="<">underperformt</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-select placeholder="ETF" [formControl]="viewControlETF2">
+                  <mat-option *ngFor="let etf of recommendations" value="{{etf}}">{{etf}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-select placeholder="Stärke" [formControl]="viewControlStrength">
+                  <mat-option value="0.01">gering</mat-option>
+                  <mat-option value="0.03">mittel</mat-option>
+                  <mat-option value="0.07">stark</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <a class="button primary" (click)="addView()">View hinzufügen</a>
+
+              <div class="card">
+                <div class="card-divider"> <h5>View-Übersicht</h5></div>
+                <div class="card-section">
+                  <div *ngIf="views && views.length > 0; else noelements">
+                    <div *ngFor="let view of views">
+                      <p>{{view.isin1}} {{view.operator}} {{view.isin2}} mit {{view.adjustment}}</p>
+                      <a class="button alert" (click)="removeView(view)">View entfernen</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
 
             <br>
             <a class="button primary" (click)="onButtonPressed()">Portfolios konstruieren</a>
@@ -92,7 +143,7 @@
               </p>
             </div>
           </div>
-          <div class="card" *ngIf="portfolios">
+          <div class="card" *ngIf="portfolios && portfolios.length > 2">
             <div class="card-divider">
               <h5>Mean-variance Optimization based on Gleichgewichtsrenditen mit angepassten Views</h5>
             </div>

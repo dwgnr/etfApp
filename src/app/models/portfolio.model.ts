@@ -40,16 +40,17 @@ export interface PortfolioInput {
 
 export interface BlackLittermanInput {
   'symbols': string[];
-  'views': [
-    {
-      'isin1': string;
-      'operator': string;
-      'isin2': string;
-      'adjustment': number;
-    }
-    ];
+  'views': ViewInput[];
   'date_from': any;
   'date_to': any;
   'rf': number;
   'tau': number;
+  'shrinkage': boolean;
+}
+
+export interface ViewInput {
+  'isin1': string;
+  'operator': string;
+  'isin2': string;
+  'adjustment': number;
 }

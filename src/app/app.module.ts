@@ -7,7 +7,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSliderModule} from '@angular/material/slider';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
+import {MatSelectModule} from '@angular/material/select';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
 import localede from '@angular/common/locales/de';
@@ -56,7 +58,9 @@ registerLocaleData(localede);
     MatFormFieldModule,
     MatInputModule,
     MatSliderModule,
+    MatSlideToggleModule,
     MatMomentDateModule,
+    MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
