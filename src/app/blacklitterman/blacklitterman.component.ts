@@ -1,10 +1,10 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import {Portfolio, BlackLittermanInput, PortfolioInput, BlackLittermanPortfolio, ViewInput} from '../models/portfolio.model';
 import {PortfolioService} from '../services/portfolio.service';
 import {FormControl} from '@angular/forms';
 import {InfoService} from '../services/info.service';
 import {EtfInfo, CartState} from '../models/etfinfo.model';
-import {Subscription} from '../../../node_modules/rxjs/Subscription';
+import {Subscription} from 'rxjs/Subscription';
 import {Chart} from 'chart.js';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 
@@ -31,8 +31,9 @@ export class BlacklittermanComponent implements OnInit {
   to_date: string;
   chart = Chart;
   chartCreated = false;
-  warning = false;
-  warnMessage = '';
+  warnMessage: string[] = [];
+  errorMessage = '';
+  viewErrorMessage = '';
 
   fromDateControl = new FormControl();
   toDateControl = new FormControl();
@@ -57,22 +58,45 @@ export class BlacklittermanComponent implements OnInit {
   rf: number;
   tau: number;
 
+  // private subscription: Subscription;
+
+
   constructor(private portfolioService: PortfolioService, private infoService: InfoService,
               private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
+    // this.subscription = this
+    //   ._infoService
+    //   .CartState
+    //   .subscribe((state: CartState) => {
+    //     this.etflist = state.products;
+    //   });
     this.onChanges();
     this.etflist = this.infoService.ETFShoppingList as EtfInfo[];
+
+
   }
+  // ngOnDestroy() {
+  //   this.subscription.unsubscribe();
+  // }
 
   getBLPortfolios(etfinfos: EtfInfo[], views: any[], date_from: any, date_to: any, rf: number, tau: number, shrinkage: boolean): void {
+    this.warnMessage = [];
+    this.errorMessage = '';
     let symbols = [];
     if (!date_from || !date_to) {
-      this.warning = true;
-      this.warnMessage = 'Fehler bei der Datumseingabe. Verwende Standarddatum von 1.1.2014 bis 1.1.2018.';
+      this.warnMessage.push('Fehler bei der Datumseingabe. Verwende Datum von 1.1.2014 bis 1.1.2018.');
       date_from = '2014-01-01';
       date_to = '2018-01-01';
+    }
+    if (!rf) {
+      this.warnMessage.push('Kein risikoloser Zinssatz angegeben. Verwende 0,38%.');
+      rf = 0.0038;
+    }
+    if (!tau) {
+      this.warnMessage.push('Kein Skalierungsfaktor angegeben. Verwende 0,025.');
+      tau = 0.025;
     }
     if (this.recommendationsChecked) {
       console.log('Using recommendations as BlackLitterman Input.');
@@ -80,9 +104,9 @@ export class BlacklittermanComponent implements OnInit {
       const newInput: BlackLittermanInput = {symbols, views, date_from, date_to, rf, tau, shrinkage} as BlackLittermanInput;
       console.log('BlackLitterman Input:');
       console.log(JSON.stringify(newInput));
-      this.warning = false;
       this.portfolioService.getBLPortfolios(newInput).subscribe(portfolio =>
-        this.handlePortfolioResponse(portfolio)
+        this.handlePortfolioResponse(portfolio),
+        error => this.errorMessage = 'Portfolios konnten nicht konstruiert werden!'
       );
     } else {
       if (etfinfos && etfinfos.length > 0) {
@@ -92,13 +116,13 @@ export class BlacklittermanComponent implements OnInit {
         const newInput: BlackLittermanInput = {symbols, views, date_from, date_to, rf, tau, shrinkage} as BlackLittermanInput;
         console.log('BlackLitterman Input:');
         console.log(JSON.stringify(newInput));
-        this.warning = false;
         this.portfolioService.getBLPortfolios(newInput).subscribe(portfolio =>
-          this.handlePortfolioResponse(portfolio)
+          this.handlePortfolioResponse(portfolio),
+          error => this.errorMessage = 'Portfolios konnten nicht konstruiert werden!'
         );
       } else {
-        this.warning = true;
-        this.warnMessage = 'Keine ETFs oder Vorschlagsliste gewählt. Portfolios werden nicht konstruiert.';
+        this.warnMessage.push('Keine ETFs oder Vorschlagsliste gewählt.');
+        this.errorMessage = 'Portfolios können nicht konstruiert werden!';
       }
     }
   }
@@ -116,6 +140,7 @@ export class BlacklittermanComponent implements OnInit {
       );
     }
 
+
     for (let i = 0; i < this.portfolios[1].front_ret.length; i++) {
       equilibrium_ret_frontier.push(
         {
@@ -125,6 +150,17 @@ export class BlacklittermanComponent implements OnInit {
       );
     }
 
+    const hist_ret_tan = [{
+      x: this.portfolios[0].tan_stdev,
+      y: this.portfolios[0].tan_ret
+    }];
+
+    const equilibrium_ret_tan = [{
+      x: this.portfolios[1].tan_stdev,
+      y: this.portfolios[1].tan_ret
+    }];
+
+    let adj_equilibrium_tan = [];
     if (this.portfolios.length > 2) {
       for (let i = 0; i < this.portfolios[2].front_ret.length; i++) {
         adj_equilibrium_frontier.push(
@@ -134,13 +170,21 @@ export class BlacklittermanComponent implements OnInit {
           }
         );
       }
+
+      adj_equilibrium_tan = [{
+        x: this.portfolios[2].tan_stdev,
+        y: this.portfolios[2].tan_ret,
+      }];
+
     }
     console.log('equilibrium_ret_frontier:');
     console.log(equilibrium_ret_frontier);
-    this.plotPortfolios(hist_ret_frontier, equilibrium_ret_frontier, adj_equilibrium_frontier);
+    this.plotPortfolios(hist_ret_frontier, equilibrium_ret_frontier,
+      adj_equilibrium_frontier, hist_ret_tan, equilibrium_ret_tan, adj_equilibrium_tan);
   }
 
-  plotPortfolios(hist_ret_frontier, equilibrium_ret_frontier, adj_equilibrium_frontier) {
+  plotPortfolios(hist_ret_frontier, equilibrium_ret_frontier,
+                 adj_equilibrium_frontier, hist_ret_tan, equilibrium_ret_tan, adj_equilibrium_tan) {
     if (this.chartCreated) {
       this.chart.destroy();
     }
@@ -174,10 +218,50 @@ export class BlacklittermanComponent implements OnInit {
             borderWidth: 3,
             borderColor: '#1779ba',
             backgroundColor: '#1779ba',
-          }]
+          },
+          {
+            label: 'Tangentialportfolio (MVO historische Renditen)',
+            data: hist_ret_tan,
+            fill: false,
+            showLine: true,
+            pointRadius: 4,
+            borderWidth: 4,
+            borderColor: '#EFAA52',
+            backgroundColor: '#EFAA52',
+          },
+          {
+            label: 'Tangentialportfolio (MVO Gleichgewichtsrenditen)',
+            data: equilibrium_ret_tan,
+            fill: false,
+            showLine: true,
+            pointRadius: 4,
+            borderWidth: 4,
+            borderColor: '#EFAA52',
+            backgroundColor: '#EFAA52',
+          },
+          {
+            label: 'Tangentialportfolio (MVO Gleichgewichtsrenditen mit angepassten Views)',
+            data: adj_equilibrium_tan,
+            fill: false,
+            showLine: true,
+            pointRadius: 4,
+            borderWidth: 4,
+            borderColor: '#EFAA52',
+            backgroundColor: '#EFAA52',
+          }
+          ]
       },
       // Configuration options go here
-      options: {}
+      options: {
+        legend: {
+          labels: {
+            filter: function (item, chart) {
+              // Exclude Tangent Portfolio labels from legend
+              return !item.text.includes('Tangentialportfolio');
+            },
+          }
+        }
+      }
     });
     this.chartCreated = true;
   }
@@ -191,16 +275,12 @@ export class BlacklittermanComponent implements OnInit {
 
 
   onButtonPressed() {
-    // this.views = [{
-    //   'isin1': 'dsdsfdj',
-    //   'operator': 'sjdj',
-    //   'isin2': 'djndsjnd',
-    //   'adjustment': 0.02
-    // }];
-    this.getBLPortfolios(this.etflist, this.views, this.from_date, this.to_date, this.rf, this.tau, this.shrinkageChecked);
+    this.getBLPortfolios(this.etflist, this.views, this.from_date,
+      this.to_date, this.rf, this.tau, this.shrinkageChecked);
   }
 
   addView() {
+    this.viewErrorMessage = '';
     const newView = {
       isin1: String(this.viewControlETF1.value).valueOf(),
       operator: String(this.viewControlOperator.value).valueOf(),
@@ -208,9 +288,13 @@ export class BlacklittermanComponent implements OnInit {
       adjustment: Number(this.viewControlStrength.value).valueOf(),
     } as ViewInput;
 
-    this.views.push(newView);
-    console.log(String(this.viewControlETF1.value));
-    console.log('Added View' + JSON.stringify(newView));
+    if (newView['isin1'].length > 0 && newView['isin2'].length > 0
+      && newView['operator'].length > 0 && newView['adjustment']) {
+      this.views.push(newView);
+      console.log('Added View' + JSON.stringify(newView));
+    } else {
+      this.viewErrorMessage = 'Unvollständige Eingabe! View konnte nicht erzeugt werden.';
+    }
   }
 
   removeView(view) {

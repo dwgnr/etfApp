@@ -1,6 +1,9 @@
 <div class="grid-container">
-  <div class="warning callout" *ngIf="warning">
-    <p style="text-align: center">{{ warnMessage }}</p>
+  <div class="warning callout" *ngIf="warnMessage && warnMessage.length > 0">
+    <p *ngFor="let msg of warnMessage" style="text-align: center"> <strong>{{ msg }}</strong></p>
+  </div>
+  <div class="alert callout" *ngIf="errorMessage && errorMessage.length > 0">
+    <p style="text-align: center"> <strong>{{ errorMessage }}</strong></p>
   </div>
 </div>
 
@@ -74,6 +77,54 @@
                   <mat-option value="0.07">stark</mat-option>
                 </mat-select>
               </mat-form-field>
+              <div class="cell">
+              <a class="button primary" (click)="addView()">View hinzufügen</a>
+                <div class="alert callout" *ngIf="viewErrorMessage && viewErrorMessage.length > 0">
+                  <p style="text-align: center">{{ viewErrorMessage }}</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-divider"> <h5>View-Übersicht</h5></div>
+                <div class="card-section">
+                  <div *ngIf="views && views.length > 0; else noelements">
+                    <div *ngFor="let view of views">
+                      <p>{{view.isin1}} {{view.operator}} {{view.isin2}} mit {{view.adjustment}}</p>
+                      <a class="button alert" (click)="removeView(view)">View entfernen</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div *ngIf="viewsChecked && !recommendationsChecked" class="cell">
+              <mat-form-field>
+                <mat-select placeholder="ETF" [formControl]="viewControlETF1">
+                  <mat-option *ngFor="let etf of etflist" value="{{etf.isin}}">{{etf.isin}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-select placeholder="Performance" [formControl]="viewControlOperator">
+                  <mat-option value=">">outperformt</mat-option>
+                  <mat-option value="<">underperformt</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-select placeholder="ETF" [formControl]="viewControlETF2">
+                  <mat-option *ngFor="let etf of etflist" value="{{etf.isin}}">{{etf.isin}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-select placeholder="Stärke" [formControl]="viewControlStrength">
+                  <mat-option value="0.01">gering</mat-option>
+                  <mat-option value="0.03">mittel</mat-option>
+                  <mat-option value="0.07">stark</mat-option>
+                </mat-select>
+              </mat-form-field>
               <a class="button primary" (click)="addView()">View hinzufügen</a>
 
               <div class="card">
@@ -90,6 +141,7 @@
 
             </div>
 
+
             <br>
             <a class="button primary" (click)="onButtonPressed()">Portfolios konstruieren</a>
           </div>
@@ -100,6 +152,7 @@
                 <div *ngFor="let etf of etflist">
                   <p>{{etf.name}} ({{etf.isin}})
                     <small>Market Cap: {{etf.market_cap_eur / 1000000000 | number:'1.2-2'}} Mrd. EUR</small>
+                    <app-cartitem [product]="etf" ></app-cartitem>
                   </p>
                 </div>
               </div>
@@ -145,7 +198,7 @@
           </div>
           <div class="card" *ngIf="portfolios && portfolios.length > 2">
             <div class="card-divider">
-              <h5>Mean-variance Optimization based on Gleichgewichtsrenditen mit angepassten Views</h5>
+              <h5>Mean-variance Optimization basierend auf Gleichgewichtsrenditen mit angepassten Views</h5>
             </div>
             <div class="card-section">
               <p>Erwartete Rendite (annualisiert): {{portfolios[2].tan_ret | percent:'1.0-0'}}</p>

@@ -10,3 +10,14 @@
 .negative {
   color: #F26968;
 }
+
+#keyword {
+  margin-top: 16px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+#filter-grid {
+  z-index: -1;
+}
+

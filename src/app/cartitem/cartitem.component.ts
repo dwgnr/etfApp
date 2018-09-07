@@ -12,7 +12,7 @@ import { EtfInfo, CartState} from '../models/etfinfo.model';
 export class CartitemComponent {
 
   @Input()
-  product: EtfInfo;
+  public product: EtfInfo;
 
   constructor(private _infoService: InfoService) {}
   AddProduct(_product: EtfInfo) {

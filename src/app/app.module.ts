@@ -26,6 +26,8 @@ import { PriceService } from './services/price.service';
 import { PortfolioService } from './services/portfolio.service';
 import { InfoService } from './services/info.service';
 import { CartitemComponent } from './cartitem/cartitem.component';
+import { CartItemModule } from './cartitem/cartitem.module';
+
 import { ShoppinglistComponent } from './shoppinglist/shoppinglist.component';
 import { AppRoutingModule } from './app-routing.module';
 import {EtfInfoModule} from './etfinfo/etfinfo.module';
@@ -50,11 +52,11 @@ registerLocaleData(localede);
     BlacklittermanComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AgGridModule.withComponents([]),
     HttpClientModule,
     MatDatepickerModule,
-    BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
     MatSliderModule,
@@ -64,6 +66,7 @@ registerLocaleData(localede);
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    CartItemModule,
   ],
   // exports: [
   //   CartitemComponent,

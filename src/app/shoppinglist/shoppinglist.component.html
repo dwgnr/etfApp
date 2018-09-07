@@ -3,6 +3,7 @@
   <div *ngIf="products; else noelements">
     <div *ngFor="let item of products"  class="cell">
       {{item?.name}} ({{item?.isin}})
+      <app-cartitem [product]="item" ></app-cartitem>
     </div>
   </div>
 </div>

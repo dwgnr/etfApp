@@ -5,13 +5,16 @@ import {InfoService} from '../services/info.service';
 import {Subscription} from '../../../node_modules/rxjs/Subscription';
 import {EtfinfoRoutingModule} from './etfinfo.routing';
 import {ValuesPipe} from './values.pipe';
-import {FormControl} from '@angular/forms';
+import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import {PriceService} from '../services/price.service';
 import {MAResponse, PerformanceResponse, PriceResponse} from '../models/price.model';
 import {Chart} from 'chart.js';
+import {CommonModule} from '@angular/common';
+import {MatSelectModule} from '../../../node_modules/@angular/material/select';
+import { CartitemComponent } from '../cartitem/cartitem.component';
 
 declare var $: any;
 declare var moment: any;
@@ -206,11 +209,16 @@ export class EtfinfoComponent implements OnInit {
       this.infoService.filter(this.filter).subscribe(result => this.searchResults = result);
     });
 
-    this.queryField.valueChanges
-      .debounceTime(200)
-      .distinctUntilChanged()
-      .switchMap((query) =>  this.infoService.search(query))
-      .subscribe( result => this.searchResults = result);
+    this.queryField.valueChanges.subscribe(val => {
+      this.filter.search = this.queryField.value;
+      this.infoService.filter(this.filter).subscribe(result => this.searchResults = result);
+    });
+
+    // this.queryField.valueChanges
+    //   .debounceTime(200)
+    //   .distinctUntilChanged()
+    //   .switchMap((query) =>  this.infoService.search(query))
+    //   .subscribe( result => this.searchResults = result);
   }
 
   parseDate(mom) {

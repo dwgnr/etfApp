@@ -1,43 +1,55 @@
-<div class="input-group">
-  <input class="input-field" [formControl]="queryField" type="search" id="keyword" placeholder="Suche..."/>
+<div class="grid-container" id="filter-grid">
+<div class="grid-x grid-margin-x">
+  <div class="cell small-10">
+    <mat-form-field *ngIf="regions">
+      <mat-select placeholder="Region" [formControl]="regionFilterField">
+        <mat-option *ngFor="let region of regions.region" value="{{region}}">{{region}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Alter" [formControl]="ageFilterField">
+        <mat-option value="none">kein Filter</mat-option>
+        <mat-option value="2017-01-01">Älter als 1 Jahr</mat-option>
+        <mat-option value="2015-01-01">Älter als 3 Jahre</mat-option>
+        <mat-option value="2013-01-01">Älter als 5 Jahre</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Ergebnisverwendung" [formControl]="profitUseFilterField">
+        <mat-option value="none">kein Filter</mat-option>
+        <mat-option value="Ausschüttend">Ausschüttend</mat-option>
+        <mat-option value="Thesaurierend">Thesaurierend</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Fondsgröße" [formControl]="fundSizeFilterField">
+        <mat-option value="-999">kein Filter</mat-option>
+        <mat-option value="100">größer als 100 Mio. EUR</mat-option>
+        <mat-option value="500">größer als 500 Mio. EUR </mat-option>
+        <mat-option value="1000">größer als 1 Mrd. EUR </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Total Expense Ratio" [formControl]="terFilterField">
+        <mat-option value="-999">kein Filter</mat-option>
+        <mat-option value="0.5">kleiner als 0,5% p.a.</mat-option>
+        <mat-option value="0.25">kleiner als 0,25% p.a.</mat-option>
+        <mat-option value="0.15">kleiner als 0,15% p.a. </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="cell small-2">
+      <input class="input-field" [formControl]="queryField" type="search" id="keyword" placeholder="Suche..."/>
+  </div>
+</div>
 </div>
 
-<mat-form-field *ngIf="regions">
-  <mat-select placeholder="Region" [formControl]="regionFilterField">
-    <mat-option *ngFor="let region of regions.region" value="{{region}}">{{region}}</mat-option>
-  </mat-select>
-</mat-form-field>
 
-<mat-form-field>
-  <mat-select placeholder="Alter" [formControl]="ageFilterField">
-    <mat-option value="2017-01-01">Älter als 1 Jahr</mat-option>
-    <mat-option value="2015-01-01">Älter als 3 Jahre</mat-option>
-    <mat-option value="2013-01-01">Älter als 5 Jahre</mat-option>
-  </mat-select>
-</mat-form-field>
 
-<mat-form-field>
-  <mat-select placeholder="Ergebnisverwendung" [formControl]="profitUseFilterField">
-    <mat-option value="Ausschüttend">Ausschüttend</mat-option>
-    <mat-option value="Thesaurierend">Thesaurierend</mat-option>
-  </mat-select>
-</mat-form-field>
-
-<mat-form-field>
-  <mat-select placeholder="Fondsgröße" [formControl]="fundSizeFilterField">
-    <mat-option value="100">größer als 100 Mio. EUR</mat-option>
-    <mat-option value="500">größer als 500 Mio. EUR </mat-option>
-    <mat-option value="1000">größer als 1 Mrd. EUR </mat-option>
-  </mat-select>
-</mat-form-field>
-
-<mat-form-field>
-  <mat-select placeholder="Total Expense Ratio" [formControl]="terFilterField">
-    <mat-option value="0.5">kleiner als 0,5% p.a.</mat-option>
-    <mat-option value="0.25">kleiner als 0,25% p.a.</mat-option>
-    <mat-option value="0.15">kleiner als 0,15% p.a. </mat-option>
-  </mat-select>
-</mat-form-field>
 
 <div class="grid-container" id="grid">
   <div class="grid-x grid-margin-x grid-padding-y">
@@ -60,15 +72,12 @@
 
       <div class="card" id="all-etfs" *ngIf="!searchResults || searchResults.length < 1">
         <div class="card-divider">
-          <h4>Alle ETFs</h4>
+          <h4>Alle {{etfinfos[0].length}} ETFs</h4>
         </div>
         <div *ngIf="etfinfos; else loading" class="card-section">
-        <!--<div *ngIf="etfinfos | async; else loading"class="card-section">-->
-          <!--<app-cart></app-cart>-->
           <div class="cell" *ngFor="let info of etfinfos[0]">
             <a (click)="onClick(info)"> {{info?.name}} ({{info?.isin}})</a>
             <app-cartitem [product]="info" ></app-cartitem>
-            <!--<a (click)="onClick(info[0])"> {{info[0]?.name}} ({{info[0]?.isin}})</a>-->
           </div>
         </div>
       </div>

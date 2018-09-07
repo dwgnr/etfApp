@@ -1,11 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {EtfinfoComponent} from './etfinfo.component';
-import { EtfinfoRoutingModule } from './etfinfo.routing';
 import { CartitemComponent } from '../cartitem/cartitem.component';
-import { CartItemModule } from '../cartitem/cartitem.module';
-
-import {ValuesPipe} from './values.pipe';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 
@@ -13,21 +8,16 @@ import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   imports: [
     CommonModule,
-    EtfinfoRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     MatSelectModule,
-    CartItemModule,
   ],
   declarations: [
-    EtfinfoComponent,
-    // CartitemComponent,
-    ValuesPipe,
+    CartitemComponent,
   ],
   exports: [
-    EtfinfoComponent,
-    // CartitemComponent,
+    CartitemComponent,
   ],
   providers: []
 })
-export class EtfInfoModule {}
+export class CartItemModule {}
