@@ -1,5 +1,10 @@
 import { Component, OnInit, OnDestroy} from '@angular/core';
-import {Portfolio, BlackLittermanInput, PortfolioInput, BlackLittermanPortfolio, ViewInput} from '../models/portfolio.model';
+import {
+  BacktestingInput,
+  BlackLittermanInput,
+  BlackLittermanPortfolio,
+  ViewInput
+} from '../models/portfolio.model';
 import {PortfolioService} from '../services/portfolio.service';
 import {FormControl} from '@angular/forms';
 import {InfoService} from '../services/info.service';
@@ -7,6 +12,7 @@ import {EtfInfo, CartState} from '../models/etfinfo.model';
 import {Subscription} from 'rxjs/Subscription';
 import {Chart} from 'chart.js';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import {BacktestingService} from '../services/backtesting.service';
 
 declare var moment: any;
 
@@ -23,7 +29,7 @@ const dateFormat = 'YYYY-MM-DD';
 // SELECT region, COUNT(isin) AS Anzahl FROM etf_investment_info
 // WHERE (country is null or country = '')
 // GROUP BY region
-export class BlacklittermanComponent implements OnInit {
+export class BlacklittermanComponent implements OnInit, OnDestroy {
   minDate = new Date(2000, 0, 1);
   maxDate = new Date(2020, 0, 1);
   maxRf = 100;
@@ -48,7 +54,7 @@ export class BlacklittermanComponent implements OnInit {
   shrinkageChecked = false;
   recommendationsChecked = false;
   viewsChecked = false;
-  recommendations = ['IE00BJ0KDQ92', 'IE0031442068', 'LU0290355717', 'FR0010315770', 'FR0010429068',
+  recommendations = ['IE0031442068', 'LU0290355717', 'FR0010315770', 'FR0010429068',
     'LU0446734104', 'IE00B1YZSC51', 'LU0846194776', 'DE000A1C22M3'];
 
   etflist: EtfInfo[];
@@ -57,37 +63,40 @@ export class BlacklittermanComponent implements OnInit {
   portfolios: BlackLittermanPortfolio[];
   rf: number;
   tau: number;
-
-  // private subscription: Subscription;
+  private subscription: Subscription;
+  backtestingInput: BacktestingInput;
 
 
   constructor(private portfolioService: PortfolioService, private infoService: InfoService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder, private backtestingService: BacktestingService) {
   }
 
   ngOnInit() {
-    // this.subscription = this
-    //   ._infoService
-    //   .CartState
-    //   .subscribe((state: CartState) => {
-    //     this.etflist = state.products;
-    //   });
-    this.onChanges();
+    // Load current state of shoppinglist once, then subscribe to changes
     this.etflist = this.infoService.ETFShoppingList as EtfInfo[];
+
+    this.subscription = this
+      .infoService
+      .CartState
+      .subscribe((state: CartState) => {
+        this.etflist = state.products;
+      });
+
+    this.onChanges();
 
 
   }
-  // ngOnDestroy() {
-  //   this.subscription.unsubscribe();
-  // }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
   getBLPortfolios(etfinfos: EtfInfo[], views: any[], date_from: any, date_to: any, rf: number, tau: number, shrinkage: boolean): void {
     this.warnMessage = [];
     this.errorMessage = '';
     let symbols = [];
     if (!date_from || !date_to) {
-      this.warnMessage.push('Fehler bei der Datumseingabe. Verwende Datum von 1.1.2014 bis 1.1.2018.');
-      date_from = '2014-01-01';
+      this.warnMessage.push('Fehler bei der Datumseingabe. Verwende Datum von 1.1.2015 bis 1.1.2018.');
+      date_from = '2015-01-01';
       date_to = '2018-01-01';
     }
     if (!rf) {
@@ -128,6 +137,17 @@ export class BlacklittermanComponent implements OnInit {
   }
   handlePortfolioResponse(portfolios) {
     this.portfolios = portfolios;
+    const initial_investment = 10000;
+    const brownian_motion = true;
+    const num_simulations = 1000;
+    const predicted_days = 252;
+    const date_from = '2015-01-01';
+    const date_to = '2018-01-01';
+
+    this.backtestingInput = {initial_investment, brownian_motion,
+      num_simulations, predicted_days, date_from, date_to, portfolios};
+
+    console.log('>>>>>>>> Sending BacktestingInput:' + JSON.stringify(this.backtestingInput));
     const hist_ret_frontier = [];
     const equilibrium_ret_frontier = [];
     const adj_equilibrium_frontier = [];
@@ -253,6 +273,20 @@ export class BlacklittermanComponent implements OnInit {
       },
       // Configuration options go here
       options: {
+        scales: {
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Erwartete Rendite'
+            }
+          }],
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Risiko'
+            }
+          }]
+        },
         legend: {
           labels: {
             filter: function (item, chart) {
@@ -265,6 +299,7 @@ export class BlacklittermanComponent implements OnInit {
     });
     this.chartCreated = true;
   }
+
   parseDate(mom) {
     if (mom) {
       return moment(mom).format(dateFormat);
@@ -272,8 +307,6 @@ export class BlacklittermanComponent implements OnInit {
       return mom;
     }
   }
-
-
   onButtonPressed() {
     this.getBLPortfolios(this.etflist, this.views, this.from_date,
       this.to_date, this.rf, this.tau, this.shrinkageChecked);

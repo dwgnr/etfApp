@@ -1,0 +1,13 @@
+<div class="card" *ngIf="chart">
+  <div class="card-divider">
+    <h5>Backtesting</h5>
+  </div>
+  <div class="card-section">
+    <canvas id="backtestingCanvas">{{ chart }}</canvas>
+    <div class="cell" *ngIf="backtestingResults">
+      <p>Value at Risk historische Renditen: {{backtestingResults?.mc_value_at_risk[0] | currency:'EUR':'symbol':'1.0-0'}}</p>
+      <p>Value at Risk Gleichgewichtsrenditen: {{backtestingResults?.mc_value_at_risk[1] | currency:'EUR':'symbol':'1.0-0'}}</p>
+      <p *ngIf="backtestingResults.mc_value_at_risk.length > 2">Value at Risk Gleichgewichtsrenditen mit angepassten Views: {{backtestingResults?.mc_value_at_risk[2] | currency:'EUR':'symbol':'1.0-0'}}</p>
+    </div>
+  </div>
+</div>

@@ -25,6 +25,23 @@ export interface BlackLittermanPortfolio {
   'front_stdev': number[];
 }
 
+export interface BacktestingInput {
+  'initial_investment': number;
+  'brownian_motion': boolean;
+  'num_simulations': number;
+  'predicted_days': number;
+  'date_from': any;
+  'date_to': any;
+  'portfolios': BlackLittermanPortfolio[];
+}
+
+export interface BacktestingResults {
+  'mc_value_at_risk': any[];
+  'dates': any[];
+  'historical_performances': any[];
+}
+
+
 export interface PortfolioWeight {
   isin: string;
   weight: number;

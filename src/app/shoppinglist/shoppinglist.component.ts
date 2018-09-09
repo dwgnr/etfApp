@@ -34,3 +34,4 @@ export class ShoppinglistComponent implements OnInit, OnDestroy {
   }
 
 }
+

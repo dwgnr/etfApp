@@ -24,7 +24,12 @@
   </div>
   <div class="top-bar-right">
     <ul class="menu">
-      <li><app-shoppinglist></app-shoppinglist></li>
+      <li>
+      <button class="button" type="button" data-toggle="shoppinglist-dropdown">ETF-Liste</button>
+      <div class="dropdown-pane" id="shoppinglist-dropdown" data-dropdown data-hover="true" data-hover-pane="true">
+        <app-shoppinglist></app-shoppinglist>
+      </div>
+      </li>
     </ul>
   </div>
 </div>

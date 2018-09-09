@@ -125,6 +125,7 @@
                   <mat-option value="0.07">stark</mat-option>
                 </mat-select>
               </mat-form-field>
+              <br>
               <a class="button primary" (click)="addView()">View hinzufügen</a>
 
               <div class="card">
@@ -141,16 +142,15 @@
 
             </div>
 
-
-            <br>
             <a class="button primary" (click)="onButtonPressed()">Portfolios konstruieren</a>
           </div>
           <div class="card">
             <div class="card-divider"> <h5>ETF-Liste</h5></div>
             <div class="card-section">
+
               <div *ngIf="etflist && etflist.length > 0; else noelements">
                 <div *ngFor="let etf of etflist">
-                  <p>{{etf.name}} ({{etf.isin}})
+                  <p>{{etf.name}} ({{etf.isin}}) <br>
                     <small>Market Cap: {{etf.market_cap_eur / 1000000000 | number:'1.2-2'}} Mrd. EUR</small>
                     <app-cartitem [product]="etf" ></app-cartitem>
                   </p>
@@ -208,7 +208,14 @@
               </p>
             </div>
           </div>
+
+          <div *ngIf="backtestingInput">
+            <app-backtesting [backtestingInput]="backtestingInput"></app-backtesting>
+          </div>
+
         </div>
+
+
       </div>
     </div>
   </div>

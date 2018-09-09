@@ -1,12 +1,11 @@
-<button class="button" type="button" data-toggle="shoppinglist-dropdown">ETF-Liste</button>
-<div class="dropdown-pane" id="shoppinglist-dropdown" data-dropdown data-hover="true" data-hover-pane="true">
+
   <div *ngIf="products; else noelements">
     <div *ngFor="let item of products"  class="cell">
       {{item?.name}} ({{item?.isin}})
+      <small>Market Cap: {{item?.market_cap_eur / 1000000000 | number:'1.2-2'}} Mrd. EUR</small>
       <app-cartitem [product]="item" ></app-cartitem>
     </div>
   </div>
-</div>
 
 
 <ng-template #noelements>

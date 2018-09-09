@@ -33,6 +33,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {EtfInfoModule} from './etfinfo/etfinfo.module';
 import { AgGridModule } from 'ag-grid-angular';
 import { BlacklittermanComponent } from './blacklitterman/blacklitterman.component';
+import { BacktestingComponent } from './backtesting/backtesting.component';
 
 
 
@@ -50,6 +51,7 @@ registerLocaleData(localede);
     // CartitemComponent,
     ShoppinglistComponent,
     BlacklittermanComponent,
+    BacktestingComponent,
   ],
   imports: [
     BrowserAnimationsModule,
