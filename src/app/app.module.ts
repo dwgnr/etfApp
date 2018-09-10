@@ -34,6 +34,7 @@ import {EtfInfoModule} from './etfinfo/etfinfo.module';
 import { AgGridModule } from 'ag-grid-angular';
 import { BlacklittermanComponent } from './blacklitterman/blacklitterman.component';
 import { BacktestingComponent } from './backtesting/backtesting.component';
+import { PiechartComponent } from './blacklitterman/piechart/piechart.component';
 
 
 
@@ -52,6 +53,7 @@ registerLocaleData(localede);
     ShoppinglistComponent,
     BlacklittermanComponent,
     BacktestingComponent,
+    PiechartComponent,
   ],
   imports: [
     BrowserAnimationsModule,

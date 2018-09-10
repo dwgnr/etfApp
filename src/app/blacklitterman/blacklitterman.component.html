@@ -49,6 +49,8 @@
             <mat-slide-toggle [(ngModel)]="shrinkageChecked">Shrinkage Estimator</mat-slide-toggle>
             <mat-slide-toggle [(ngModel)]="recommendationsChecked">Vorschlagsliste verwenden</mat-slide-toggle>
             <mat-slide-toggle [(ngModel)]="viewsChecked">Eigene Views verwenden</mat-slide-toggle>
+            <mat-slide-toggle [(ngModel)]="backtestingChecked">Backtesting durchführen</mat-slide-toggle>
+
             <br>
             <div *ngIf="viewsChecked && recommendationsChecked" class="cell">
               <mat-form-field>
@@ -96,6 +98,7 @@
                 </div>
               </div>
 
+
             </div>
 
             <div *ngIf="viewsChecked && !recommendationsChecked" class="cell">
@@ -142,6 +145,25 @@
 
             </div>
 
+            <div class="cell" *ngIf="backtestingChecked">
+              <mat-form-field class="form-full-width">
+                <input matInput [formControl]="btInitialInvestmentControl" type="number"
+                       placeholder="Anlagebetrag">
+                <span matSuffix>EUR</span>
+              </mat-form-field>
+              <mat-form-field class="form-full-width">
+                <input matInput [formControl]="btNumSimulationsControl" type="number"
+                       placeholder="Anzahl Simulationen">
+              </mat-form-field>
+              <mat-form-field class="form-full-width">
+                <input matInput [formControl]="btPredictedDaysControl" type="number"
+                       placeholder="Prognosezeitraum in Tagen">
+              </mat-form-field>
+              <mat-slide-toggle [(ngModel)]="btBrownianMotion">VaR mit geom. Brownscher Bewegung</mat-slide-toggle>
+            </div>
+            <br>
+
+
             <a class="button primary" (click)="onButtonPressed()">Portfolios konstruieren</a>
           </div>
           <div class="card">
@@ -174,11 +196,19 @@
           <br>
           <div class="card" *ngIf="portfolios">
             <div class="card-divider">
+              <h5>Portfoliozusammensetzung</h5>
+            </div>
+            <div class="card-section">
+                <app-piechart [portfolios]="portfolios"></app-piechart>
+            </div>
+          </div>
+          <div class="card" *ngIf="portfolios">
+            <div class="card-divider">
               <h5>Mean-Variance Optimization basierend auf historischen Renditen</h5>
             </div>
             <div class="card-section">
-              <p>Erwartete Rendite (annualisiert): {{portfolios[0].tan_ret | percent:'1.0-0'}}</p>
-              <p>Erwartete Volatilität (annualisiert): {{portfolios[0].tan_stdev | percent:'1.0-0'}}</p>
+              <p>Erwartete Rendite (annualisiert): <strong>{{portfolios[0].tan_ret | percent:'1.0-0'}}</strong></p>
+              <p>Erwartete Volatilität (annualisiert): <strong>{{portfolios[0].tan_stdev | percent:'1.0-0'}}</strong></p>
               <p *ngFor="let wgt of portfolios[0].tan_weights">
                 {{wgt.isin}}: {{wgt.weight | percent:'1.0-0'}}
               </p>
@@ -189,8 +219,8 @@
               <h5>Mean-variance Optimization basierend auf Gleichgewichtsrenditen</h5>
             </div>
             <div class="card-section">
-              <p>Erwartete Rendite (annualisiert): {{portfolios[1].tan_ret | percent:'1.0-0'}}</p>
-              <p>Erwartete Volatilität (annualisiert): {{portfolios[1].tan_stdev | percent:'1.0-0'}}</p>
+              <p>Erwartete Rendite (annualisiert): <strong>{{portfolios[1].tan_ret | percent:'1.0-0'}}</strong></p>
+              <p>Erwartete Volatilität (annualisiert):<strong> {{portfolios[1].tan_stdev | percent:'1.0-0'}}</strong></p>
               <p *ngFor="let wgt of portfolios[1].tan_weights">
                 {{wgt.isin}}: {{wgt.weight | percent:'1.0-0'}}
               </p>
@@ -201,8 +231,8 @@
               <h5>Mean-variance Optimization basierend auf Gleichgewichtsrenditen mit angepassten Views</h5>
             </div>
             <div class="card-section">
-              <p>Erwartete Rendite (annualisiert): {{portfolios[2].tan_ret | percent:'1.0-0'}}</p>
-              <p>Erwartete Volatilität (annualisiert): {{portfolios[2].tan_stdev | percent:'1.0-0'}}</p>
+              <p>Erwartete Rendite (annualisiert): <strong>{{portfolios[2].tan_ret | percent:'1.0-0'}}</strong></p>
+              <p>Erwartete Volatilität (annualisiert): <strong>{{portfolios[2].tan_stdev | percent:'1.0-0'}}</strong></p>
               <p *ngFor="let wgt of portfolios[2].tan_weights">
                 {{wgt.isin}}: {{wgt.weight | percent:'1.0-0'}}
               </p>

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewChecked} from '@angular/core';
 import {
   BacktestingInput,
   BlackLittermanInput,
@@ -15,6 +15,7 @@ import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import {BacktestingService} from '../services/backtesting.service';
 
 declare var moment: any;
+// declare var $: any;
 
 const dateFormat = 'YYYY-MM-DD';
 
@@ -36,6 +37,9 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
   from_date: string;
   to_date: string;
   chart = Chart;
+  pieChartHistRet = Chart;
+  pieChartEquRet = Chart;
+  pieChartAdjEquRet = Chart;
   chartCreated = false;
   warnMessage: string[] = [];
   errorMessage = '';
@@ -51,9 +55,14 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
   viewControlOperator = new FormControl();
   viewControlStrength = new FormControl();
 
+  btInitialInvestmentControl = new FormControl();
+  btNumSimulationsControl = new FormControl();
+  btPredictedDaysControl = new FormControl();
+
   shrinkageChecked = false;
   recommendationsChecked = false;
   viewsChecked = false;
+  backtestingChecked = false;
   recommendations = ['IE0031442068', 'LU0290355717', 'FR0010315770', 'FR0010429068',
     'LU0446734104', 'IE00B1YZSC51', 'LU0846194776', 'DE000A1C22M3'];
 
@@ -65,6 +74,11 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
   tau: number;
   private subscription: Subscription;
   backtestingInput: BacktestingInput;
+
+  btInitialInvestment: number;
+  btBrownianMotion: boolean;
+  btNumSimulations: number;
+  btPredictedDays: number;
 
 
   constructor(private portfolioService: PortfolioService, private infoService: InfoService,
@@ -86,6 +100,14 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
 
 
   }
+
+  // ngAfterViewChecked() {
+  //   if ($('#canvas1').length) {
+  //     this.createPieChart();
+  //   }
+  //
+  // }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
@@ -104,8 +126,8 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
       rf = 0.0038;
     }
     if (!tau) {
-      this.warnMessage.push('Kein Skalierungsfaktor angegeben. Verwende 0,025.');
       tau = 0.025;
+      this.warnMessage.push('Kein Skalierungsfaktor angegeben. Verwende ' + tau + '.');
     }
     if (this.recommendationsChecked) {
       console.log('Using recommendations as BlackLitterman Input.');
@@ -113,9 +135,9 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
       const newInput: BlackLittermanInput = {symbols, views, date_from, date_to, rf, tau, shrinkage} as BlackLittermanInput;
       console.log('BlackLitterman Input:');
       console.log(JSON.stringify(newInput));
-      this.portfolioService.getBLPortfolios(newInput).subscribe(portfolio =>
-        this.handlePortfolioResponse(portfolio),
-        error => this.errorMessage = 'Portfolios konnten nicht konstruiert werden!'
+      this.portfolioService.getBLPortfolios(newInput).subscribe(portfolios => this.portfolios = portfolios,
+        error => this.errorMessage = 'Portfolios konnten nicht konstruiert werden!',
+        () => this.handlePortfolioResponse()
       );
     } else {
       if (etfinfos && etfinfos.length > 0) {
@@ -125,9 +147,10 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
         const newInput: BlackLittermanInput = {symbols, views, date_from, date_to, rf, tau, shrinkage} as BlackLittermanInput;
         console.log('BlackLitterman Input:');
         console.log(JSON.stringify(newInput));
-        this.portfolioService.getBLPortfolios(newInput).subscribe(portfolio =>
-          this.handlePortfolioResponse(portfolio),
-          error => this.errorMessage = 'Portfolios konnten nicht konstruiert werden!'
+        this.portfolioService.getBLPortfolios(newInput).subscribe(portfolios =>
+          this.portfolios = portfolios,
+          error => this.errorMessage = 'Portfolios konnten nicht konstruiert werden!',
+          () => this.handlePortfolioResponse()
         );
       } else {
         this.warnMessage.push('Keine ETFs oder Vorschlagsliste gewählt.');
@@ -135,19 +158,12 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
       }
     }
   }
-  handlePortfolioResponse(portfolios) {
-    this.portfolios = portfolios;
-    const initial_investment = 10000;
-    const brownian_motion = true;
-    const num_simulations = 1000;
-    const predicted_days = 252;
-    const date_from = '2015-01-01';
-    const date_to = '2018-01-01';
-
-    this.backtestingInput = {initial_investment, brownian_motion,
-      num_simulations, predicted_days, date_from, date_to, portfolios};
-
-    console.log('>>>>>>>> Sending BacktestingInput:' + JSON.stringify(this.backtestingInput));
+  handlePortfolioResponse() {
+    // this.portfolios = portfolios;
+    if (this.backtestingChecked) {
+      this.buildBacktestingInput();
+    }
+    // console.log('>>>>>>>> Sending BacktestingInput:' + JSON.stringify(this.backtestingInput));
     const hist_ret_frontier = [];
     const equilibrium_ret_frontier = [];
     const adj_equilibrium_frontier = [];
@@ -197,10 +213,45 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
       }];
 
     }
-    console.log('equilibrium_ret_frontier:');
-    console.log(equilibrium_ret_frontier);
+    // console.log('equilibrium_ret_frontier:');
+    // console.log(equilibrium_ret_frontier);
     this.plotPortfolios(hist_ret_frontier, equilibrium_ret_frontier,
       adj_equilibrium_frontier, hist_ret_tan, equilibrium_ret_tan, adj_equilibrium_tan);
+    // setTimeout(this.createPieCharts(), 10000);
+  }
+
+  buildBacktestingInput() {
+    const portfolios = this.portfolios;
+    let initial_investment = this.btInitialInvestment;
+    let brownian_motion = this.btBrownianMotion;
+    let num_simulations = this.btNumSimulations;
+    let predicted_days = this.btPredictedDays;
+    let date_from = this.from_date;
+    let date_to = this.to_date;
+
+    if (!initial_investment) {
+      initial_investment = 10000.00;
+      this.warnMessage.push('Kein Anlagebetrag angegeben. Verwende ' + initial_investment + ' EUR.');
+    }
+    if (!brownian_motion) {
+      brownian_motion = true;
+    }
+    if (!num_simulations) {
+      num_simulations = 1000;
+      this.warnMessage.push('Keine Simulationsanzahl angegeben. Verwende ' + num_simulations + ' Simulationen.');
+
+    }
+    if (!predicted_days) {
+      predicted_days = 252;
+      this.warnMessage.push('Kein Vorhersagezeitraum angegeben. Verwende ' + predicted_days + ' Tage.');
+    }
+    if (!date_from || !date_to) {
+      date_from = '2015-01-01';
+      date_to = '2018-01-01';
+    }
+
+    this.backtestingInput = {initial_investment, brownian_motion,
+      num_simulations, predicted_days, date_from, date_to, portfolios};
   }
 
   plotPortfolios(hist_ret_frontier, equilibrium_ret_frontier,
@@ -300,6 +351,100 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
     this.chartCreated = true;
   }
 
+  // createPieCharts() {
+  //
+  //   const histRetWeights = [];
+  //   const histRetLabels = [];
+  //
+  //   const equRetWeights = [];
+  //   const equRetLabels = [];
+  //
+  //   for (const asset of this.portfolios[0].tan_weights) {
+  //     histRetWeights.push(asset.weight);
+  //     histRetLabels.push(asset.isin);
+  //   }
+  //
+  //   for (const asset of this.portfolios[1].tan_weights) {
+  //     equRetWeights.push(asset.weight);
+  //     equRetLabels.push(asset.isin);
+  //   }
+  //
+  //
+  //   if (this.pieChartsCreated) {
+  //     this.pieChartHistRet.destroy();
+  //     this.pieChartEquRet.destroy();
+  //     if (this.portfolios.length > 2) {
+  //       this.pieChartAdjEquRet.destroy();
+  //     }
+  //
+  //   }
+  //    this.pieChartHistRet = new Chart('piecanvas1', {
+  //      type: 'pie',
+  //      data: {
+  //        labels: histRetLabels,
+  //        datasets: [{
+  //          // label: 'Population (millions)',
+  //          // backgroundColor: ['#3e95cd', '#8e5ea2', '#3cba9f', '#e8c3b9', '#c45850'],
+  //          data: histRetWeights
+  //        }]
+  //      },
+  //      options: {
+  //        title: {
+  //          display: true,
+  //          text: 'Aufteilung des Portfolios'
+  //        }
+  //      }
+  //    });
+  //
+  //   this.pieChartEquRet = new Chart('piecanvas2', {
+  //     type: 'pie',
+  //     data: {
+  //       labels: equRetLabels,
+  //       datasets: [{
+  //         // label: 'Population (millions)',
+  //         // backgroundColor: ['#3e95cd', '#8e5ea2', '#3cba9f', '#e8c3b9', '#c45850'],
+  //         data: equRetWeights
+  //       }]
+  //     },
+  //     options: {
+  //       title: {
+  //         display: true,
+  //         text: 'Aufteilung des Portfolios'
+  //       }
+  //     }
+  //   });
+  //
+  //   if (this.portfolios.length > 2) {
+  //     const adjEquRetWeights = [];
+  //     const adjEquRetLabels = [];
+  //     for (const asset of this.portfolios[0].tan_weights) {
+  //       adjEquRetWeights.push(asset.weight);
+  //       adjEquRetLabels.push(asset.isin);
+  //     }
+  //
+  //     this.pieChartAdjEquRet = new Chart('piecanvas3', {
+  //       type: 'pie',
+  //       data: {
+  //         labels: adjEquRetLabels,
+  //         datasets: [{
+  //           // label: 'Population (millions)',
+  //           // backgroundColor: ['#3e95cd', '#8e5ea2', '#3cba9f', '#e8c3b9', '#c45850'],
+  //           data: adjEquRetWeights
+  //         }]
+  //       },
+  //       options: {
+  //         title: {
+  //           display: true,
+  //           text: 'Aufteilung des Portfolios'
+  //         }
+  //       }
+  //     });
+  //   }
+  //
+  //   this.pieChartsCreated = true;
+  //
+  // }
+
   parseDate(mom) {
     if (mom) {
       return moment(mom).format(dateFormat);
@@ -353,6 +498,18 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
     this.tauControl.valueChanges.subscribe(val => {
       this.tau = this.tauControl.value;
       // console.log('new from toDate: ' + this.to_date);
+    });
+
+    this.btInitialInvestmentControl.valueChanges.subscribe(val => {
+      this.btInitialInvestment = this.btInitialInvestmentControl.value;
+    });
+
+    this.btNumSimulationsControl.valueChanges.subscribe(val => {
+      this.btNumSimulations = this.btNumSimulationsControl.value;
+    });
+
+    this.btPredictedDaysControl.valueChanges.subscribe(val => {
+      this.btPredictedDays = this.btPredictedDaysControl.value;
     });
   }
 
