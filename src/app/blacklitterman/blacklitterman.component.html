@@ -153,13 +153,21 @@
               </mat-form-field>
               <mat-form-field class="form-full-width">
                 <input matInput [formControl]="btNumSimulationsControl" type="number"
-                       placeholder="Anzahl Simulationen">
+                       placeholder="Anzahl Simulationen (Monte Carlo)">
               </mat-form-field>
               <mat-form-field class="form-full-width">
                 <input matInput [formControl]="btPredictedDaysControl" type="number"
-                       placeholder="Prognosezeitraum in Tagen">
+                       placeholder="Vorhersagezeitraum (Monte Carlo) in Tagen">
               </mat-form-field>
-              <mat-slide-toggle [(ngModel)]="btBrownianMotion">VaR mit geom. Brownscher Bewegung</mat-slide-toggle>
+              <mat-form-field class="form-full-width">
+                <input matInput [formControl]="btAlphaControl" type="number"
+                       placeholder="Konfidenzniveau Alpha (VaR Berechnung)">
+              </mat-form-field>
+              <mat-form-field class="form-full-width">
+                <input matInput [formControl]="btLookBackDaysControl" type="number"
+                       placeholder="Zeitraum historische Simulation in Tagen">
+              </mat-form-field>
+              <mat-slide-toggle [(ngModel)]="btBrownianMotion">Monte-Carlo-VaR mit geom. Brownscher Bewegung</mat-slide-toggle>
             </div>
             <br>
 
@@ -193,6 +201,7 @@
           <div *ngIf="chart">
             <canvas id="canvas">{{ chart }}</canvas>
           </div>
+
           <br>
           <div class="card" *ngIf="portfolios">
             <div class="card-divider">

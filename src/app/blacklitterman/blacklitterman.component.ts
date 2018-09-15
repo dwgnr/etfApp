@@ -37,9 +37,6 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
   from_date: string;
   to_date: string;
   chart = Chart;
-  pieChartHistRet = Chart;
-  pieChartEquRet = Chart;
-  pieChartAdjEquRet = Chart;
   chartCreated = false;
   warnMessage: string[] = [];
   errorMessage = '';
@@ -58,6 +55,8 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
   btInitialInvestmentControl = new FormControl();
   btNumSimulationsControl = new FormControl();
   btPredictedDaysControl = new FormControl();
+  btAlphaControl = new FormControl();
+  btLookBackDaysControl = new FormControl();
 
   shrinkageChecked = false;
   recommendationsChecked = false;
@@ -79,7 +78,9 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
   btBrownianMotion: boolean;
   btNumSimulations: number;
   btPredictedDays: number;
-
+  btAlpha: number;
+  btLookbackDays: number;
+  btConvergenceDays: number;
 
   constructor(private portfolioService: PortfolioService, private infoService: InfoService,
               private formBuilder: FormBuilder, private backtestingService: BacktestingService) {
@@ -228,6 +229,8 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
     let predicted_days = this.btPredictedDays;
     let date_from = this.from_date;
     let date_to = this.to_date;
+    let alpha = this.btAlpha;
+    let lookback_days = this.btLookbackDays;
 
     if (!initial_investment) {
       initial_investment = 10000.00;
@@ -243,15 +246,30 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
     }
     if (!predicted_days) {
       predicted_days = 252;
-      this.warnMessage.push('Kein Vorhersagezeitraum angegeben. Verwende ' + predicted_days + ' Tage.');
+      this.warnMessage.push('Kein Prognosezeitraum für Monte Carlo Simulation angegeben. Verwende ' + predicted_days + ' Tage.');
     }
     if (!date_from || !date_to) {
       date_from = '2015-01-01';
       date_to = '2018-01-01';
     }
+    if (!alpha) {
+      alpha = 0.99;
+      this.warnMessage.push('Kein Konfidenzniveau Alpha angegeben. Verwende ' + alpha + '.');
+    }
+    if (!lookback_days) {
+      lookback_days = 252;
+      this.warnMessage.push('Kein Zeitraum für historische Simulation angegeben. Verwende ' + lookback_days + ' Tage.');
+    }
+
+    const a = moment(date_to, dateFormat);
+    const b = moment(date_from, dateFormat);
+    const timeDiff = a.diff(b, 'days');
+    console.log('Time Difference: ' + timeDiff);
+    const tmpMaxDays = Math.max(timeDiff, lookback_days);
+    const convergence_days = Math.min(tmpMaxDays, 1000);
 
     this.backtestingInput = {initial_investment, brownian_motion,
-      num_simulations, predicted_days, date_from, date_to, portfolios};
+      num_simulations, predicted_days, date_from, date_to, portfolios, alpha, lookback_days, convergence_days};
   }
 
   plotPortfolios(hist_ret_frontier, equilibrium_ret_frontier,
@@ -510,6 +528,14 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
 
     this.btPredictedDaysControl.valueChanges.subscribe(val => {
       this.btPredictedDays = this.btPredictedDaysControl.value;
+    });
+
+    this.btAlphaControl.valueChanges.subscribe(val => {
+      this.btAlpha = this.btAlphaControl.value;
+    });
+
+    this.btLookBackDaysControl.valueChanges.subscribe(val => {
+      this.btLookbackDays = this.btLookBackDaysControl.value;
     });
   }
 

@@ -18,6 +18,8 @@ export class BacktestingComponent implements OnInit, OnChanges {
   backtestingResults: BacktestingResults;
   chartCreated = false;
   chart = Chart;
+  scaledHistVaRs  = [];
+  scaledHistCVaRs = [];
 
   constructor(private backtestingService: BacktestingService) { }
 
@@ -37,6 +39,7 @@ export class BacktestingComponent implements OnInit, OnChanges {
 
 
   plotHistPerformance() {
+    this.scaleVaRToAnnual();
     if (this.chartCreated) {
       this.chart.destroy();
     }
@@ -92,13 +95,22 @@ export class BacktestingComponent implements OnInit, OnChanges {
           yAxes: [{
             scaleLabel: {
               display: true,
-              labelString: 'Portfoliowert in Euro'
+              labelString: 'Portfoliowert in Euro (ohne Rebalancing)'
             }
           }]
         }
       }
     });
     this.chartCreated = true;
+  }
+
+  scaleVaRToAnnual() {
+    for (const hist_var of this.backtestingResults.hist_value_at_risk) {
+      this.scaledHistVaRs.push(hist_var * Math.sqrt(252));
+    }
+    for (const hist_cvar of this.backtestingResults.hist_cvar) {
+      this.scaledHistCVaRs.push(hist_cvar * Math.sqrt(252));
+    }
   }
 
   parseDate(mom) {

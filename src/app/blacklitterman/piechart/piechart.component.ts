@@ -46,18 +46,20 @@ export class PiechartComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes: SimpleChanges) {
 
-      if (this.pieChartsCreated) {
-        this.pieChart0.destroy();
-        this.pieChart1.destroy();
-        if (this.portfolios.length > 2) {
-        }
-      }
-      for (const propName in changes) {
-        const change = changes[propName];
-        if (this.pieChartsCreated && change.previousValue && change.previousValue.length > 2) {
-          this.pieChart2.destroy();
-        }
-      }
+      // if (this.pieChartsCreated) {
+      //   this.pieChart0.destroy();
+      //   this.pieChart1.destroy();
+      //   if (this.portfolios.length > 2) {
+      //     this.pieChart2.destroy();
+      //   }
+      //   this.pieChartsCreated = false;
+      // }
+      // for (const propName in changes) {
+      //   const change = changes[propName];
+      //   if (this.pieChartsCreated && change.previousValue && change.previousValue.length > 2) {
+      //     this.pieChart2.destroy();
+      //   }
+      // }
       this.pieChart0 = this.createPieCharts(this.portfolios[0],
         this.chartIds[0], 'Mean-Variance Optimization basierend auf historischen Renditen');
       this.pieChart1 = this.createPieCharts(this.portfolios[1],
@@ -75,11 +77,11 @@ export class PiechartComponent implements OnInit, OnChanges {
     const labels = [];
     const cols = [];
     // const ctx = 'piecanvas1';
-    console.log('Creating: ' + ctx);
-    console.log('Portfolio ret: ' + portfolio.tan_ret);
+    console.log('Creating piechart: ' + ctx);
+    // console.log('Portfolio weights: ' + JSON.stringify(portfolio.tan_weights));
     let count = 0;
     for (const asset of portfolio.tan_weights) {
-      weights.push(Math.round(asset.weight));
+      weights.push(Number(asset.weight).toFixed(2));
       labels.push(asset.isin);
       if (count < this.colorPalette.length) {
         cols.push(this.colorPalette[count]);

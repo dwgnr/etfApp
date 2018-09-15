@@ -33,14 +33,21 @@ export interface BacktestingInput {
   'date_from': any;
   'date_to': any;
   'portfolios': BlackLittermanPortfolio[];
+  'alpha': number;
+  'lookback_days': number;
+  'convergence_days': number;
 }
 
 export interface BacktestingResults {
   'mc_value_at_risk': any[];
   'dates': any[];
   'historical_performances': any[];
+  'hist_value_at_risk': number[];
+  'hist_cvar': number[];
+  'hist_var_series': any[];
+  'hist_stationary_process': boolean[];
+  'hist_normal': boolean[];
 }
-
 
 export interface PortfolioWeight {
   isin: string;
