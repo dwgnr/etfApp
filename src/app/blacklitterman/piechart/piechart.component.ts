@@ -46,14 +46,14 @@ export class PiechartComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes: SimpleChanges) {
 
-      // if (this.pieChartsCreated) {
-      //   this.pieChart0.destroy();
-      //   this.pieChart1.destroy();
-      //   if (this.portfolios.length > 2) {
-      //     this.pieChart2.destroy();
-      //   }
-      //   this.pieChartsCreated = false;
-      // }
+      if (this.pieChartsCreated) {
+        this.pieChart0.destroy();
+        this.pieChart1.destroy();
+        if (this.portfolios.length > 2) {
+          this.pieChart2.destroy();
+        }
+        this.pieChartsCreated = false;
+      }
       // for (const propName in changes) {
       //   const change = changes[propName];
       //   if (this.pieChartsCreated && change.previousValue && change.previousValue.length > 2) {

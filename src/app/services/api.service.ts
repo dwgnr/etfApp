@@ -26,6 +26,10 @@ export class ApiService {
     return this.http.get<EtfInfo[]>(API_URL + '/info');
   }
 
+  getJSON (): Observable<any> {
+    return this.http.get('/src/app/services/data/data3.json');
+  }
+
 
 }
 

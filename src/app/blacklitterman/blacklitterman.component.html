@@ -216,11 +216,18 @@
               <h5>Mean-Variance Optimization basierend auf historischen Renditen</h5>
             </div>
             <div class="card-section">
+              <div class="callout">
               <p>Erwartete Rendite (annualisiert): <strong>{{portfolios[0].tan_ret | percent:'1.0-0'}}</strong></p>
               <p>Erwartete Volatilität (annualisiert): <strong>{{portfolios[0].tan_stdev | percent:'1.0-0'}}</strong></p>
-              <p *ngFor="let wgt of portfolios[0].tan_weights">
-                {{wgt.isin}}: {{wgt.weight | percent:'1.0-0'}}
+              </div>
+              <!--<p *ngFor="let wgt of portfolios[0].tan_weights">-->
+                <!--{{wgt.isin}}: {{wgt.weight | percent:'1.0-0'}}-->
+              <!--</p>-->
+              <div class="callout" *ngIf="isinNameWgt">
+              <p *ngFor="let port of isinNameWgt[0]">
+                {{port.name}} ({{port.isin}}): <strong>{{port.weight | percent: '1.0-0'}}</strong>
               </p>
+              </div>
             </div>
           </div>
           <div class="card" *ngIf="portfolios">
@@ -228,11 +235,20 @@
               <h5>Mean-variance Optimization basierend auf Gleichgewichtsrenditen</h5>
             </div>
             <div class="card-section">
+              <div class="callout">
               <p>Erwartete Rendite (annualisiert): <strong>{{portfolios[1].tan_ret | percent:'1.0-0'}}</strong></p>
               <p>Erwartete Volatilität (annualisiert):<strong> {{portfolios[1].tan_stdev | percent:'1.0-0'}}</strong></p>
-              <p *ngFor="let wgt of portfolios[1].tan_weights">
-                {{wgt.isin}}: {{wgt.weight | percent:'1.0-0'}}
-              </p>
+              </div>
+              <!--<p *ngFor="let wgt of portfolios[1].tan_weights">-->
+                <!--{{wgt.isin}}: {{wgt.weight | percent:'1.0-0'}}-->
+              <!--</p>-->
+
+              <div class="callout" *ngIf="isinNameWgt">
+                <p *ngFor="let port of isinNameWgt[1]">
+                  {{port.name}} ({{port.isin}}): <strong>{{port.weight | percent: '1.0-0'}}</strong>
+                </p>
+              </div>
+
             </div>
           </div>
           <div class="card" *ngIf="portfolios && portfolios.length > 2">
@@ -240,11 +256,21 @@
               <h5>Mean-variance Optimization basierend auf Gleichgewichtsrenditen mit angepassten Views</h5>
             </div>
             <div class="card-section">
+              <div class="callout">
               <p>Erwartete Rendite (annualisiert): <strong>{{portfolios[2].tan_ret | percent:'1.0-0'}}</strong></p>
               <p>Erwartete Volatilität (annualisiert): <strong>{{portfolios[2].tan_stdev | percent:'1.0-0'}}</strong></p>
-              <p *ngFor="let wgt of portfolios[2].tan_weights">
-                {{wgt.isin}}: {{wgt.weight | percent:'1.0-0'}}
-              </p>
+              </div>
+
+              <!--<p *ngFor="let wgt of portfolios[2].tan_weights">-->
+                <!--{{wgt.isin}}: {{wgt.weight | percent:'1.0-0'}}-->
+              <!--</p>-->
+
+              <div class="callout" *ngIf="isinNameWgt">
+                <p *ngFor="let port of isinNameWgt[2]">
+                  {{port.name}} ({{port.isin}}): <strong>{{port.weight | percent: '1.0-0'}}</strong>
+                </p>
+              </div>
+
             </div>
           </div>
 

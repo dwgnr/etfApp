@@ -65,6 +65,7 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
   recommendations = ['IE0031442068', 'LU0290355717', 'FR0010315770', 'FR0010429068',
     'LU0446734104', 'IE00B1YZSC51', 'LU0846194776', 'DE000A1C22M3'];
 
+  isinNameWgt = [];
   etflist: EtfInfo[];
   views: ViewInput[] = [];
   noViews = 1;
@@ -164,6 +165,7 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
     if (this.backtestingChecked) {
       this.buildBacktestingInput();
     }
+    this.getETFNames();
     // console.log('>>>>>>>> Sending BacktestingInput:' + JSON.stringify(this.backtestingInput));
     const hist_ret_frontier = [];
     const equilibrium_ret_frontier = [];
@@ -219,6 +221,20 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
     this.plotPortfolios(hist_ret_frontier, equilibrium_ret_frontier,
       adj_equilibrium_frontier, hist_ret_tan, equilibrium_ret_tan, adj_equilibrium_tan);
     // setTimeout(this.createPieCharts(), 10000);
+  }
+
+  getETFNames() {
+    let tmpETFinfo: EtfInfo;
+    for (const portfolio of this.portfolios) {
+      const currentPortfolio = [];
+      for (const elem of portfolio.tan_weights) {
+        this.infoService.getETFInfoByISIN(elem.isin).subscribe(info => tmpETFinfo = info,
+          error => this.errorMessage = 'Fehler beim Aufruf von getETFInfoByISIN()!',
+          () => currentPortfolio.push({isin: elem.isin, weight: elem.weight, name: tmpETFinfo.name})
+        );
+      this.isinNameWgt.push(currentPortfolio);
+      }
+    }
   }
 
   buildBacktestingInput() {

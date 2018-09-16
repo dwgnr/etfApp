@@ -37,6 +37,10 @@ export class InfoService {
     return this.http.get<EtfInfo[]>(API_URL + '/info/');
   }
 
+  getETFInfoByISIN(isin: string): Observable<EtfInfo> {
+    return this.http.get<EtfInfo>(API_URL + '/info/' + isin);
+  }
+
   getAllRegions(): Observable<Region> {
     return this.http.get<Region>(API_URL + '/info/regions/');
   }
