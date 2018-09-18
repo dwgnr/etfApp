@@ -1,0 +1,1758 @@
+{
+    "nodes": [
+        {
+            "id": 1,
+            "name": "-",
+            "linkCount": 2429,
+            "group": 1
+        },
+        {
+            "id": 2,
+            "name": "BNP Paribas Arbitrage",
+            "linkCount": 55,
+            "group": 1
+        },
+        {
+            "id": 3,
+            "name": "Societe Generale Corporate and Investment Banking",
+            "linkCount": 21,
+            "group": 1
+        },
+        {
+            "id": 4,
+            "name": "Amundi",
+            "linkCount": 282,
+            "group": 4
+        },
+        {
+            "id": 5,
+            "name": "UBS AG",
+            "linkCount": 22,
+            "group": 1
+        },
+        {
+            "id": 6,
+            "name": "Lantern Structured Asset Management Limited",
+            "linkCount": 12,
+            "group": 2
+        },
+        {
+            "id": 7,
+            "name": "State Street Bank Luxembourg S.A.",
+            "linkCount": 25,
+            "group": 2
+        },
+        {
+            "id": 8,
+            "name": "ABN AMRO Bank N.V. ",
+            "linkCount": 1025,
+            "group": 3
+        },
+        {
+            "id": 9,
+            "name": " BNP Paribas (London Branch) ",
+            "linkCount": 1025,
+            "group": 3
+        },
+        {
+            "id": 10,
+            "name": " BNP Paribas SA ",
+            "linkCount": 5305,
+            "group": 3
+        },
+        {
+            "id": 11,
+            "name": " Bank of Nova Scotia (London Branch) ",
+            "linkCount": 1025,
+            "group": 3
+        },
+        {
+            "id": 12,
+            "name": " Barclays Bank plc ",
+            "linkCount": 1025,
+            "group": 3
+        },
+        {
+            "id": 13,
+            "name": " Barclays Capital Securities Limited ",
+            "linkCount": 1025,
+            "group": 3
+        },
+        {
+            "id": 14,
+            "name": " Citigroup Global Markets Limited ",
+            "linkCount": 1174,
+            "group": 3
+        },
+        {
+            "id": 15,
+            "name": " Commerzbank AG ",
+            "linkCount": 1025,
+            "group": 3
+        },
+        {
+            "id": 16,
+            "name": " Commerzbank AG (London Branch) ",
+            "linkCount": 1025,
+            "group": 3
+        },
+        {
+            "id": 17,
+            "name": " Credit Suisse Securities (Europe) Limited ",
+            "linkCount": 1025,
+            "group": 3
+        },
+        {
+            "id": 18,
+            "name": " Deutsche Bank AG ",
+            "linkCount": 5305,
+            "group": 3
+        },
+        {
+            "id": 19,
+            "name": " Deutsche Bank AG (London Branch) ",
+            "linkCount": 1025,
+            "group": 3
+        },
+        {
+            "id": 20,
+            "name": " Goldman Sachs International ",
+            "linkCount": 5683,
+            "group": 3
+        },
+        {
+            "id": 21,
+            "name": " HSBC Bank plc ",
+            "linkCount": 1025,
+            "group": 3
+        },
+        {
+            "id": 22,
+            "name": " ING Bank N.V. ",
+            "linkCount": 1025,
+            "group": 3
+        },
+        {
+            "id": 23,
+            "name": " ING Bank N.V. (London Branch) ",
+            "linkCount": 1025,
+            "group": 3
+        },
+        {
+            "id": 24,
+            "name": " JP Morgan Securities PLC ",
+            "linkCount": 1025,
+            "group": 3
+        },
+        {
+            "id": 25,
+            "name": " MacQuarie Bank Ltd. (London Branch) ",
+            "linkCount": 1025,
+            "group": 3
+        },
+        {
+            "id": 26,
+            "name": " Merrill Lynch International ",
+            "linkCount": 5451,
+            "group": 3
+        },
+        {
+            "id": 27,
+            "name": " Morgan Stanley Morgan Stanley & Co. International plc ",
+            "linkCount": 1025,
+            "group": 3
+        },
+        {
+            "id": 28,
+            "name": " SEB AG (Frankfurt Branch) ",
+            "linkCount": 1025,
+            "group": 3
+        },
+        {
+            "id": 29,
+            "name": " Skandinaviska Enskilda Banken ",
+            "linkCount": 1025,
+            "group": 3
+        },
+        {
+            "id": 30,
+            "name": " Societe Generale SA ",
+            "linkCount": 5305,
+            "group": 3
+        },
+        {
+            "id": 31,
+            "name": " Societe Generale SA (London Branch) ",
+            "linkCount": 1025,
+            "group": 3
+        },
+        {
+            "id": 32,
+            "name": " State Street Bank International GmbH (London Branch)",
+            "linkCount": 1025,
+            "group": 3
+        },
+        {
+            "id": 33,
+            "name": "UBS",
+            "linkCount": 1224,
+            "group": 4
+        },
+        {
+            "id": 34,
+            "name": "Citigroup",
+            "linkCount": 7,
+            "group": 1
+        },
+        {
+            "id": 35,
+            "name": "Goldman Sachs International",
+            "linkCount": 20,
+            "group": 1
+        },
+        {
+            "id": 36,
+            "name": "Bank of America Merrill Lynch",
+            "linkCount": 5,
+            "group": 1
+        },
+        {
+            "id": 37,
+            "name": "JPMorgan",
+            "linkCount": 5,
+            "group": 1
+        },
+        {
+            "id": 38,
+            "name": "Bank of New York Mellon",
+            "linkCount": 867,
+            "group": 2
+        },
+        {
+            "id": 39,
+            "name": "Euroclear",
+            "linkCount": 856,
+            "group": 2
+        },
+        {
+            "id": 40,
+            "name": "State Street Bank",
+            "linkCount": 869,
+            "group": 2
+        },
+        {
+            "id": 41,
+            "name": "JP Morgan",
+            "linkCount": 862,
+            "group": 2
+        },
+        {
+            "id": 42,
+            "name": "BNP Paribas Arbitrage SNC ",
+            "linkCount": 4280,
+            "group": 3
+        },
+        {
+            "id": 43,
+            "name": " Barclays Bank Plc ",
+            "linkCount": 4280,
+            "group": 3
+        },
+        {
+            "id": 44,
+            "name": " Barclays Capital Securities Ltd. ",
+            "linkCount": 4280,
+            "group": 3
+        },
+        {
+            "id": 45,
+            "name": " Citigroup Global Markets Ltd ",
+            "linkCount": 4280,
+            "group": 3
+        },
+        {
+            "id": 46,
+            "name": " Citigroup Inc ",
+            "linkCount": 4280,
+            "group": 3
+        },
+        {
+            "id": 47,
+            "name": " Credit Suisse Securities (Europe) Ltd. ",
+            "linkCount": 4280,
+            "group": 3
+        },
+        {
+            "id": 48,
+            "name": " HSBC Bank Plc ",
+            "linkCount": 4517,
+            "group": 3
+        },
+        {
+            "id": 49,
+            "name": " J.P. Morgan Securities Plc ",
+            "linkCount": 4280,
+            "group": 3
+        },
+        {
+            "id": 50,
+            "name": " JP Morgan Chase & Co ",
+            "linkCount": 4280,
+            "group": 3
+        },
+        {
+            "id": 51,
+            "name": " Macquarie Bank Limited ",
+            "linkCount": 4280,
+            "group": 3
+        },
+        {
+            "id": 52,
+            "name": " Morgan Stanley & Co. International Plc ",
+            "linkCount": 4280,
+            "group": 3
+        },
+        {
+            "id": 53,
+            "name": " Nomura International Plc ",
+            "linkCount": 4334,
+            "group": 3
+        },
+        {
+            "id": 54,
+            "name": " Skandinaviska Enskilda Banken AB ",
+            "linkCount": 4280,
+            "group": 3
+        },
+        {
+            "id": 55,
+            "name": " The Bank of Nova Scotia ",
+            "linkCount": 4464,
+            "group": 3
+        },
+        {
+            "id": 56,
+            "name": " UBS AG",
+            "linkCount": 4586,
+            "group": 3
+        },
+        {
+            "id": 57,
+            "name": "Credit Suisse Securities (Europe) Ltd. ",
+            "linkCount": 212,
+            "group": 3
+        },
+        {
+            "id": 58,
+            "name": " Morgan Stanley & Co. International PLC ",
+            "linkCount": 212,
+            "group": 3
+        },
+        {
+            "id": 59,
+            "name": " UniCredit Bank AG",
+            "linkCount": 212,
+            "group": 3
+        },
+        {
+            "id": 60,
+            "name": "iShares",
+            "linkCount": 5688,
+            "group": 4
+        },
+        {
+            "id": 61,
+            "name": "Société Générale",
+            "linkCount": 199,
+            "group": 1
+        },
+        {
+            "id": 62,
+            "name": "J.P. Morgan",
+            "linkCount": 169,
+            "group": 1
+        },
+        {
+            "id": 63,
+            "name": "SGSS LMA Desk",
+            "linkCount": 9,
+            "group": 3
+        },
+        {
+            "id": 64,
+            "name": "Lyxor",
+            "linkCount": 384,
+            "group": 4
+        },
+        {
+            "id": 65,
+            "name": "HSBC",
+            "linkCount": 78,
+            "group": 4
+        },
+        {
+            "id": 66,
+            "name": "Deutsche Bank AG",
+            "linkCount": 75,
+            "group": 1
+        },
+        {
+            "id": 67,
+            "name": "HSBC Bank plc",
+            "linkCount": 3,
+            "group": 1
+        },
+        {
+            "id": 68,
+            "name": "Barclays Bank PLC",
+            "linkCount": 29,
+            "group": 1
+        },
+        {
+            "id": 69,
+            "name": "Morgan Stanley",
+            "linkCount": 197,
+            "group": 1
+        },
+        {
+            "id": 70,
+            "name": "Barclays Capital Securities Ltd ",
+            "linkCount": 83,
+            "group": 3
+        },
+        {
+            "id": 71,
+            "name": " NATIXIS ",
+            "linkCount": 235,
+            "group": 3
+        },
+        {
+            "id": 72,
+            "name": "Credit Suisse Securities (Europe) Ltd ",
+            "linkCount": 9,
+            "group": 3
+        },
+        {
+            "id": 73,
+            "name": " Jefferies International Limited ",
+            "linkCount": 32,
+            "group": 3
+        },
+        {
+            "id": 74,
+            "name": " Credit Suisse Securities (Europe) Ltd ",
+            "linkCount": 257,
+            "group": 3
+        },
+        {
+            "id": 75,
+            "name": " The Bank of Nova Scotia",
+            "linkCount": 12,
+            "group": 3
+        },
+        {
+            "id": 76,
+            "name": " Morgan Stanley & Co International Plc ",
+            "linkCount": 221,
+            "group": 3
+        },
+        {
+            "id": 77,
+            "name": "HSBC Bank Plc ",
+            "linkCount": 3,
+            "group": 3
+        },
+        {
+            "id": 78,
+            "name": " JP Morgan Securities Plc. ",
+            "linkCount": 229,
+            "group": 3
+        },
+        {
+            "id": 79,
+            "name": " Merrill Lynch International",
+            "linkCount": 14,
+            "group": 3
+        },
+        {
+            "id": 80,
+            "name": "ABN Amro NV ",
+            "linkCount": 163,
+            "group": 3
+        },
+        {
+            "id": 81,
+            "name": " BMO Capital Markets Ltd ",
+            "linkCount": 108,
+            "group": 3
+        },
+        {
+            "id": 82,
+            "name": " BNP Paribas Arbitrage ",
+            "linkCount": 126,
+            "group": 3
+        },
+        {
+            "id": 83,
+            "name": " Barclays Capital Securities Ltd ",
+            "linkCount": 199,
+            "group": 3
+        },
+        {
+            "id": 84,
+            "name": " Deutsche Bank AG London ",
+            "linkCount": 184,
+            "group": 3
+        },
+        {
+            "id": 85,
+            "name": " ING Bank NV ",
+            "linkCount": 64,
+            "group": 3
+        },
+        {
+            "id": 86,
+            "name": " Societe Generale ",
+            "linkCount": 210,
+            "group": 3
+        },
+        {
+            "id": 87,
+            "name": " UBS AG ",
+            "linkCount": 101,
+            "group": 3
+        },
+        {
+            "id": 88,
+            "name": " Unicredit Bank AG",
+            "linkCount": 101,
+            "group": 3
+        },
+        {
+            "id": 89,
+            "name": "BNP Paribas Arbitrage ",
+            "linkCount": 71,
+            "group": 3
+        },
+        {
+            "id": 90,
+            "name": " NATIXIS",
+            "linkCount": 9,
+            "group": 3
+        },
+        {
+            "id": 91,
+            "name": " HSBC Bank Plc",
+            "linkCount": 3,
+            "group": 3
+        },
+        {
+            "id": 92,
+            "name": " Credit Suisse Securities (Europe) Ltd",
+            "linkCount": 3,
+            "group": 3
+        },
+        {
+            "id": 93,
+            "name": " Societe Generale",
+            "linkCount": 12,
+            "group": 3
+        },
+        {
+            "id": 94,
+            "name": " Citigroup Global Markets Limited",
+            "linkCount": 2,
+            "group": 3
+        },
+        {
+            "id": 95,
+            "name": "Merrill Lynch International ",
+            "linkCount": 6,
+            "group": 3
+        },
+        {
+            "id": 96,
+            "name": "The Bank of Nova Scotia",
+            "linkCount": 1,
+            "group": 3
+        },
+        {
+            "id": 97,
+            "name": "Citigroup Global Markets Limited ",
+            "linkCount": 2,
+            "group": 3
+        },
+        {
+            "id": 98,
+            "name": "Citigroup Global Markets Limited",
+            "linkCount": 1,
+            "group": 3
+        },
+        {
+            "id": 99,
+            "name": "JP Morgan Securities Plc. ",
+            "linkCount": 4,
+            "group": 3
+        },
+        {
+            "id": 100,
+            "name": "HSBC Bank Plc",
+            "linkCount": 1,
+            "group": 3
+        },
+        {
+            "id": 101,
+            "name": "Societe Generale",
+            "linkCount": 1,
+            "group": 3
+        },
+        {
+            "id": 102,
+            "name": " JP Morgan Securities Plc.",
+            "linkCount": 5,
+            "group": 3
+        },
+        {
+            "id": 103,
+            "name": "JP Morgan Securities Plc.",
+            "linkCount": 1,
+            "group": 3
+        },
+        {
+            "id": 104,
+            "name": "Deutsche Bank AG London ",
+            "linkCount": 5,
+            "group": 3
+        },
+        {
+            "id": 105,
+            "name": "Barclays Capital Securities Ltd",
+            "linkCount": 1,
+            "group": 3
+        },
+        {
+            "id": 106,
+            "name": "Xtrackers",
+            "linkCount": 936,
+            "group": 4
+        },
+        {
+            "id": 107,
+            "name": "Commerzbank",
+            "linkCount": 196,
+            "group": 1
+        },
+        {
+            "id": 108,
+            "name": "Goldman Sachs",
+            "linkCount": 364,
+            "group": 1
+        },
+        {
+            "id": 109,
+            "name": "Barclays",
+            "linkCount": 196,
+            "group": 1
+        },
+        {
+            "id": 110,
+            "name": "Commerzbank AG",
+            "linkCount": 2,
+            "group": 1
+        },
+        {
+            "id": 111,
+            "name": "Commerz Funds Solutions S.A.",
+            "linkCount": 109,
+            "group": 2
+        },
+        {
+            "id": 112,
+            "name": "ComStage",
+            "linkCount": 472,
+            "group": 4
+        },
+        {
+            "id": 113,
+            "name": "CPG",
+            "linkCount": 27,
+            "group": 4
+        },
+        {
+            "id": 114,
+            "name": "State Street Bank GmbH",
+            "linkCount": 99,
+            "group": 2
+        },
+        {
+            "id": 115,
+            "name": "CITIGROUP GLOBAL MARKETS LIMITED ",
+            "linkCount": 121,
+            "group": 3
+        },
+        {
+            "id": 116,
+            "name": " CREDIT SUISSE SECURITIES (EUROPE) LIMITED ",
+            "linkCount": 121,
+            "group": 3
+        },
+        {
+            "id": 117,
+            "name": " HSBC BANK PLC ",
+            "linkCount": 121,
+            "group": 3
+        },
+        {
+            "id": 118,
+            "name": " ING BANK NV ",
+            "linkCount": 121,
+            "group": 3
+        },
+        {
+            "id": 119,
+            "name": " JP MORGAN SECURITIES PLC ",
+            "linkCount": 121,
+            "group": 3
+        },
+        {
+            "id": 120,
+            "name": " MACQUARIE BANK LIMITED ",
+            "linkCount": 121,
+            "group": 3
+        },
+        {
+            "id": 121,
+            "name": " MERRILL LYNCH INTERNATIONAL ",
+            "linkCount": 121,
+            "group": 3
+        },
+        {
+            "id": 122,
+            "name": " MORGAN STANLEY & CO INTERNATIONAL PLC ",
+            "linkCount": 121,
+            "group": 3
+        },
+        {
+            "id": 123,
+            "name": " NOMURA INTERNATIONAL PLC ",
+            "linkCount": 121,
+            "group": 3
+        },
+        {
+            "id": 124,
+            "name": " SOCIETE GENERALE SA ",
+            "linkCount": 121,
+            "group": 3
+        },
+        {
+            "id": 125,
+            "name": "SPDR",
+            "linkCount": 407,
+            "group": 4
+        },
+        {
+            "id": 126,
+            "name": "Vanguard Global Advisers, LLC",
+            "linkCount": 25,
+            "group": 2
+        },
+        {
+            "id": 127,
+            "name": "Brown Brothers Harriman & Co.",
+            "linkCount": 16,
+            "group": 3
+        },
+        {
+            "id": 128,
+            "name": "Vanguard",
+            "linkCount": 75,
+            "group": 4
+        },
+        {
+            "id": 129,
+            "name": "DekaBank",
+            "linkCount": 1,
+            "group": 1
+        },
+        {
+            "id": 130,
+            "name": "Clearstream",
+            "linkCount": 43,
+            "group": 2
+        },
+        {
+            "id": 131,
+            "name": "Clearstream ",
+            "linkCount": 66,
+            "group": 3
+        },
+        {
+            "id": 132,
+            "name": " DekaBank Deutsche Girozentrale",
+            "linkCount": 66,
+            "group": 3
+        },
+        {
+            "id": 133,
+            "name": "Deka",
+            "linkCount": 162,
+            "group": 4
+        },
+        {
+            "id": 134,
+            "name": "Merrill Lynch International",
+            "linkCount": 5,
+            "group": 1
+        },
+        {
+            "id": 135,
+            "name": "Barclays Bank plc",
+            "linkCount": 2,
+            "group": 1
+        },
+        {
+            "id": 136,
+            "name": "BNY Mellon Fund Services (Ireland) Limited",
+            "linkCount": 12,
+            "group": 2
+        },
+        {
+            "id": 137,
+            "name": "",
+            "linkCount": 123,
+            "group": 4
+        },
+        {
+            "id": 138,
+            "name": "Assenagon Asset Management S.A.",
+            "linkCount": 1,
+            "group": 2
+        },
+        {
+            "id": 139,
+            "name": "WiTr",
+            "linkCount": 90,
+            "group": 4
+        },
+        {
+            "id": 140,
+            "name": "First",
+            "linkCount": 6,
+            "group": 4
+        },
+        {
+            "id": 141,
+            "name": "BNP",
+            "linkCount": 188,
+            "group": 1
+        },
+        {
+            "id": 142,
+            "name": "BNP Paribas Securities Services",
+            "linkCount": 23,
+            "group": 2
+        },
+        {
+            "id": 143,
+            "name": "BofA Merrill Lynch",
+            "linkCount": 155,
+            "group": 1
+        },
+        {
+            "id": 144,
+            "name": "Nomura",
+            "linkCount": 165,
+            "group": 1
+        },
+        {
+            "id": 145,
+            "name": "Deutsche Bank",
+            "linkCount": 7,
+            "group": 1
+        },
+        {
+            "id": 146,
+            "name": "PowerShares",
+            "linkCount": 344,
+            "group": 4
+        },
+        {
+            "id": 147,
+            "name": "VanEck",
+            "linkCount": 27,
+            "group": 4
+        },
+        {
+            "id": 148,
+            "name": "Natixis SA",
+            "linkCount": 1,
+            "group": 1
+        },
+        {
+            "id": 149,
+            "name": "Ossiam",
+            "linkCount": 50,
+            "group": 4
+        },
+        {
+            "id": 150,
+            "name": "LEM",
+            "linkCount": 3,
+            "group": 4
+        },
+        {
+            "id": 151,
+            "name": "UniCredit Bank AG",
+            "linkCount": 2,
+            "group": 1
+        },
+        {
+            "id": 152,
+            "name": "UC",
+            "linkCount": 6,
+            "group": 4
+        }
+    ],
+    "links": [
+        {
+            "source": "Amundi",
+            "target": "BNP Paribas Arbitrage",
+            "value": 55
+        },
+        {
+            "source": "Amundi",
+            "target": "Societe Generale Corporate and Investment Banking",
+            "value": 21
+        },
+        {
+            "source": "UBS",
+            "target": "UBS AG",
+            "value": 8
+        },
+        {
+            "source": "UBS",
+            "target": "Lantern Structured Asset Management Limited",
+            "value": 12
+        },
+        {
+            "source": "UBS",
+            "target": "State Street Bank Luxembourg S.A.",
+            "value": 25
+        },
+        {
+            "source": "UBS",
+            "target": "ABN AMRO Bank N.V. ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " BNP Paribas (London Branch) ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " BNP Paribas SA ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " Bank of Nova Scotia (London Branch) ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " Barclays Bank plc ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " Barclays Capital Securities Limited ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " Citigroup Global Markets Limited ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " Commerzbank AG ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " Commerzbank AG (London Branch) ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " Credit Suisse Securities (Europe) Limited ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " Deutsche Bank AG ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " Deutsche Bank AG (London Branch) ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " Goldman Sachs International ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " HSBC Bank plc ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " ING Bank N.V. ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " ING Bank N.V. (London Branch) ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " JP Morgan Securities PLC ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " MacQuarie Bank Ltd. (London Branch) ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " Merrill Lynch International ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " Morgan Stanley Morgan Stanley & Co. International plc ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " SEB AG (Frankfurt Branch) ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " Skandinaviska Enskilda Banken ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " Societe Generale SA ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " Societe Generale SA (London Branch) ",
+            "value": 41
+        },
+        {
+            "source": "UBS",
+            "target": " State Street Bank International GmbH (London Branch)",
+            "value": 41
+        },
+        {
+            "source": "iShares",
+            "target": "UBS AG",
+            "value": 2
+        },
+        {
+            "source": "iShares",
+            "target": "Citigroup",
+            "value": 2
+        },
+        {
+            "source": "iShares",
+            "target": "Goldman Sachs International",
+            "value": 1
+        },
+        {
+            "source": "iShares",
+            "target": "Bank of America Merrill Lynch",
+            "value": 1
+        },
+        {
+            "source": "iShares",
+            "target": "JPMorgan",
+            "value": 1
+        },
+        {
+            "source": "iShares",
+            "target": "Bank of New York Mellon",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": "Euroclear",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": "State Street Bank",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": "JP Morgan",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": "BNP Paribas Arbitrage SNC ",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": " BNP Paribas SA ",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": " Barclays Bank Plc ",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": " Barclays Capital Securities Ltd. ",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": " Citigroup Global Markets Ltd ",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": " Citigroup Inc ",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": " Credit Suisse Securities (Europe) Ltd. ",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": " Deutsche Bank AG ",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": " Goldman Sachs International ",
+            "value": 267
+        },
+        {
+            "source": "iShares",
+            "target": " HSBC Bank Plc ",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": " J.P. Morgan Securities Plc ",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": " JP Morgan Chase & Co ",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": " Macquarie Bank Limited ",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": " Merrill Lynch International ",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": " Morgan Stanley & Co. International Plc ",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": " Nomura International Plc ",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": " Skandinaviska Enskilda Banken AB ",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": " Societe Generale SA ",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": " The Bank of Nova Scotia ",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": " UBS AG",
+            "value": 214
+        },
+        {
+            "source": "iShares",
+            "target": "Credit Suisse Securities (Europe) Ltd. ",
+            "value": 53
+        },
+        {
+            "source": "iShares",
+            "target": " Morgan Stanley & Co. International PLC ",
+            "value": 53
+        },
+        {
+            "source": "iShares",
+            "target": " UniCredit Bank AG",
+            "value": 53
+        },
+        {
+            "source": "Lyxor",
+            "target": "Société Générale",
+            "value": 90
+        },
+        {
+            "source": "Lyxor",
+            "target": "J.P. Morgan",
+            "value": 2
+        },
+        {
+            "source": "Lyxor",
+            "target": "Société Générale",
+            "value": 92
+        },
+        {
+            "source": "Lyxor",
+            "target": "SGSS LMA Desk",
+            "value": 9
+        },
+        {
+            "source": "Xtrackers",
+            "target": "Deutsche Bank AG",
+            "value": 59
+        },
+        {
+            "source": "Xtrackers",
+            "target": "HSBC Bank plc",
+            "value": 2
+        },
+        {
+            "source": "Xtrackers",
+            "target": "Barclays Bank PLC",
+            "value": 11
+        },
+        {
+            "source": "Xtrackers",
+            "target": "Goldman Sachs International",
+            "value": 4
+        },
+        {
+            "source": "Xtrackers",
+            "target": "Morgan Stanley",
+            "value": 4
+        },
+        {
+            "source": "Xtrackers",
+            "target": "Barclays Capital Securities Ltd ",
+            "value": 15
+        },
+        {
+            "source": "Xtrackers",
+            "target": " Goldman Sachs International ",
+            "value": 14
+        },
+        {
+            "source": "Xtrackers",
+            "target": " NATIXIS ",
+            "value": 21
+        },
+        {
+            "source": "Xtrackers",
+            "target": " UBS AG",
+            "value": 25
+        },
+        {
+            "source": "Xtrackers",
+            "target": "Credit Suisse Securities (Europe) Ltd ",
+            "value": 2
+        },
+        {
+            "source": "Xtrackers",
+            "target": " HSBC Bank Plc ",
+            "value": 21
+        },
+        {
+            "source": "Xtrackers",
+            "target": " Jefferies International Limited ",
+            "value": 3
+        },
+        {
+            "source": "Xtrackers",
+            "target": " Credit Suisse Securities (Europe) Ltd ",
+            "value": 27
+        },
+        {
+            "source": "Xtrackers",
+            "target": " The Bank of Nova Scotia",
+            "value": 2
+        },
+        {
+            "source": "Xtrackers",
+            "target": " Citigroup Global Markets Limited ",
+            "value": 15
+        },
+        {
+            "source": "Xtrackers",
+            "target": " Morgan Stanley & Co International Plc ",
+            "value": 19
+        },
+        {
+            "source": "Xtrackers",
+            "target": "HSBC Bank Plc ",
+            "value": 1
+        },
+        {
+            "source": "Xtrackers",
+            "target": " JP Morgan Securities Plc. ",
+            "value": 22
+        },
+        {
+            "source": "Xtrackers",
+            "target": " Merrill Lynch International",
+            "value": 4
+        },
+        {
+            "source": "Xtrackers",
+            "target": "ABN Amro NV ",
+            "value": 14
+        },
+        {
+            "source": "Xtrackers",
+            "target": " BMO Capital Markets Ltd ",
+            "value": 7
+        },
+        {
+            "source": "Xtrackers",
+            "target": " BNP Paribas Arbitrage ",
+            "value": 8
+        },
+        {
+            "source": "Xtrackers",
+            "target": " Barclays Capital Securities Ltd ",
+            "value": 18
+        },
+        {
+            "source": "Xtrackers",
+            "target": " Deutsche Bank AG London ",
+            "value": 15
+        },
+        {
+            "source": "Xtrackers",
+            "target": " ING Bank NV ",
+            "value": 5
+        },
+        {
+            "source": "Xtrackers",
+            "target": " Merrill Lynch International ",
+            "value": 12
+        },
+        {
+            "source": "Xtrackers",
+            "target": " Societe Generale ",
+            "value": 16
+        },
+        {
+            "source": "Xtrackers",
+            "target": " The Bank of Nova Scotia ",
+            "value": 15
+        },
+        {
+            "source": "Xtrackers",
+            "target": " UBS AG ",
+            "value": 7
+        },
+        {
+            "source": "Xtrackers",
+            "target": " Unicredit Bank AG",
+            "value": 7
+        },
+        {
+            "source": "Xtrackers",
+            "target": "BNP Paribas Arbitrage ",
+            "value": 9
+        },
+        {
+            "source": "Xtrackers",
+            "target": " NATIXIS",
+            "value": 2
+        },
+        {
+            "source": "Xtrackers",
+            "target": " HSBC Bank Plc",
+            "value": 1
+        },
+        {
+            "source": "Xtrackers",
+            "target": " Credit Suisse Securities (Europe) Ltd",
+            "value": 1
+        },
+        {
+            "source": "Xtrackers",
+            "target": " Nomura International Plc ",
+            "value": 5
+        },
+        {
+            "source": "Xtrackers",
+            "target": " Societe Generale",
+            "value": 3
+        },
+        {
+            "source": "Xtrackers",
+            "target": " Citigroup Global Markets Limited",
+            "value": 1
+        },
+        {
+            "source": "Xtrackers",
+            "target": "UBS AG",
+            "value": 7
+        },
+        {
+            "source": "Xtrackers",
+            "target": "Merrill Lynch International ",
+            "value": 3
+        },
+        {
+            "source": "Xtrackers",
+            "target": "The Bank of Nova Scotia",
+            "value": 1
+        },
+        {
+            "source": "Xtrackers",
+            "target": "Citigroup Global Markets Limited ",
+            "value": 1
+        },
+        {
+            "source": "Xtrackers",
+            "target": "Citigroup Global Markets Limited",
+            "value": 1
+        },
+        {
+            "source": "Xtrackers",
+            "target": "JP Morgan Securities Plc. ",
+            "value": 1
+        },
+        {
+            "source": "Xtrackers",
+            "target": "HSBC Bank Plc",
+            "value": 1
+        },
+        {
+            "source": "Xtrackers",
+            "target": "Societe Generale",
+            "value": 1
+        },
+        {
+            "source": "Xtrackers",
+            "target": " JP Morgan Securities Plc.",
+            "value": 2
+        },
+        {
+            "source": "Xtrackers",
+            "target": "JP Morgan Securities Plc.",
+            "value": 1
+        },
+        {
+            "source": "Xtrackers",
+            "target": "Deutsche Bank AG London ",
+            "value": 2
+        },
+        {
+            "source": "Xtrackers",
+            "target": "Barclays Capital Securities Ltd",
+            "value": 1
+        },
+        {
+            "source": "ComStage",
+            "target": "Commerzbank",
+            "value": 65
+        },
+        {
+            "source": "ComStage",
+            "target": "Goldman Sachs",
+            "value": 65
+        },
+        {
+            "source": "ComStage",
+            "target": "Barclays",
+            "value": 65
+        },
+        {
+            "source": "ComStage",
+            "target": "Commerzbank AG",
+            "value": 1
+        },
+        {
+            "source": "ComStage",
+            "target": "Commerz Funds Solutions S.A.",
+            "value": 109
+        },
+        {
+            "source": "ComStage",
+            "target": "Commerzbank AG",
+            "value": 1
+        },
+        {
+            "source": "CPG",
+            "target": "Goldman Sachs International",
+            "value": 4
+        },
+        {
+            "source": "CPG",
+            "target": "Barclays Bank PLC",
+            "value": 3
+        },
+        {
+            "source": "SPDR",
+            "target": "State Street Bank GmbH",
+            "value": 99
+        },
+        {
+            "source": "SPDR",
+            "target": "CITIGROUP GLOBAL MARKETS LIMITED ",
+            "value": 11
+        },
+        {
+            "source": "SPDR",
+            "target": " CREDIT SUISSE SECURITIES (EUROPE) LIMITED ",
+            "value": 11
+        },
+        {
+            "source": "SPDR",
+            "target": " HSBC BANK PLC ",
+            "value": 11
+        },
+        {
+            "source": "SPDR",
+            "target": " ING BANK NV ",
+            "value": 11
+        },
+        {
+            "source": "SPDR",
+            "target": " JP MORGAN SECURITIES PLC ",
+            "value": 11
+        },
+        {
+            "source": "SPDR",
+            "target": " MACQUARIE BANK LIMITED ",
+            "value": 11
+        },
+        {
+            "source": "SPDR",
+            "target": " MERRILL LYNCH INTERNATIONAL ",
+            "value": 11
+        },
+        {
+            "source": "SPDR",
+            "target": " MORGAN STANLEY & CO INTERNATIONAL PLC ",
+            "value": 11
+        },
+        {
+            "source": "SPDR",
+            "target": " NOMURA INTERNATIONAL PLC ",
+            "value": 11
+        },
+        {
+            "source": "SPDR",
+            "target": " SOCIETE GENERALE SA ",
+            "value": 11
+        },
+        {
+            "source": "SPDR",
+            "target": " UBS AG",
+            "value": 11
+        },
+        {
+            "source": "Vanguard",
+            "target": "Vanguard Global Advisers, LLC",
+            "value": 25
+        },
+        {
+            "source": "Vanguard",
+            "target": "Brown Brothers Harriman & Co.",
+            "value": 16
+        },
+        {
+            "source": "Deka",
+            "target": "DekaBank",
+            "value": 1
+        },
+        {
+            "source": "Deka",
+            "target": "Clearstream",
+            "value": 43
+        },
+        {
+            "source": "Deka",
+            "target": "Clearstream ",
+            "value": 33
+        },
+        {
+            "source": "Deka",
+            "target": " DekaBank Deutsche Girozentrale",
+            "value": 33
+        },
+        {
+            "source": "",
+            "target": "Merrill Lynch International",
+            "value": 5
+        },
+        {
+            "source": "",
+            "target": "Barclays Bank plc",
+            "value": 2
+        },
+        {
+            "source": "",
+            "target": "BNY Mellon Fund Services (Ireland) Limited",
+            "value": 12
+        },
+        {
+            "source": "WiTr",
+            "target": "Assenagon Asset Management S.A.",
+            "value": 1
+        },
+        {
+            "source": "BNP",
+            "target": "JP Morgan",
+            "value": 2
+        },
+        {
+            "source": "BNP",
+            "target": "Société Générale",
+            "value": 8
+        },
+        {
+            "source": "BNP",
+            "target": "BNP",
+            "value": 22
+        },
+        {
+            "source": "BNP",
+            "target": "HSBC",
+            "value": 1
+        },
+        {
+            "source": "BNP",
+            "target": "Morgan Stanley",
+            "value": 2
+        },
+        {
+            "source": "BNP",
+            "target": "BNP Paribas Securities Services",
+            "value": 23
+        },
+        {
+            "source": "PowerShares",
+            "target": "Goldman Sachs",
+            "value": 37
+        },
+        {
+            "source": "PowerShares",
+            "target": "Morgan Stanley",
+            "value": 40
+        },
+        {
+            "source": "PowerShares",
+            "target": "BofA Merrill Lynch",
+            "value": 31
+        },
+        {
+            "source": "PowerShares",
+            "target": "Nomura",
+            "value": 34
+        },
+        {
+            "source": "PowerShares",
+            "target": "J.P. Morgan",
+            "value": 35
+        },
+        {
+            "source": "PowerShares",
+            "target": "Deutsche Bank",
+            "value": 1
+        },
+        {
+            "source": "PowerShares",
+            "target": "Bank of New York Mellon",
+            "value": 2
+        },
+        {
+            "source": "VanEck",
+            "target": "Bank of New York Mellon",
+            "value": 9
+        },
+        {
+            "source": "Ossiam",
+            "target": "Deutsche Bank",
+            "value": 3
+        },
+        {
+            "source": "Ossiam",
+            "target": "Natixis SA",
+            "value": 1
+        },
+        {
+            "source": "Ossiam",
+            "target": "Barclays",
+            "value": 1
+        },
+        {
+            "source": "Ossiam",
+            "target": "Morgan Stanley",
+            "value": 2
+        },
+        {
+            "source": "Ossiam",
+            "target": "JP Morgan",
+            "value": 2
+        },
+        {
+            "source": "Ossiam",
+            "target": "Commerzbank",
+            "value": 1
+        },
+        {
+            "source": "Ossiam",
+            "target": "Société Générale",
+            "value": 1
+        },
+        {
+            "source": "Ossiam",
+            "target": "State Street Bank",
+            "value": 13
+        },
+        {
+            "source": "UC",
+            "target": "UniCredit Bank AG",
+            "value": 2
+        }
+    ]
+}

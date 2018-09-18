@@ -6,6 +6,8 @@ import {EtfinfoComponent} from './etfinfo/etfinfo.component';
 import {EtfdetailComponent} from './etfdetail/etfdetail.component';
 import {LoadguardService} from './services/loadguard.service';
 import {BlacklittermanComponent} from './blacklitterman/blacklitterman.component';
+import {GraphComponent} from './visuals/graph/graph.component';
+import {NetworkComponent} from './network/network.component';
 
 declare var $: any;
 
@@ -31,6 +33,10 @@ const routes: Routes = [
   {
     path: 'blacklitterman',
     component: BlacklittermanComponent
+  },
+  {
+    path: 'network',
+    component: NetworkComponent
   }
   ];
 

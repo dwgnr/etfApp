@@ -27,7 +27,7 @@ export class ApiService {
   }
 
   getJSON (): Observable<any> {
-    return this.http.get('/src/app/services/data/data3.json');
+    return this.http.get('/src/app/services/data/data4.json');
   }
 
 

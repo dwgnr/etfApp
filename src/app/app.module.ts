@@ -35,7 +35,13 @@ import { AgGridModule } from 'ag-grid-angular';
 import { BlacklittermanComponent } from './blacklitterman/blacklitterman.component';
 import { BacktestingComponent } from './backtesting/backtesting.component';
 import { PiechartComponent } from './blacklitterman/piechart/piechart.component';
+import { LinkVisualComponent } from './visuals/shared/link-visual/link-visual.component';
+import { NodeVisualComponent } from './visuals/shared/node-visual/node-visual.component';
 
+import { D3Service, D3_DIRECTIVES } from './d3';
+import { SHARED_VISUALS } from './visuals/shared';
+import { GraphComponent } from './visuals/graph/graph.component';
+import { NetworkComponent } from './network/network.component';
 
 
 registerLocaleData(localede);
@@ -54,6 +60,12 @@ registerLocaleData(localede);
     BlacklittermanComponent,
     BacktestingComponent,
     PiechartComponent,
+    GraphComponent,
+    LinkVisualComponent,
+    NodeVisualComponent,
+    ...SHARED_VISUALS,
+    ...D3_DIRECTIVES,
+    NetworkComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -76,7 +88,7 @@ registerLocaleData(localede);
   //   CartitemComponent,
   // ],
   bootstrap: [AppComponent],
-  providers: [ApiService, PriceService, PortfolioService, InfoService,
+  providers: [ApiService, PriceService, PortfolioService, D3Service, InfoService,
     { provide: LOCALE_ID, useValue: 'de' }]
 })
 export class AppModule { }
