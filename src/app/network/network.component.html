@@ -1,1 +1,3 @@
-<app-graph [nodes]="nodes" [links]="links"></app-graph>
+<div *ngIf="graphInitialized">
+  <app-graph [nodes]="nodes" [links]="links"></app-graph>
+</div>

@@ -1,5 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Node, Link, ForceDirectedGraph } from './models';
+
 import * as d3 from 'd3';
 
 @Injectable()
@@ -63,5 +64,4 @@ export class D3Service {
     const sg = new ForceDirectedGraph(nodes, links, options);
     return sg;
   }
-
 }

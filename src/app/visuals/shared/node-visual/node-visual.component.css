@@ -9,9 +9,9 @@
 }
 
 .node-name {
-  font-family: 'Lato';
+  /*font-family: 'Lato';*/
   text-anchor: middle;
   alignment-baseline: central;
-  font-weight: 300;
+  font-weight: 800;
   fill: white;
 }

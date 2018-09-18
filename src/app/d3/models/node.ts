@@ -12,26 +12,38 @@ export class Node implements d3.SimulationNodeDatum {
 
   id: string;
   linkCount = 0;
+  group: number;
+  name: string;
 
-  constructor(id, linkCount) {
+  constructor(id, linkCount, group, name) {
     this.id = id;
     this.linkCount = linkCount;
+    this.name = name;
+    this.group = group;
   }
 
   normal = () => {
     return Math.sqrt(this.linkCount / APP_CONFIG.N);
   }
 
+  // Circle radius
   get r() {
-    return 50 * this.normal() + 10;
+    return 5 * this.normal() + 10;
   }
 
   get fontSize() {
-    return (30 * this.normal() + 10) + 'px';
+    return (0.4 * this.normal() + 3) + 'px';
   }
 
   get color() {
-    const index = Math.floor(APP_CONFIG.SPECTRUM.length * this.normal());
-    return APP_CONFIG.SPECTRUM[index];
+    if (this.group === 4) {
+      const index = Math.floor(APP_CONFIG.GRAYS.length * this.normal() / 10);
+      // console.log(index);
+      return APP_CONFIG.GRAYS[index];
+    } else {
+      const index = Math.floor(APP_CONFIG.BLUES.length * this.normal() / 10);
+      // console.log(index);
+      return APP_CONFIG.BLUES[index];
+    }
   }
 }

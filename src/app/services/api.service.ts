@@ -19,15 +19,13 @@ const httpOptions = {
 @Injectable()
 export class ApiService {
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
   getHeroes (): Observable<EtfInfo[]> {
     return this.http.get<EtfInfo[]>(API_URL + '/info');
   }
 
   getJSON (): Observable<any> {
-    return this.http.get('/src/app/services/data/data4.json');
+    return this.http.get('/src/app/services/data/data5.json');
   }
 
 
