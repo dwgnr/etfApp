@@ -1,0 +1,44 @@
+<div class="grid-container">
+  <div class="grid-x grid-margin-x grid-padding-y">
+    <div class="cell small-1"></div>
+    <div class="cell small-10">
+      <div class="card">
+        <div class="card-divider">
+          <h1>Hi {{currentUser.name}}!</h1>
+        </div>
+        <div class="card-section">
+          <div *ngIf="currentUser.admin" class="card">
+            <div class="card-divider">
+              <h3>Nutzerverwaltung</h3>
+            </div>
+            <div class="card-section">
+              <div class="grid-x">
+                <div class="cell small-6"><h4>Benutzer</h4></div>
+                <div class="cell small-3"><h4>Administrator</h4></div>
+                <div class="cell small-3"></div>
+              </div>
+              <div class="grid-x" *ngFor="let user of users">
+                <div class="cell small-6">{{user.name}}</div>
+                <div class="cell small-3">
+                  <div class="switch">
+                    <input [checked]="user.admin" (change)="changeAdminStatus($event, user)"
+                           class="switch-input" id="{{user.public_id}}" type="checkbox" name="adminSwitch">
+                    <label class="switch-paddle" for="{{user.public_id}}">
+                      <span class="switch-active" aria-hidden="true">Ja</span>
+                      <span class="switch-inactive" aria-hidden="true">Nein</span>
+                    </label>
+                  </div>
+                  <!--<button (click)="changeAdminStatus(user)" class="button primary">Administrator</button>-->
+                </div>
+                <div class="cell small-3">
+                  <a (click)="deleteUser(user.public_id)" class="button alert">Benutzer Löschen</a></div>
+              </div>
+            </div>
+          </div>
+          <a class="button expanded" [routerLink]="['/login']">Logout</a>
+        </div>
+    </div>
+    </div>
+    <div class="cell small-1"></div>
+</div>
+</div>

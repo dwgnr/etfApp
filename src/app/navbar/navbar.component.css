@@ -1,3 +1,9 @@
+
 .navbar-responsive {
   z-index: 5;
+}
+
+
+.slide {
+  @include mui-animation(slide);
 }

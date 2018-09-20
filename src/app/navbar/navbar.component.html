@@ -31,9 +31,32 @@
         <app-shoppinglist></app-shoppinglist>
       </div>
       </li>
+      <li *ngIf="!isLoggedIn; else loggedIn"><a data-toggle="loginModal">Login</a></li>
     </ul>
   </div>
 </div>
 
   </div>
+</div>
+
+<ng-template #loggedIn>
+  <!--<li><a routerLink="/login">Logout</a></li>-->
+  <li><a (click)="onLogout()">Logout</a></li>
+  <li><a routerLink="/home">User</a></li>
+</ng-template>
+
+<div class="small reveal" id="loginModal" data-reveal>
+  <button class="close-button" data-close aria-label="Close reveal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <app-login></app-login>
+</div>
+
+
+<!-- This is the nested modal -->
+<div class="small reveal" id="registrationModal" data-reveal>
+  <button class="close-button" data-close aria-label="Close reveal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <app-register></app-register>
 </div>

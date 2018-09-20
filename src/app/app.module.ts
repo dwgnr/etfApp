@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -42,6 +42,16 @@ import { D3Service, D3_DIRECTIVES } from './d3';
 import { SHARED_VISUALS } from './visuals/shared';
 import { GraphComponent } from './visuals/graph/graph.component';
 import { NetworkComponent } from './network/network.component';
+import { LoginComponent } from './login/login.component';
+
+import { AuthGuard } from './guards';
+import { JwtInterceptor, ErrorInterceptor } from './helpers';
+import { AuthenticationService } from './services/authentication.service';
+import { UserService } from './services/user.service';
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
+import { AlertComponent } from './alert';
+
 
 
 registerLocaleData(localede);
@@ -66,6 +76,10 @@ registerLocaleData(localede);
     ...SHARED_VISUALS,
     ...D3_DIRECTIVES,
     NetworkComponent,
+    LoginComponent,
+    HomeComponent,
+    RegisterComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -88,7 +102,16 @@ registerLocaleData(localede);
   //   CartitemComponent,
   // ],
   bootstrap: [AppComponent],
-  providers: [ApiService, PriceService, PortfolioService, D3Service, InfoService,
+  providers: [ApiService,
+    PriceService,
+    PortfolioService,
+    D3Service,
+    InfoService,
+    AuthGuard,
+    AuthenticationService,
+    UserService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: LOCALE_ID, useValue: 'de' }]
 })
 export class AppModule { }

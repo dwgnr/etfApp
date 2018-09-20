@@ -44,3 +44,13 @@ https://github.com/lsharir/angular-d3-graph-example/tree/master/src
 https://medium.com/netscape/visualizing-data-with-angular-and-d3-209dde784aeb
 https://github.com/lsharir/angular-d3-graph-example/tree/master/src/app/d3
 
+## D3
+https://github.com/lsharir/angular-d3-graph-example
+https://medium.com/netscape/visualizing-data-with-angular-and-d3-209dde784aeb
+
+## Data/Variable Sharing
+https://angularfirebase.com/lessons/sharing-data-between-angular-components-four-methods/
+
+## Login/Registration
+http://jasonwatmore.com/post/2018/05/16/angular-6-user-registration-and-login-example-tutorial
+https://github.com/cornflourblue/angular-6-registration-login-example-cli

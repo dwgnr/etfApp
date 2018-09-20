@@ -8,6 +8,10 @@ import {LoadguardService} from './services/loadguard.service';
 import {BlacklittermanComponent} from './blacklitterman/blacklitterman.component';
 import {GraphComponent} from './visuals/graph/graph.component';
 import {NetworkComponent} from './network/network.component';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
+import {HomeComponent} from './home/home.component';
+import { AuthGuard } from './guards';
 
 declare var $: any;
 
@@ -37,7 +41,22 @@ const routes: Routes = [
   {
     path: 'network',
     component: NetworkComponent
-  }
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard]
+  },
+  // otherwise redirect to home
+  { path: '**', redirectTo: '' }
   ];
 
 
