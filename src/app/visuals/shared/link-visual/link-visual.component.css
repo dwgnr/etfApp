@@ -1,4 +1,5 @@
 .link {
+  transition: stroke-width 0.2s ease-out, stroke 0.2s ease-out;
   stroke-width: 0.95;
   stroke: rgb(222,237,250);
 }

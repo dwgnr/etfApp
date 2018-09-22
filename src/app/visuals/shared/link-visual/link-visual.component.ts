@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Link } from '../../../d3';
+import {ApiService} from '../../../services/api.service';
 
 @Component({
   selector: '[linkVisual]',
@@ -10,14 +11,21 @@ import { Link } from '../../../d3';
         [attr.y1]="link.source.y"
         [attr.x2]="link.target.x"
         [attr.y2]="link.target.y"
+        [ngStyle]="{ stroke: message.hover==true && (message.id==link.source['id'] || message.id==link.target['id'])
+         ? '#ffd740' : 'rgb(222,237,250)' }"
     ></svg:line>
   `,
   // templateUrl: './link-visual.component.html',
   styleUrls: ['./link-visual.component.css']
 })
-export class LinkVisualComponent {
+export class LinkVisualComponent implements OnInit {
   @Input('linkVisual') link: Link;
+  message: any;
 
-  //TODO:         [attr.stroke-width]="link.value" oben moeglich aber graph geht kaputt. Warum?
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit() {
+    this.apiService.currentMessage.subscribe(message => this.message = message);
+  }
 
 }

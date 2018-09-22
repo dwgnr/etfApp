@@ -1,0 +1,12 @@
+.graph-filter-group {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.graph-radio-button {
+  margin: 5px;
+}
+
+.graph-selected-value {
+  margin: 15px 0;
+}

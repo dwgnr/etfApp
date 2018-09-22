@@ -3,308 +3,589 @@
         {
             "id": 2,
             "name": "BNP Paribas",
-            "linkCount": 11073,
-            "group": 1
+            "linkCount": 785,
+            "group": [
+                1,
+                2,
+                3,
+                4
+            ],
+            "swapCount": 77,
+            "secManagerCount": 23,
+            "lendingCount": 527
         },
         {
             "id": 3,
             "name": "Societe Generale",
-            "linkCount": 6894,
-            "group": 1
+            "linkCount": 539,
+            "group": [
+                1,
+                2,
+                3
+            ],
+            "swapCount": 120,
+            "secManagerCount": 92,
+            "lendingCount": 327
         },
         {
             "id": 4,
             "name": "Amundi",
             "linkCount": 282,
-            "group": 4
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 5,
             "name": "UBS AG",
-            "linkCount": 4709,
-            "group": 1
+            "linkCount": 274,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 10,
+            "secManagerCount": 0,
+            "lendingCount": 264
         },
         {
             "id": 6,
             "name": "Lantern",
             "linkCount": 12,
-            "group": 2
+            "group": [
+                2
+            ],
+            "swapCount": 0,
+            "secManagerCount": 12,
+            "lendingCount": 0
         },
         {
             "id": 7,
             "name": "State Street Bank",
-            "linkCount": 2018,
-            "group": 2
+            "linkCount": 392,
+            "group": [
+                2,
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 351,
+            "lendingCount": 41
         },
         {
             "id": 8,
             "name": "ABN Amro",
-            "linkCount": 1188,
-            "group": 3
+            "linkCount": 55,
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 55
         },
         {
             "id": 9,
             "name": "Bank of Nova Scotia",
-            "linkCount": 5502,
-            "group": 3
+            "linkCount": 273,
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 273
         },
         {
             "id": 10,
             "name": "Barclays",
-            "linkCount": 11120,
-            "group": 3
+            "linkCount": 626,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 82,
+            "secManagerCount": 0,
+            "lendingCount": 544
         },
         {
             "id": 11,
             "name": "Citigroup",
-            "linkCount": 9867,
-            "group": 3
+            "linkCount": 500,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 2,
+            "secManagerCount": 0,
+            "lendingCount": 498
         },
         {
             "id": 12,
             "name": "Commerzbank",
-            "linkCount": 2248,
-            "group": 3
+            "linkCount": 259,
+            "group": [
+                1,
+                2,
+                3
+            ],
+            "swapCount": 67,
+            "secManagerCount": 110,
+            "lendingCount": 82
         },
         {
             "id": 13,
             "name": "Credit Suisse",
-            "linkCount": 5907,
-            "group": 3
+            "linkCount": 349,
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 349
         },
         {
             "id": 14,
             "name": "Deutsche Bank",
-            "linkCount": 6601,
-            "group": 3
+            "linkCount": 376,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 63,
+            "secManagerCount": 0,
+            "lendingCount": 313
         },
         {
             "id": 15,
             "name": "Goldman Sachs",
-            "linkCount": 6067,
-            "group": 3
+            "linkCount": 433,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 111,
+            "secManagerCount": 0,
+            "lendingCount": 322
         },
         {
             "id": 16,
             "name": "HSBC Bank",
-            "linkCount": 5673,
-            "group": 3
+            "linkCount": 292,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 2,
+            "secManagerCount": 0,
+            "lendingCount": 290
         },
         {
             "id": 17,
             "name": "ING Bank",
-            "linkCount": 2235,
-            "group": 3
+            "linkCount": 98,
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 98
         },
         {
             "id": 18,
             "name": "JP Morgan",
-            "linkCount": 10976,
-            "group": 3
+            "linkCount": 761,
+            "group": [
+                1,
+                2,
+                3
+            ],
+            "swapCount": 41,
+            "secManagerCount": 214,
+            "lendingCount": 506
         },
         {
             "id": 19,
             "name": "Macquarie Bank",
-            "linkCount": 5426,
-            "group": 3
+            "linkCount": 266,
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 266
         },
         {
             "id": 20,
             "name": "Merrill Lynch",
-            "linkCount": 5757,
-            "group": 3
+            "linkCount": 322,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 37,
+            "secManagerCount": 0,
+            "lendingCount": 285
         },
         {
             "id": 21,
             "name": "Morgan Stanley",
-            "linkCount": 6056,
-            "group": 3
+            "linkCount": 386,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 48,
+            "secManagerCount": 0,
+            "lendingCount": 338
         },
         {
             "id": 22,
             "name": "SEB AG",
-            "linkCount": 1025,
-            "group": 3
+            "linkCount": 41,
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 41
         },
         {
             "id": 23,
             "name": "Skandinaviska",
-            "linkCount": 5305,
-            "group": 3
+            "linkCount": 255,
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 255
         },
         {
             "id": 24,
             "name": "UBS",
             "linkCount": 1224,
-            "group": 4
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 25,
             "name": "JPMorgan",
-            "linkCount": 5,
-            "group": 1
+            "linkCount": 1,
+            "group": [
+                1
+            ],
+            "swapCount": 1,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 26,
             "name": "BNY Mellon",
-            "linkCount": 879,
-            "group": 2
+            "linkCount": 237,
+            "group": [
+                2
+            ],
+            "swapCount": 0,
+            "secManagerCount": 237,
+            "lendingCount": 0
         },
         {
             "id": 27,
             "name": "Euroclear",
-            "linkCount": 856,
-            "group": 2
+            "linkCount": 214,
+            "group": [
+                2
+            ],
+            "swapCount": 0,
+            "secManagerCount": 214,
+            "lendingCount": 0
         },
         {
             "id": 28,
             "name": "Nomura",
-            "linkCount": 4620,
-            "group": 3
+            "linkCount": 264,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 34,
+            "secManagerCount": 0,
+            "lendingCount": 230
         },
         {
             "id": 29,
             "name": "UniCredit Bank",
-            "linkCount": 321,
-            "group": 3
+            "linkCount": 68,
+            "group": [
+                1,
+                3,
+                4
+            ],
+            "swapCount": 2,
+            "secManagerCount": 0,
+            "lendingCount": 60
         },
         {
             "id": 30,
             "name": "iShares",
             "linkCount": 5688,
-            "group": 4
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 31,
             "name": "SGSS",
             "linkCount": 9,
-            "group": 3
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 9
         },
         {
             "id": 32,
             "name": "Lyxor",
             "linkCount": 384,
-            "group": 4
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 33,
             "name": "HSBC",
-            "linkCount": 78,
-            "group": 4
+            "linkCount": 76,
+            "group": [
+                1,
+                4
+            ],
+            "swapCount": 1,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 34,
             "name": "Natixis",
-            "linkCount": 245,
-            "group": 3
+            "linkCount": 24,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 1,
+            "secManagerCount": 0,
+            "lendingCount": 23
         },
         {
             "id": 35,
             "name": "Jefferies",
-            "linkCount": 32,
-            "group": 3
+            "linkCount": 3,
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 3
         },
         {
             "id": 36,
             "name": "BMO Capital",
-            "linkCount": 108,
-            "group": 3
+            "linkCount": 7,
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 7
         },
         {
             "id": 37,
             "name": "Xtrackers",
             "linkCount": 936,
-            "group": 4
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 38,
             "name": "ComStage",
-            "linkCount": 581,
-            "group": 2
+            "linkCount": 472,
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 39,
             "name": "CPG",
             "linkCount": 27,
-            "group": 4
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 40,
             "name": "SPDR",
             "linkCount": 407,
-            "group": 4
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 41,
             "name": "Vanguard",
             "linkCount": 100,
-            "group": 2
+            "group": [
+                2,
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 25,
+            "lendingCount": 0
         },
         {
             "id": 42,
             "name": "Brown Brothers",
             "linkCount": 16,
-            "group": 3
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 16
         },
         {
             "id": 43,
             "name": "DekaBank",
-            "linkCount": 67,
-            "group": 1
+            "linkCount": 34,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 1,
+            "secManagerCount": 0,
+            "lendingCount": 33
         },
         {
             "id": 44,
             "name": "Clearstream",
-            "linkCount": 109,
-            "group": 2
+            "linkCount": 76,
+            "group": [
+                2,
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 43,
+            "lendingCount": 33
         },
         {
             "id": 45,
             "name": "Deka",
             "linkCount": 162,
-            "group": 4
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 47,
             "name": "Assenagon",
             "linkCount": 1,
-            "group": 2
+            "group": [
+                2
+            ],
+            "swapCount": 0,
+            "secManagerCount": 1,
+            "lendingCount": 0
         },
         {
             "id": 48,
             "name": "WiTr",
             "linkCount": 90,
-            "group": 4
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 49,
             "name": "First",
             "linkCount": 6,
-            "group": 4
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 50,
             "name": "PowerShares",
             "linkCount": 344,
-            "group": 4
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 51,
             "name": "VanEck",
             "linkCount": 27,
-            "group": 4
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 52,
             "name": "Ossiam",
             "linkCount": 50,
-            "group": 4
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 53,
             "name": "LEM",
             "linkCount": 3,
-            "group": 4
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         }
     ],
     "links": [
@@ -885,16 +1166,9 @@
         {
             "source": 38,
             "sourceName": "ComStage",
-            "target": 38,
-            "targetName": "ComStage",
-            "value": 109
-        },
-        {
-            "source": 38,
-            "sourceName": "ComStage",
             "target": 12,
             "targetName": "Commerzbank",
-            "value": 1
+            "value": 110
         },
         {
             "source": 39,

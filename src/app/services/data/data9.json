@@ -3,314 +3,583 @@
         {
             "id": 2,
             "name": "BNP Paribas",
-            "linkCount": 11073,
-            "group": 1
+            "linkCount": 785,
+            "group": [
+                4
+            ],
+            "swapCount": 77,
+            "secManagerCount": 23,
+            "lendingCount": 527
         },
         {
             "id": 3,
             "name": "Societe Generale",
-            "linkCount": 6894,
-            "group": 1
+            "linkCount": 539,
+            "group": [
+                1,
+                2,
+                3
+            ],
+            "swapCount": 120,
+            "secManagerCount": 92,
+            "lendingCount": 327
         },
         {
             "id": 4,
             "name": "Amundi",
             "linkCount": 282,
-            "group": 4
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 5,
             "name": "UBS AG",
-            "linkCount": 4709,
-            "group": 1
+            "linkCount": 274,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 10,
+            "secManagerCount": 0,
+            "lendingCount": 264
         },
         {
             "id": 6,
-            "name": "Lantern Structured Asset Management Limited",
+            "name": "Lantern",
             "linkCount": 12,
-            "group": 2
+            "group": [
+                2
+            ],
+            "swapCount": 0,
+            "secManagerCount": 12,
+            "lendingCount": 0
         },
         {
             "id": 7,
             "name": "State Street Bank",
-            "linkCount": 2018,
-            "group": 2
+            "linkCount": 392,
+            "group": [
+                2,
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 351,
+            "lendingCount": 41
         },
         {
             "id": 8,
             "name": "ABN Amro",
-            "linkCount": 1188,
-            "group": 3
+            "linkCount": 55,
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 55
         },
         {
             "id": 9,
-            "name": "Bank of Nova Scotia (London Branch)",
-            "linkCount": 1025,
-            "group": 3
+            "name": "Bank of Nova Scotia",
+            "linkCount": 273,
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 273
         },
         {
             "id": 10,
             "name": "Barclays",
-            "linkCount": 11120,
-            "group": 3
+            "linkCount": 626,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 82,
+            "secManagerCount": 0,
+            "lendingCount": 544
         },
         {
             "id": 11,
             "name": "Citigroup",
-            "linkCount": 9867,
-            "group": 3
+            "linkCount": 500,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 2,
+            "secManagerCount": 0,
+            "lendingCount": 498
         },
         {
             "id": 12,
             "name": "Commerzbank",
-            "linkCount": 2248,
-            "group": 3
+            "linkCount": 259,
+            "group": [
+                1,
+                2,
+                3
+            ],
+            "swapCount": 67,
+            "secManagerCount": 110,
+            "lendingCount": 82
         },
         {
             "id": 13,
             "name": "Credit Suisse",
-            "linkCount": 5907,
-            "group": 3
+            "linkCount": 349,
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 349
         },
         {
             "id": 14,
             "name": "Deutsche Bank",
-            "linkCount": 6601,
-            "group": 3
+            "linkCount": 376,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 63,
+            "secManagerCount": 0,
+            "lendingCount": 313
         },
         {
             "id": 15,
             "name": "Goldman Sachs",
-            "linkCount": 6067,
-            "group": 3
+            "linkCount": 433,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 111,
+            "secManagerCount": 0,
+            "lendingCount": 322
         },
         {
             "id": 16,
             "name": "HSBC Bank",
-            "linkCount": 5673,
-            "group": 3
+            "linkCount": 292,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 2,
+            "secManagerCount": 0,
+            "lendingCount": 290
         },
         {
             "id": 17,
             "name": "ING Bank",
-            "linkCount": 2235,
-            "group": 3
+            "linkCount": 98,
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 98
         },
         {
             "id": 18,
             "name": "JP Morgan",
-            "linkCount": 10976,
-            "group": 3
+            "linkCount": 761,
+            "group": [
+                1,
+                2,
+                3
+            ],
+            "swapCount": 41,
+            "secManagerCount": 214,
+            "lendingCount": 506
         },
         {
             "id": 19,
             "name": "Macquarie Bank",
-            "linkCount": 5426,
-            "group": 3
+            "linkCount": 266,
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 266
         },
         {
             "id": 20,
             "name": "Merrill Lynch",
-            "linkCount": 5757,
-            "group": 3
+            "linkCount": 322,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 37,
+            "secManagerCount": 0,
+            "lendingCount": 285
         },
         {
             "id": 21,
             "name": "Morgan Stanley",
-            "linkCount": 6056,
-            "group": 3
+            "linkCount": 386,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 48,
+            "secManagerCount": 0,
+            "lendingCount": 338
         },
         {
             "id": 22,
-            "name": "SEB AG (Frankfurt Branch)",
-            "linkCount": 1025,
-            "group": 3
+            "name": "SEB AG",
+            "linkCount": 41,
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 41
         },
         {
             "id": 23,
-            "name": "Skandinaviska Enskilda Banken",
-            "linkCount": 5305,
-            "group": 3
+            "name": "Skandinaviska",
+            "linkCount": 255,
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 255
         },
         {
             "id": 24,
             "name": "UBS",
             "linkCount": 1224,
-            "group": 4
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 25,
             "name": "JPMorgan",
-            "linkCount": 5,
-            "group": 1
+            "linkCount": 1,
+            "group": [
+                1
+            ],
+            "swapCount": 1,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 26,
-            "name": "Bank of New York Mellon",
-            "linkCount": 879,
-            "group": 2
+            "name": "BNY Mellon",
+            "linkCount": 237,
+            "group": [
+                2
+            ],
+            "swapCount": 0,
+            "secManagerCount": 237,
+            "lendingCount": 0
         },
         {
             "id": 27,
             "name": "Euroclear",
-            "linkCount": 856,
-            "group": 2
+            "linkCount": 214,
+            "group": [
+                2
+            ],
+            "swapCount": 0,
+            "secManagerCount": 214,
+            "lendingCount": 0
         },
         {
             "id": 28,
             "name": "Nomura",
-            "linkCount": 4620,
-            "group": 3
+            "linkCount": 264,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 34,
+            "secManagerCount": 0,
+            "lendingCount": 230
         },
         {
             "id": 29,
-            "name": "The Bank of Nova Scotia",
-            "linkCount": 4477,
-            "group": 3
+            "name": "UniCredit Bank",
+            "linkCount": 68,
+            "group": [
+                4
+            ],
+            "swapCount": 2,
+            "secManagerCount": 0,
+            "lendingCount": 60
         },
         {
             "id": 30,
-            "name": "UniCredit Bank",
-            "linkCount": 321,
-            "group": 3
+            "name": "iShares",
+            "linkCount": 5688,
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 31,
-            "name": "iShares",
-            "linkCount": 5688,
-            "group": 4
+            "name": "SGSS",
+            "linkCount": 9,
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 9
         },
         {
             "id": 32,
-            "name": "SGSS LMA Desk",
-            "linkCount": 9,
-            "group": 3
+            "name": "Lyxor",
+            "linkCount": 384,
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 33,
-            "name": "Lyxor",
-            "linkCount": 384,
-            "group": 4
+            "name": "HSBC",
+            "linkCount": 76,
+            "group": [
+                1,
+                4
+            ],
+            "swapCount": 1,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 34,
-            "name": "HSBC",
-            "linkCount": 78,
-            "group": 4
+            "name": "Natixis",
+            "linkCount": 24,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 1,
+            "secManagerCount": 0,
+            "lendingCount": 23
         },
         {
             "id": 35,
-            "name": "Natixis",
-            "linkCount": 245,
-            "group": 3
+            "name": "Jefferies",
+            "linkCount": 3,
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 3
         },
         {
             "id": 36,
-            "name": "Jefferies International Limited",
-            "linkCount": 32,
-            "group": 3
+            "name": "BMO Capital",
+            "linkCount": 7,
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 7
         },
         {
             "id": 37,
-            "name": "BMO Capital Markets Ltd",
-            "linkCount": 108,
-            "group": 3
+            "name": "Xtrackers",
+            "linkCount": 936,
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 38,
-            "name": "Xtrackers",
-            "linkCount": 936,
-            "group": 4
+            "name": "ComStage",
+            "linkCount": 472,
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 39,
-            "name": "ComStage",
-            "linkCount": 581,
-            "group": 2
+            "name": "CPG",
+            "linkCount": 27,
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 40,
-            "name": "CPG",
-            "linkCount": 27,
-            "group": 4
+            "name": "SPDR",
+            "linkCount": 407,
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 41,
-            "name": "SPDR",
-            "linkCount": 407,
-            "group": 4
+            "name": "Vanguard",
+            "linkCount": 100,
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 25,
+            "lendingCount": 0
         },
         {
             "id": 42,
-            "name": "Vanguard",
-            "linkCount": 100,
-            "group": 2
+            "name": "Brown Brothers",
+            "linkCount": 16,
+            "group": [
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 16
         },
         {
             "id": 43,
-            "name": "Brown Brothers Harriman & Co.",
-            "linkCount": 16,
-            "group": 3
+            "name": "DekaBank",
+            "linkCount": 34,
+            "group": [
+                1,
+                3
+            ],
+            "swapCount": 1,
+            "secManagerCount": 0,
+            "lendingCount": 33
         },
         {
             "id": 44,
-            "name": "DekaBank",
-            "linkCount": 67,
-            "group": 1
+            "name": "Clearstream",
+            "linkCount": 76,
+            "group": [
+                2,
+                3
+            ],
+            "swapCount": 0,
+            "secManagerCount": 43,
+            "lendingCount": 33
         },
         {
             "id": 45,
-            "name": "Clearstream",
-            "linkCount": 109,
-            "group": 2
-        },
-        {
-            "id": 46,
             "name": "Deka",
             "linkCount": 162,
-            "group": 4
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
+        },
+        {
+            "id": 47,
+            "name": "Assenagon",
+            "linkCount": 1,
+            "group": [
+                2
+            ],
+            "swapCount": 0,
+            "secManagerCount": 1,
+            "lendingCount": 0
         },
         {
             "id": 48,
-            "name": "Assenagon Asset Management S.A.",
-            "linkCount": 1,
-            "group": 2
+            "name": "WiTr",
+            "linkCount": 90,
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 49,
-            "name": "WiTr",
-            "linkCount": 90,
-            "group": 4
+            "name": "First",
+            "linkCount": 6,
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 50,
-            "name": "First",
-            "linkCount": 6,
-            "group": 4
+            "name": "PowerShares",
+            "linkCount": 344,
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 51,
-            "name": "PowerShares",
-            "linkCount": 344,
-            "group": 4
+            "name": "VanEck",
+            "linkCount": 27,
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 52,
-            "name": "VanEck",
-            "linkCount": 27,
-            "group": 4
+            "name": "Ossiam",
+            "linkCount": 50,
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         },
         {
             "id": 53,
-            "name": "Ossiam",
-            "linkCount": 50,
-            "group": 4
-        },
-        {
-            "id": 54,
             "name": "LEM",
             "linkCount": 3,
-            "group": 4
+            "group": [
+                4
+            ],
+            "swapCount": 0,
+            "secManagerCount": 0,
+            "lendingCount": 0
         }
     ],
     "links": [
@@ -339,7 +608,7 @@
             "source": 24,
             "sourceName": "UBS",
             "target": 6,
-            "targetName": "Lantern Structured Asset Management Limited",
+            "targetName": "Lantern",
             "value": 12
         },
         {
@@ -367,7 +636,7 @@
             "source": 24,
             "sourceName": "UBS",
             "target": 9,
-            "targetName": "Bank of Nova Scotia (London Branch)",
+            "targetName": "Bank of Nova Scotia",
             "value": 41
         },
         {
@@ -458,14 +727,14 @@
             "source": 24,
             "sourceName": "UBS",
             "target": 22,
-            "targetName": "SEB AG (Frankfurt Branch)",
+            "targetName": "SEB AG",
             "value": 41
         },
         {
             "source": 24,
             "sourceName": "UBS",
             "target": 23,
-            "targetName": "Skandinaviska Enskilda Banken",
+            "targetName": "Skandinaviska",
             "value": 41
         },
         {
@@ -483,591 +752,563 @@
             "value": 41
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 5,
             "targetName": "UBS AG",
             "value": 2
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 11,
             "targetName": "Citigroup",
             "value": 2
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 15,
             "targetName": "Goldman Sachs",
             "value": 1
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 20,
             "targetName": "Merrill Lynch",
             "value": 1
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 25,
             "targetName": "JPMorgan",
             "value": 1
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 26,
-            "targetName": "Bank of New York Mellon",
+            "targetName": "BNY Mellon",
             "value": 214
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 27,
             "targetName": "Euroclear",
             "value": 214
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 7,
             "targetName": "State Street Bank",
             "value": 214
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 18,
             "targetName": "JP Morgan",
             "value": 214
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 2,
             "targetName": "BNP Paribas",
             "value": 428
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 10,
             "targetName": "Barclays",
             "value": 428
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 11,
             "targetName": "Citigroup",
             "value": 428
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 13,
             "targetName": "Credit Suisse",
             "value": 267
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 14,
             "targetName": "Deutsche Bank",
             "value": 214
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 15,
             "targetName": "Goldman Sachs",
             "value": 267
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 16,
             "targetName": "HSBC Bank",
             "value": 214
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 18,
             "targetName": "JP Morgan",
             "value": 428
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 19,
             "targetName": "Macquarie Bank",
             "value": 214
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 20,
             "targetName": "Merrill Lynch",
             "value": 214
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 21,
             "targetName": "Morgan Stanley",
             "value": 267
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 28,
             "targetName": "Nomura",
             "value": 214
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 23,
-            "targetName": "Skandinaviska Enskilda Banken",
+            "targetName": "Skandinaviska",
             "value": 214
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 3,
             "targetName": "Societe Generale",
             "value": 214
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
-            "target": 29,
-            "targetName": "The Bank of Nova Scotia",
+            "target": 9,
+            "targetName": "Bank of Nova Scotia",
             "value": 214
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
             "target": 5,
             "targetName": "UBS AG",
             "value": 214
         },
         {
-            "source": 31,
+            "source": 30,
             "sourceName": "iShares",
-            "target": 30,
+            "target": 29,
             "targetName": "UniCredit Bank",
             "value": 53
         },
         {
-            "source": 33,
+            "source": 32,
             "sourceName": "Lyxor",
             "target": 3,
             "targetName": "Societe Generale",
             "value": 90
         },
         {
-            "source": 33,
+            "source": 32,
             "sourceName": "Lyxor",
             "target": 18,
             "targetName": "JP Morgan",
             "value": 2
         },
         {
-            "source": 33,
+            "source": 32,
             "sourceName": "Lyxor",
             "target": 3,
             "targetName": "Societe Generale",
             "value": 92
         },
         {
-            "source": 33,
+            "source": 32,
             "sourceName": "Lyxor",
-            "target": 32,
-            "targetName": "SGSS LMA Desk",
+            "target": 31,
+            "targetName": "SGSS",
             "value": 9
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
             "target": 14,
             "targetName": "Deutsche Bank",
             "value": 59
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
             "target": 16,
             "targetName": "HSBC Bank",
             "value": 2
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
             "target": 10,
             "targetName": "Barclays",
             "value": 11
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
             "target": 15,
             "targetName": "Goldman Sachs",
             "value": 4
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
             "target": 21,
             "targetName": "Morgan Stanley",
             "value": 4
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
             "target": 10,
             "targetName": "Barclays",
             "value": 34
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
             "target": 15,
             "targetName": "Goldman Sachs",
             "value": 14
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
-            "target": 35,
+            "target": 34,
             "targetName": "Natixis",
             "value": 23
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
             "target": 5,
             "targetName": "UBS AG",
             "value": 39
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
             "target": 13,
             "targetName": "Credit Suisse",
             "value": 30
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
             "target": 16,
             "targetName": "HSBC Bank",
             "value": 24
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
-            "target": 36,
-            "targetName": "Jefferies International Limited",
+            "target": 35,
+            "targetName": "Jefferies",
             "value": 3
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
-            "target": 29,
-            "targetName": "The Bank of Nova Scotia",
+            "target": 9,
+            "targetName": "Bank of Nova Scotia",
             "value": 18
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
             "target": 11,
             "targetName": "Citigroup",
             "value": 18
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
             "target": 21,
             "targetName": "Morgan Stanley",
             "value": 19
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
             "target": 18,
             "targetName": "JP Morgan",
             "value": 26
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
             "target": 20,
             "targetName": "Merrill Lynch",
             "value": 19
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
             "target": 8,
             "targetName": "ABN Amro",
             "value": 14
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
-            "target": 37,
-            "targetName": "BMO Capital Markets Ltd",
+            "target": 36,
+            "targetName": "BMO Capital",
             "value": 7
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
             "target": 2,
             "targetName": "BNP Paribas",
             "value": 17
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
             "target": 14,
             "targetName": "Deutsche Bank",
             "value": 17
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
             "target": 17,
             "targetName": "ING Bank",
             "value": 5
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
             "target": 3,
             "targetName": "Societe Generale",
             "value": 20
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
-            "target": 30,
+            "target": 29,
             "targetName": "UniCredit Bank",
             "value": 7
         },
         {
-            "source": 38,
+            "source": 37,
             "sourceName": "Xtrackers",
             "target": 28,
             "targetName": "Nomura",
             "value": 5
         },
         {
-            "source": 39,
+            "source": 38,
             "sourceName": "ComStage",
             "target": 12,
             "targetName": "Commerzbank",
             "value": 66
         },
         {
-            "source": 39,
+            "source": 38,
             "sourceName": "ComStage",
             "target": 15,
             "targetName": "Goldman Sachs",
             "value": 65
         },
         {
-            "source": 39,
+            "source": 38,
             "sourceName": "ComStage",
             "target": 10,
             "targetName": "Barclays",
             "value": 65
         },
         {
-            "source": 39,
-            "sourceName": "ComStage",
-            "target": 39,
-            "targetName": "ComStage",
-            "value": 109
-        },
-        {
-            "source": 39,
+            "source": 38,
             "sourceName": "ComStage",
             "target": 12,
             "targetName": "Commerzbank",
-            "value": 1
+            "value": 110
         },
         {
-            "source": 40,
+            "source": 39,
             "sourceName": "CPG",
             "target": 15,
             "targetName": "Goldman Sachs",
             "value": 4
         },
         {
-            "source": 40,
+            "source": 39,
             "sourceName": "CPG",
             "target": 10,
             "targetName": "Barclays",
             "value": 3
         },
         {
-            "source": 41,
+            "source": 40,
             "sourceName": "SPDR",
             "target": 7,
             "targetName": "State Street Bank",
             "value": 99
         },
         {
-            "source": 41,
+            "source": 40,
             "sourceName": "SPDR",
             "target": 11,
             "targetName": "Citigroup",
             "value": 11
         },
         {
-            "source": 41,
+            "source": 40,
             "sourceName": "SPDR",
             "target": 13,
             "targetName": "Credit Suisse",
             "value": 11
         },
         {
-            "source": 41,
+            "source": 40,
             "sourceName": "SPDR",
             "target": 16,
             "targetName": "HSBC Bank",
             "value": 11
         },
         {
-            "source": 41,
+            "source": 40,
             "sourceName": "SPDR",
             "target": 17,
             "targetName": "ING Bank",
             "value": 11
         },
         {
-            "source": 41,
+            "source": 40,
             "sourceName": "SPDR",
             "target": 18,
             "targetName": "JP Morgan",
             "value": 11
         },
         {
-            "source": 41,
+            "source": 40,
             "sourceName": "SPDR",
             "target": 19,
             "targetName": "Macquarie Bank",
             "value": 11
         },
         {
-            "source": 41,
+            "source": 40,
             "sourceName": "SPDR",
             "target": 20,
             "targetName": "Merrill Lynch",
             "value": 11
         },
         {
-            "source": 41,
+            "source": 40,
             "sourceName": "SPDR",
             "target": 21,
             "targetName": "Morgan Stanley",
             "value": 11
         },
         {
-            "source": 41,
+            "source": 40,
             "sourceName": "SPDR",
             "target": 28,
             "targetName": "Nomura",
             "value": 11
         },
         {
-            "source": 41,
+            "source": 40,
             "sourceName": "SPDR",
             "target": 3,
             "targetName": "Societe Generale",
             "value": 11
         },
         {
-            "source": 41,
+            "source": 40,
             "sourceName": "SPDR",
             "target": 5,
             "targetName": "UBS AG",
             "value": 11
         },
         {
-            "source": 42,
+            "source": 41,
             "sourceName": "Vanguard",
-            "target": 42,
+            "target": 41,
             "targetName": "Vanguard",
             "value": 25
         },
         {
-            "source": 42,
+            "source": 41,
             "sourceName": "Vanguard",
-            "target": 43,
-            "targetName": "Brown Brothers Harriman & Co.",
+            "target": 42,
+            "targetName": "Brown Brothers",
             "value": 16
         },
         {
-            "source": 46,
+            "source": 45,
             "sourceName": "Deka",
-            "target": 44,
+            "target": 43,
             "targetName": "DekaBank",
             "value": 1
         },
         {
-            "source": 46,
+            "source": 45,
             "sourceName": "Deka",
-            "target": 45,
+            "target": 44,
             "targetName": "Clearstream",
             "value": 43
         },
         {
-            "source": 46,
+            "source": 45,
             "sourceName": "Deka",
-            "target": 45,
+            "target": 44,
             "targetName": "Clearstream",
             "value": 33
         },
         {
-            "source": 46,
+            "source": 45,
             "sourceName": "Deka",
-            "target": 44,
+            "target": 43,
             "targetName": "DekaBank",
             "value": 33
         },
         {
-            "source": 47,
-            "sourceName": "",
-            "target": 20,
-            "targetName": "Merrill Lynch",
-            "value": 5
-        },
-        {
-            "source": 47,
-            "sourceName": "",
-            "target": 10,
-            "targetName": "Barclays",
-            "value": 2
-        },
-        {
-            "source": 47,
-            "sourceName": "",
-            "target": 26,
-            "targetName": "Bank of New York Mellon",
-            "value": 12
-        },
-        {
-            "source": 49,
+            "source": 48,
             "sourceName": "WiTr",
-            "target": 48,
-            "targetName": "Assenagon Asset Management S.A.",
+            "target": 47,
+            "targetName": "Assenagon",
             "value": 1
         },
         {
@@ -1094,7 +1335,7 @@
         {
             "source": 2,
             "sourceName": "BNP Paribas",
-            "target": 34,
+            "target": 33,
             "targetName": "HSBC",
             "value": 1
         },
@@ -1113,121 +1354,121 @@
             "value": 23
         },
         {
-            "source": 51,
+            "source": 50,
             "sourceName": "PowerShares",
             "target": 15,
             "targetName": "Goldman Sachs",
             "value": 37
         },
         {
-            "source": 51,
+            "source": 50,
             "sourceName": "PowerShares",
             "target": 21,
             "targetName": "Morgan Stanley",
             "value": 40
         },
         {
-            "source": 51,
+            "source": 50,
             "sourceName": "PowerShares",
             "target": 20,
             "targetName": "Merrill Lynch",
             "value": 31
         },
         {
-            "source": 51,
+            "source": 50,
             "sourceName": "PowerShares",
             "target": 28,
             "targetName": "Nomura",
             "value": 34
         },
         {
-            "source": 51,
+            "source": 50,
             "sourceName": "PowerShares",
             "target": 18,
             "targetName": "JP Morgan",
             "value": 35
         },
         {
-            "source": 51,
+            "source": 50,
             "sourceName": "PowerShares",
             "target": 14,
             "targetName": "Deutsche Bank",
             "value": 1
         },
         {
-            "source": 51,
+            "source": 50,
             "sourceName": "PowerShares",
             "target": 26,
-            "targetName": "Bank of New York Mellon",
+            "targetName": "BNY Mellon",
             "value": 2
         },
         {
-            "source": 52,
+            "source": 51,
             "sourceName": "VanEck",
             "target": 26,
-            "targetName": "Bank of New York Mellon",
+            "targetName": "BNY Mellon",
             "value": 9
         },
         {
-            "source": 53,
+            "source": 52,
             "sourceName": "Ossiam",
             "target": 14,
             "targetName": "Deutsche Bank",
             "value": 3
         },
         {
-            "source": 53,
+            "source": 52,
             "sourceName": "Ossiam",
-            "target": 35,
+            "target": 34,
             "targetName": "Natixis",
             "value": 1
         },
         {
-            "source": 53,
+            "source": 52,
             "sourceName": "Ossiam",
             "target": 10,
             "targetName": "Barclays",
             "value": 1
         },
         {
-            "source": 53,
+            "source": 52,
             "sourceName": "Ossiam",
             "target": 21,
             "targetName": "Morgan Stanley",
             "value": 2
         },
         {
-            "source": 53,
+            "source": 52,
             "sourceName": "Ossiam",
             "target": 18,
             "targetName": "JP Morgan",
             "value": 2
         },
         {
-            "source": 53,
+            "source": 52,
             "sourceName": "Ossiam",
             "target": 12,
             "targetName": "Commerzbank",
             "value": 1
         },
         {
-            "source": 53,
+            "source": 52,
             "sourceName": "Ossiam",
             "target": 3,
             "targetName": "Societe Generale",
             "value": 1
         },
         {
-            "source": 53,
+            "source": 52,
             "sourceName": "Ossiam",
             "target": 7,
             "targetName": "State Street Bank",
             "value": 13
         },
         {
-            "source": 30,
+            "source": 29,
             "sourceName": "UniCredit Bank",
-            "target": 30,
+            "target": 29,
             "targetName": "UniCredit Bank",
             "value": 2
         }

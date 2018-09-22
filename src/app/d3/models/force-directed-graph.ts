@@ -4,7 +4,7 @@ import { Node } from './node';
 import * as d3 from 'd3';
 
 const FORCES = {
-  LINKS: 1 / 50,
+  LINKS: 1 / 100,
   COLLISION: 1,
   CHARGE: -1
 };
@@ -15,21 +15,23 @@ export class ForceDirectedGraph {
 
   public nodes: Node[] = [];
   public links: Link[] = [];
+  options: any;
 
   constructor(nodes, links, options: { width, height }) {
     this.nodes = nodes;
     this.links = links;
+    this.options = options;
     this.initSimulation(options);
   }
 
-  connectNodes(source, target, sourceName, sourceTarget, value) {
+  connectNode(source, target, sourceName, targetName, value) {
     let link;
 
     if (!this.nodes[source] || !this.nodes[target]) {
       throw new Error('One of the nodes does not exist');
     }
 
-    link = new Link(source, target, sourceName, sourceTarget, value);
+    link = new Link(source, target, sourceName, targetName, value);
     this.simulation.stop();
     this.links.push(link);
     this.simulation.alphaTarget(0.3).restart();
@@ -58,6 +60,11 @@ export class ForceDirectedGraph {
   }
 
   initSimulation(options) {
+
+    // Remove old stuff
+   //  d3.select('svg').selectAll('*').remove();
+
+
     if (!options || !options.width || !options.height) {
       throw new Error('missing options when initializing simulation');
     }
@@ -87,7 +94,7 @@ export class ForceDirectedGraph {
     }
 
     /** Updating the central force of the simulation */
-    this.simulation.force('centers', d3.forceCenter(options.width / 2, options.height / 2));
+    this.simulation.force('centers', d3.forceCenter(options.width / 3, options.height / 2));
 
     /** Restarting the simulation internal timer */
     this.simulation.restart();

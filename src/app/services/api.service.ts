@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { Observable} from 'rxjs/';
 import { HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs/';
 
 
 import { EtfInfo } from '../models/etfinfo.model';
@@ -20,12 +21,16 @@ const httpOptions = {
 export class ApiService {
 
   constructor(private http: HttpClient) { }
-  getHeroes (): Observable<EtfInfo[]> {
-    return this.http.get<EtfInfo[]>(API_URL + '/info');
-  }
+
+  private messageSource = new BehaviorSubject({});
+  currentMessage = this.messageSource.asObservable();
 
   getJSON (): Observable<any> {
-    return this.http.get('/src/app/services/data/data7.json');
+    return this.http.get('/src/app/services/data/data11.json');
+  }
+
+  changeMessage(message: any) {
+    this.messageSource.next(message);
   }
 
 

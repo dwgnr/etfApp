@@ -8,7 +8,7 @@ export class D3Service {
 
   constructor() { }
 
-  // ** A method to bind a pan and zoom behaviour to an svg element */
+  /** A method to bind a pan and zoom behaviour to an svg element */
   applyZoomableBehaviour(svgElement, containerElement) {
     let svg, container, zoomed, zoom;
 

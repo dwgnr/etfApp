@@ -10,16 +10,22 @@ export class Node implements d3.SimulationNodeDatum {
   fx?: number | null;
   fy?: number | null;
 
-  id: string;
+  public id: number;
   linkCount = 0;
-  group: number;
+  public group: number[];
   name: string;
+  swapCount: number;
+  secManagerCount: number;
+  lendingCount: number;
 
-  constructor(id, linkCount, group, name) {
+  constructor(id, linkCount, group, name, swapCount, secManagerCount, lendingCount) {
     this.id = id;
     this.linkCount = linkCount;
     this.name = name;
     this.group = group;
+    this.swapCount = swapCount;
+    this.secManagerCount = secManagerCount;
+    this.lendingCount = lendingCount;
   }
 
   normal = () => {
@@ -28,7 +34,7 @@ export class Node implements d3.SimulationNodeDatum {
 
   // Circle radius
   get r() {
-    return 5 * this.normal() + 10;
+    return 8 * this.normal() + 12;
   }
 
   get fontSize() {
@@ -36,7 +42,8 @@ export class Node implements d3.SimulationNodeDatum {
   }
 
   get color() {
-    if (this.group === 4) {
+    if (this.group.includes(4)) {
+      // Gray for ETF Providers, blue for the rest
       const index = Math.floor(APP_CONFIG.GRAYS.length * this.normal() / 10);
       // console.log(index);
       return APP_CONFIG.GRAYS[index];

@@ -11,6 +11,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {MatSelectModule} from '@angular/material/select';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatRadioModule} from '@angular/material/radio';
+
 import { registerLocaleData } from '@angular/common';
 import localede from '@angular/common/locales/de';
 
@@ -93,6 +95,7 @@ registerLocaleData(localede);
     MatSlideToggleModule,
     MatMomentDateModule,
     MatSelectModule,
+    MatRadioModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,

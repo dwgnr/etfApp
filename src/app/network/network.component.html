@@ -1,3 +1,39 @@
-<div *ngIf="graphInitialized">
-  <app-graph [nodes]="nodes" [links]="links"></app-graph>
+<div class="grid-container">
+  <div class="grid-x grid-padding-y">
+    <div class="cell small-3">
+      <div class="card">
+        <div class="card-divider">
+          <h5>Filter</h5>
+        </div>
+        <div class="card-section">
+          <mat-radio-group class="graph-filter-group" [(ngModel)]="graphFilterSelection">
+              <p><strong>Rolle der Gegenpartei</strong></p>
+              <p *ngFor="let selection of graphSelection">
+                <mat-radio-button class="graph-radio-button" [value]="selection.group">
+                  {{ selection.name }} </mat-radio-button>
+              </p>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="card" *ngIf="message?.name">
+        <div class="card-divider"><h5>{{message?.name}}</h5></div>
+        <div class="card-section">
+          <div class="cell">ETF Emittent: <strong>{{ message?.isETFProvider ? 'Ja' : 'Nein' }}</strong></div>
+          <div class="cell">Gesamtanzahl Links: <strong>{{ message?.linkCount }}</strong></div>
+          <div class="cell" *ngIf="message?.swapCount > 0">Swap-Gegenpartei:
+            <strong>{{ message?.swapCount }}</strong></div>
+          <div class="cell" *ngIf="message?.secManagerCount > 0">Wertpapierdienstleister:
+            <strong>{{ message?.secManagerCount }}</strong></div>
+          <div class="cell" *ngIf="message?.lendingCount > 0">Leihe-Gegenpartei:
+            <strong>{{ message?.lendingCount }}</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="cell small-9">
+      <div *ngIf="graphInitialized && graphFilterSelection">
+        <app-graph [graphFilterSelection]="graphFilterSelection"
+                   [nodes]="nodes" [links]="links"></app-graph>
+      </div>
+    </div>
+  </div>
 </div>
