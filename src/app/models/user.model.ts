@@ -4,3 +4,9 @@ export class User {
   password: string;
   admin: boolean;
 }
+
+export class ETFStore {
+  public_id: string;
+  isin: string;
+  name: string;
+}

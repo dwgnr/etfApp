@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../models/user.model';
+import { User, ETFStore } from '../models/user.model';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -28,4 +28,18 @@ export class UserService {
   delete(public_id: string) {
     return this.http.delete(`${environment.apiUrl}/user/` + public_id);
   }
+
+  // Endpoints for User specific ETF Store
+  getAllStoredETF(public_id: string) {
+    return this.http.get<ETFStore[]>(`${environment.apiUrl}/userstore/` + public_id);
+  }
+
+  deleteETF(public_id: string, isin: string) {
+    return this.http.delete(`${environment.apiUrl}/userstore/` + public_id + '/' + isin);
+  }
+
+  storeETF(data: ETFStore) {
+    return this.http.post(`${environment.apiUrl}/userstore/`, data);
+  }
+
 }

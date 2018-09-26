@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { first } from 'rxjs/operators';
 
-import { User } from '../models/user.model';
+import { User, ETFStore } from '../models/user.model';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   @Input()
   currentUser: User;
   users: User[] = [];
+  currentETFstore: ETFStore[];
 
   constructor(private userService: UserService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -23,11 +24,18 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
       this.loadAllUsers();
+      this.loadAllStoredETF();
   }
 
   deleteUser(public_id: string) {
     this.userService.delete(public_id).pipe(first()).subscribe(() => {
       this.loadAllUsers();
+    });
+  }
+
+  deleteETF(public_id: string, isin: string) {
+    this.userService.deleteETF(public_id, isin).pipe(first()).subscribe(() => {
+      this.loadAllStoredETF();
     });
   }
 
@@ -51,5 +59,10 @@ export class HomeComponent implements OnInit {
         this.users = users;
       });
     }
+  }
+  private loadAllStoredETF() {
+    this.userService.getAllStoredETF(this.currentUser.public_id).subscribe(etf => this.currentETFstore = etf,
+      error => console.log('Error: ', error)
+    );
   }
 }

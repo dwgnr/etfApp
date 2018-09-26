@@ -50,6 +50,39 @@
 </div>
 
 
+<!-- Pagination BEGIN-->
+<div class="cell" *ngIf="pager && pager.pages && pager.pages.length">
+  <ul class="pagination text-center" role="navigation" aria-label="Pagination">
+    <li [ngClass]="{ 'disabled': pager.currentPage === 1,
+            'pagination-previous': pager.currentPage >= 1 }">
+      <a *ngIf="pager.currentPage !== 1" (click)="setPage(pager.currentPage - 1, filterActive)">Rückwärts</a>
+      <span *ngIf="pager.currentPage === 1">Rückwärts</span>
+    </li>
+    <li *ngFor="let page of pager.pages" [ngClass]="{ 'current': pager.currentPage === page }">
+      <a *ngIf="pager.currentPage !== page" (click)="setPage(page, filterActive)" aria-label="Page">{{page}}</a>
+      <span *ngIf="pager.currentPage === page">{{page}}</span>
+    </li>
+
+    <li class="ellipsis"></li>
+    <li [ngClass]="{ 'current': pager.currentPage === pager.totalPages - 1 }">
+      <a *ngIf="pager.currentPage !== pager.totalPages - 1" (click)="setPage(pager.totalPages - 1, filterActive)" aria-label="Page">{{ pager.totalPages - 1 }}</a>
+      <span *ngIf="pager.currentPage === pager.totalPages - 1">{{pager.totalPages - 1}}</span>
+    </li>
+    <li [ngClass]="{ 'current': pager.currentPage === pager.totalPages}">
+      <a *ngIf="pager.currentPage !== pager.totalPages" (click)="setPage(pager.totalPages, filterActive)" aria-label="Page">{{ pager.totalPages }}</a>
+      <span *ngIf="pager.currentPage === pager.totalPages">{{pager.totalPages}}</span>
+    </li>
+    <li [ngClass]="{ 'disabled': pager.currentPage === pager.totalPages,
+            'pagination-next': pager.currentPage >= 1}">
+      <a *ngIf="pager.currentPage !== pager.totalPages" (click)="setPage(pager.currentPage + 1, filterActive)">Vorwärts</a>
+      <span *ngIf="pager.currentPage === pager.totalPages">Vorwärts</span>
+    </li>
+  </ul>
+</div>
+<!-- Pagination END-->
+
+
+
 
 
 <div class="grid-container" id="grid">
@@ -57,26 +90,12 @@
     <div class="cell small-4 medium-4 large-4">
 
 
-      <div class="card" id="searched-etfs" *ngIf="searchResults && searchResults.length > 0">
+      <div class="card" id="all-etfs">
         <div class="card-divider">
-          <h4>{{searchResults.length}} ETFs gefunden</h4>
-        </div>
-
-        <div class="card-section" *ngIf="searchResults">
-          <div *ngFor="let item of searchResults" class="cell">
-            <a (click)="onClick(item)"> {{item?.name}} ({{item?.isin}})</a>
-            <app-cartitem [product]="item" ></app-cartitem>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="card" id="all-etfs" *ngIf="!searchResults || searchResults.length < 1">
-        <div class="card-divider">
-          <h4>Alle {{etfinfos[0].length}} ETFs</h4>
+          <h4 *ngIf="etfinfos && etfinfos.length > 0; else noResults">{{ totalItems }} ETFs gefunden</h4>
         </div>
         <div *ngIf="etfinfos; else loading" class="card-section">
-          <div class="cell" *ngFor="let info of etfinfos[0]">
+          <div class="cell" *ngFor="let info of etfinfos">
             <a (click)="onClick(info)"> {{info?.name}} ({{info?.isin}})</a>
             <app-cartitem [product]="info" ></app-cartitem>
           </div>
@@ -185,6 +204,42 @@
 </div>
 
 
+<!-- Pagination BEGIN-->
+<div class="cell" *ngIf="pager && pager.pages && pager.pages.length">
+  <ul class="pagination text-center" role="navigation" aria-label="Pagination">
+    <li [ngClass]="{ 'disabled': pager.currentPage === 1,
+            'pagination-previous': pager.currentPage >= 1 }">
+      <a *ngIf="pager.currentPage !== 1" (click)="setPage(pager.currentPage - 1, filterActive)">Rückwärts</a>
+      <span *ngIf="pager.currentPage === 1">Rückwärts</span>
+    </li>
+    <li *ngFor="let page of pager.pages" [ngClass]="{ 'current': pager.currentPage === page }">
+      <a *ngIf="pager.currentPage !== page" (click)="setPage(page, filterActive)" aria-label="Page">{{page}}</a>
+      <span *ngIf="pager.currentPage === page">{{page}}</span>
+    </li>
+
+    <li class="ellipsis"></li>
+    <li [ngClass]="{ 'current': pager.currentPage === pager.totalPages - 1 }">
+      <a *ngIf="pager.currentPage !== pager.totalPages - 1" (click)="setPage(pager.totalPages - 1, filterActive)" aria-label="Page">{{ pager.totalPages - 1 }}</a>
+      <span *ngIf="pager.currentPage === pager.totalPages - 1">{{pager.totalPages - 1}}</span>
+    </li>
+    <li [ngClass]="{ 'current': pager.currentPage === pager.totalPages}">
+      <a *ngIf="pager.currentPage !== pager.totalPages" (click)="setPage(pager.totalPages, filterActive)" aria-label="Page">{{ pager.totalPages }}</a>
+      <span *ngIf="pager.currentPage === pager.totalPages">{{pager.totalPages}}</span>
+    </li>
+    <li [ngClass]="{ 'disabled': pager.currentPage === pager.totalPages,
+            'pagination-next': pager.currentPage >= 1}">
+      <a *ngIf="pager.currentPage !== pager.totalPages" (click)="setPage(pager.currentPage + 1, filterActive)">Vorwärts</a>
+      <span *ngIf="pager.currentPage === pager.totalPages">Vorwärts</span>
+    </li>
+  </ul>
+</div>
+<!-- Pagination END-->
+
+
 <ng-template #loading>
   Lade Daten...
+</ng-template>
+
+<ng-template #noResults>
+  <h4>Keine Ergebnisse</h4>
 </ng-template>

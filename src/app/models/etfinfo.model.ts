@@ -55,6 +55,11 @@ export interface EtfInfo {
 
 }
 
+export interface EtfInfoResponse {
+  etf_infos: EtfInfo[];
+  item_count: number;
+}
+
 export interface CartState {
   loaded: boolean;
   products: EtfInfo[];

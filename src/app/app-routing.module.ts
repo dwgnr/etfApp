@@ -27,7 +27,7 @@ const routes: Routes = [
   {
     path: 'etfinfo',
     loadChildren: 'app/etfinfo/etfinfo.module#EtfInfoModule',
-    canLoad: [ LoadguardService ]
+    // canLoad: [ LoadguardService ]
     // component: EtfinfoComponent
   },
   {

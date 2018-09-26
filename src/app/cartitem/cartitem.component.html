@@ -1,6 +1,20 @@
 <div>
-  <button  *ngIf="product.added"  (click)="RemoveProduct(product)" class="alert button">Von Liste Entfernen
-  </button>
-  <button  *ngIf="! product.added"  (click)="AddProduct(product)" class="button">Zu Liste Hinzufügen
-  </button>
+  <div class="grid-x">
+    <div class="cell small-7">
+      <button  *ngIf="product.added"  (click)="RemoveProduct(product)" class="alert button small">Von Liste Entfernen
+      </button>
+      <button  *ngIf="!product.added"  (click)="AddProduct(product)" class="button small">Zu Liste Hinzufügen
+      </button>
+    </div>
+    <div class="cell small-5" *ngIf="isLoggedIn && !btnDisabled; else buttonDeactivated">
+      <button (click)="storeProduct(product)" class="button secondary small">Speichern</button>
+    </div>
+  </div>
 </div>
+
+
+<ng-template #buttonDeactivated>
+  <div class="cell small-5">
+    <button disabled class="button secondary small">Speichern</button>
+  </div>
+</ng-template>

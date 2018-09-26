@@ -1,6 +1,6 @@
 import {Component, ViewChild, OnInit, OnDestroy, AfterViewInit, AfterViewChecked, NgModule} from '@angular/core';
 // import {InfoService} from '../services/info.service';
-import {CartState, EtfInfo, InfoState, Region, InfoFilter} from '../models/etfinfo.model';
+import {CartState, EtfInfo, InfoState, Region, InfoFilter, EtfInfoResponse} from '../models/etfinfo.model';
 import {InfoService} from '../services/info.service';
 import {Subscription} from '../../../node_modules/rxjs/Subscription';
 import {EtfinfoRoutingModule} from './etfinfo.routing';
@@ -15,6 +15,7 @@ import {Chart} from 'chart.js';
 import {CommonModule} from '@angular/common';
 import {MatSelectModule} from '../../../node_modules/@angular/material/select';
 import { CartitemComponent } from '../cartitem/cartitem.component';
+import {PagerService} from '../services/pager.service';
 
 declare var $: any;
 declare var moment: any;
@@ -39,6 +40,7 @@ export class EtfinfoComponent implements OnInit {
   fundSizeFilterField: FormControl = new FormControl();
   terFilterField: FormControl = new FormControl();
   filter = {  region: '', age: '', profit_use: '', fund_size: 0,  ter: 0, search: ''} as InfoFilter;
+  filterActive = false;
 
   etfinfos: EtfInfo[] = [];
   selectedETF: EtfInfo;
@@ -53,23 +55,39 @@ export class EtfinfoComponent implements OnInit {
   chartCreated = false;
   chart = Chart;
 
-  constructor(private infoService: InfoService, private priceService: PriceService) { }
+  // pager object
+  pager: any = {};
+  totalItems: number;
+
+  constructor(private infoService: InfoService,
+              private priceService: PriceService,
+              private pagerService: PagerService) { }
   private subscription: Subscription;
 
   ngOnInit() {
     // setTimeout(500);
     console.log('Init ETFInfo Component');
     // this.getETFInfoList();
-    $(document).foundation();
     // this.infoService.AllInfoState.subscribe(info => this.etfinfos = info.products);
     // this.etfinfos = this.infoService.ETFInfos;
     // this.handleAllETFInfoSubscription();
-    this.etfinfos = this.infoService.ETFInfos as EtfInfo[];
+
+
+
+    // this.etfinfos = this.infoService.ETFInfos as EtfInfo[];
+    // this.infoService.getETFInfos(1).subscribe(etfinfo => this.etfinfos = etfinfo.etf_infos,
+    //   error => console.log('Error: ', error),
+    //   () => this.setPage(1, false)
+    // );
+    this.setPage(1, false);
 
     this.infoService.getAllRegions().subscribe(region => this.regions = region,
       error => console.log('Error: ', error),
       () => this.onChangedRegion()
     );
+
+    $(document).foundation();
+
 
     // if (this.etfinfos.length > 0) {
     //   setTimeout(() => this.ready = true, 0);
@@ -184,34 +202,60 @@ export class EtfinfoComponent implements OnInit {
   onChangedRegion(): void {
     this.regionFilterField.valueChanges.subscribe(val => {
       this.filter.region = this.regionFilterField.value;
-      this.infoService.filter(this.filter).subscribe(result => this.searchResults = result);
+      this.filterActive = true;
+      this.setPage(1, true);
+      // this.infoService.filter(this.filter).subscribe(result => this.etfinfos = result,
+      //   error => console.log('Error: ', error),
+      // () => this.setPage(1));
     });
   }
 
   onFilterChanges(): void {
     this.ageFilterField.valueChanges.subscribe(val => {
       this.filter.age = this.ageFilterField.value;
-      this.infoService.filter(this.filter).subscribe(result => this.searchResults = result);
+      this.filterActive = true;
+      this.setPage(1, true);
+
+      // this.infoService.filter(this.filter).subscribe(result => this.etfinfos = result,
+      //   error => console.log('Error: ', error),
+      //   () => this.setPage(1));
     });
 
     this.profitUseFilterField.valueChanges.subscribe(val => {
       this.filter.profit_use = this.profitUseFilterField.value;
-      this.infoService.filter(this.filter).subscribe(result => this.searchResults = result);
+      this.filterActive = true;
+      this.setPage(1, true);
+
+      // this.infoService.filter(this.filter).subscribe(result => this.etfinfos = result,
+      //   error => console.log('Error: ', error),
+      //   () => this.setPage(1));
     });
 
     this.fundSizeFilterField.valueChanges.subscribe(val => {
       this.filter.fund_size = Number(this.fundSizeFilterField.value).valueOf();
-      this.infoService.filter(this.filter).subscribe(result => this.searchResults = result);
+      this.filterActive = true;
+      this.setPage(1, true);
+      // this.infoService.filter(this.filter).subscribe(result => this.etfinfos = result,
+      //   error => console.log('Error: ', error),
+      //   () => this.setPage(1));
     });
 
     this.terFilterField.valueChanges.subscribe(val => {
       this.filter.ter = Number(this.terFilterField.value).valueOf();
-      this.infoService.filter(this.filter).subscribe(result => this.searchResults = result);
+      this.filterActive = true;
+      this.setPage(1, true);
+      // this.infoService.filter(this.filter).subscribe(result => this.etfinfos = result,
+      //   error => console.log('Error: ', error),
+      //   () => this.setPage(1));
     });
 
     this.queryField.valueChanges.subscribe(val => {
       this.filter.search = this.queryField.value;
-      this.infoService.filter(this.filter).subscribe(result => this.searchResults = result);
+      this.filterActive = true;
+      this.setPage(1, true);
+      // this.infoService.filter(this.filter).subscribe(result => this.etfinfos = result,
+      //   error => console.log('Error: ', error),
+      //   () => this.setPage(1));
     });
 
     // this.queryField.valueChanges
@@ -229,8 +273,28 @@ export class EtfinfoComponent implements OnInit {
     }
   }
 
-}
 
-// TODO: Build more sorting and filter capabilities e.g. sort by AuM or TER, filter by region etc.
+  setPage(page: number, filter: boolean) {
+
+    if (!filter) {
+      this.infoService.getETFInfos(page).subscribe(result => {
+        this.etfinfos = result.etf_infos;
+          this.totalItems = result.item_count;
+          console.log(this.totalItems);
+        },
+        error => console.log('Error: ', error),
+        () => this.pager = this.pagerService.getPager(this.totalItems, page));
+    } else {
+      this.infoService.filter(this.filter, page).subscribe(result => {
+        this.etfinfos = result.etf_infos;
+        this.totalItems = result.item_count;
+        console.log(this.totalItems);
+        },
+        error => console.log('Error: ', error),
+        () => this.pager = this.pagerService.getPager(this.totalItems, page));
+    }
+  }
+
+}
 
 

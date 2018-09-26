@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   public ngOnInit() {
     moment.locale('de');
     $(document).foundation();
-    this.infoService.initAllETFInfos();
+    // this.infoService.initAllETFInfos();
     // console.log(this.infoService.Data);
     // this.getAllETFInfos();
   }

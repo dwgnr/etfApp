@@ -35,10 +35,49 @@
               </div>
             </div>
           </div>
-          <a class="button expanded" [routerLink]="['/login']">Logout</a>
+
+
+          <div class="card" *ngIf="currentETFstore && currentETFstore.length > 0; else noetfs">
+            <div class="card-divider">
+              <h3>Gespeicherte ETFs</h3>
+            </div>
+            <div class="card-section">
+              <div class="grid-x" *ngFor="let etf of currentETFstore">
+                <div class="cell small-9">{{ etf?.name }} ({{ etf?.isin }})</div>
+                <div class="cell small-3">
+                  <a (click)="deleteETF(etf?.public_id, etf?.isin)" class="button alert">Von Liste Entfernen</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-divider">
+              <h3>Gespeicherte Konfigurationen</h3>
+            </div>
+            <div class="card-section">
+
+            </div>
+          </div>
+
+
+
         </div>
     </div>
     </div>
     <div class="cell small-1"></div>
 </div>
 </div>
+
+
+<ng-template #noetfs>
+  <div class="card">
+    <div class="card-divider">
+      <h3>Gespeicherte ETFs</h3>
+    </div>
+    <div class="card-section">
+      <p>Liste leer</p>
+    </div>
+  </div>
+</ng-template>
+

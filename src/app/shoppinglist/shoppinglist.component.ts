@@ -25,7 +25,7 @@ export class ShoppinglistComponent implements OnInit, OnDestroy {
       .CartState
       .subscribe((state: CartState) => {
         this.products = state.products;
-        console.log(this.products);
+        // console.log(this.products);
       });
 
   }

@@ -6,7 +6,7 @@ import { Observable} from 'rxjs/';
 import { HttpHeaders } from '@angular/common/http';
 
 
-import {EtfInfo, CartState, InfoState, Region, InfoFilter} from '../models/etfinfo.model';
+import {EtfInfo, EtfInfoResponse, CartState, InfoState, Region, InfoFilter} from '../models/etfinfo.model';
 // import {CartItem, CartState} from '../models/cart.model';
 import {Subject} from '../../../node_modules/rxjs/Subject';
 import {Portfolio, PortfolioInput} from '../models/portfolio.model';
@@ -33,8 +33,8 @@ export class InfoService {
   AllInfoState = this.allInfoSubject.asObservable();
   isLoaded = false;
 
-  getETFInfos(): Observable<EtfInfo[]> {
-    return this.http.get<EtfInfo[]>(API_URL + '/info/');
+  getETFInfos(page: number): Observable<EtfInfoResponse> {
+    return this.http.get<EtfInfoResponse>(API_URL + '/info/' + page);
   }
 
   getETFInfoByISIN(isin: string): Observable<EtfInfo> {
@@ -47,7 +47,7 @@ export class InfoService {
 
   initAllETFInfos() {
     console.log('Initializing all ETF Infos');
-    this.getETFInfos().subscribe(
+    this.getETFInfos(1).subscribe(
       data => this.addETFInfos(data), // Bind to view
       err => {
         // Log errors if any
@@ -86,9 +86,9 @@ export class InfoService {
     }
   }
 
-  public filter(input: InfoFilter): Observable<EtfInfo[]> {
+  public filter(input: InfoFilter, page: number): Observable<EtfInfoResponse> {
     console.log('Filter Service called');
-    return this.http.post<EtfInfo[]>(API_URL + '/info/filter/', input);
+    return this.http.post<EtfInfoResponse>(API_URL + '/info/filter/' + page, input);
   }
 
   // getAllProducts(): Observable <any> {
