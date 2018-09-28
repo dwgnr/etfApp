@@ -12,6 +12,8 @@ import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {MatSelectModule} from '@angular/material/select';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { registerLocaleData } from '@angular/common';
 import localede from '@angular/common/locales/de';
@@ -96,6 +98,8 @@ registerLocaleData(localede);
     MatMomentDateModule,
     MatSelectModule,
     MatRadioModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,

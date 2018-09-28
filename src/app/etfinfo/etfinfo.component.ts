@@ -65,8 +65,6 @@ export class EtfinfoComponent implements OnInit {
   private subscription: Subscription;
 
   ngOnInit() {
-    // setTimeout(500);
-    console.log('Init ETFInfo Component');
     // this.getETFInfoList();
     // this.infoService.AllInfoState.subscribe(info => this.etfinfos = info.products);
     // this.etfinfos = this.infoService.ETFInfos;
@@ -154,19 +152,6 @@ export class EtfinfoComponent implements OnInit {
       options: {}
     });
     this.chartCreated = true;
-  }
-
-  handleAllETFInfoSubscription() {
-    setTimeout(500);
-    console.log('ETF Info handles subscription');
-    this.subscription = this
-      .infoService
-      .AllInfoState
-      .subscribe((state: InfoState) => {
-        this.etfinfos = state.products;
-        console.log(this.etfinfos);
-      });
-    // console.log(this.etfinfos);
   }
 
   onClick(info: EtfInfo) {
@@ -280,7 +265,6 @@ export class EtfinfoComponent implements OnInit {
       this.infoService.getETFInfos(page).subscribe(result => {
         this.etfinfos = result.etf_infos;
           this.totalItems = result.item_count;
-          console.log(this.totalItems);
         },
         error => console.log('Error: ', error),
         () => this.pager = this.pagerService.getPager(this.totalItems, page));
@@ -288,7 +272,6 @@ export class EtfinfoComponent implements OnInit {
       this.infoService.filter(this.filter, page).subscribe(result => {
         this.etfinfos = result.etf_infos;
         this.totalItems = result.item_count;
-        console.log(this.totalItems);
         },
         error => console.log('Error: ', error),
         () => this.pager = this.pagerService.getPager(this.totalItems, page));

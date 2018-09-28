@@ -23,3 +23,11 @@ export interface PerformanceResponse {
   'std': number;
   'sharpe': number;
 }
+
+export interface PriceUpdate {
+  'skipped': number;
+  'errors': number;
+  'updated': number;
+  'total': number;
+  'success': boolean;
+}

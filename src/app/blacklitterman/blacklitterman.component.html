@@ -47,15 +47,16 @@
             </form>
 
             <mat-slide-toggle [(ngModel)]="shrinkageChecked">Shrinkage Estimator</mat-slide-toggle>
-            <mat-slide-toggle [(ngModel)]="recommendationsChecked">Vorschlagsliste verwenden</mat-slide-toggle>
+            <mat-slide-toggle *ngIf="isLoggedIn" [(ngModel)]="recommendationsChecked">Gespeicherte Liste verwenden</mat-slide-toggle>
             <mat-slide-toggle [(ngModel)]="viewsChecked">Eigene Views verwenden</mat-slide-toggle>
             <mat-slide-toggle [(ngModel)]="backtestingChecked">Backtesting durchführen</mat-slide-toggle>
 
             <br>
-            <div *ngIf="viewsChecked && recommendationsChecked" class="cell">
+            <div *ngIf="isLoggedIn && viewsChecked && recommendationsChecked" class="cell">
               <mat-form-field>
                 <mat-select placeholder="ETF" [formControl]="viewControlETF1">
-                  <mat-option *ngFor="let etf of recommendations" value="{{etf}}">{{etf}}</mat-option>
+                  <mat-option *ngFor="let etf of currentETFstore"
+                              value="{{etf.isin}}">{{etf.name}} <small>{{etf.isin}}</small></mat-option>
                 </mat-select>
               </mat-form-field>
 
@@ -68,7 +69,9 @@
 
               <mat-form-field>
                 <mat-select placeholder="ETF" [formControl]="viewControlETF2">
-                  <mat-option *ngFor="let etf of recommendations" value="{{etf}}">{{etf}}</mat-option>
+                  <mat-option *ngFor="let etf of currentETFstore" value="{{etf.isin}}">
+                    {{etf.name}} <small>{{etf.isin}}</small>
+                  </mat-option>
                 </mat-select>
               </mat-form-field>
 
@@ -174,6 +177,7 @@
 
             <a class="button primary" (click)="onButtonPressed()">Portfolios konstruieren</a>
           </div>
+
           <div class="card">
             <div class="card-divider"> <h5>ETF-Liste</h5></div>
             <div class="card-section">
@@ -188,6 +192,20 @@
               </div>
             </div>
           </div>
+
+          <div class="card" *ngIf="isLoggedIn">
+            <div class="card-divider"> <h5>Gespeicherte ETFs</h5></div>
+            <div class="card-section">
+
+              <div *ngIf="currentETFstore && currentETFstore.length > 0; else noelements">
+                <div *ngFor="let etf of currentETFstore">
+                  <p>{{etf.name}} ({{etf.isin}})</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
         </div>
       </div>
     </div>

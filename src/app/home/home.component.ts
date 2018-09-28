@@ -2,7 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { first } from 'rxjs/operators';
 
 import { User, ETFStore } from '../models/user.model';
+import { PriceUpdate } from '../models/price.model';
 import { UserService } from '../services/user.service';
+import {PriceService} from '../services/price.service';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -14,8 +17,12 @@ export class HomeComponent implements OnInit {
   currentUser: User;
   users: User[] = [];
   currentETFstore: ETFStore[];
+  updateStatistic: PriceUpdate;
+  updateFinished = false;
+  updateRequestSent = false;
+  isinControl: string;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private priceService: PriceService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     // this.currentUser = JSON.parse(localStorage['currentUser']);
 
@@ -40,7 +47,7 @@ export class HomeComponent implements OnInit {
   }
 
   changeAdminStatus($event, user: User) {
-    console.log('Switching admin status for user ' + user.name)
+    console.log('Switching admin status for user ' + user.name);
     if (user.admin) {
       user.admin = false;
     } else {
@@ -64,5 +71,26 @@ export class HomeComponent implements OnInit {
     this.userService.getAllStoredETF(this.currentUser.public_id).subscribe(etf => this.currentETFstore = etf,
       error => console.log('Error: ', error)
     );
+  }
+
+  updateAllETFPrices() {
+    this.updateFinished = false;
+    this.updateRequestSent = true;
+    this.priceService.updateAll().subscribe(result => this.updateStatistic = result,
+      error => console.log('Error: ', error),
+      () => { this.updateFinished = true; this.updateRequestSent = false; }
+    );
+  }
+
+  updateISIN() {
+    this.updateFinished = false;
+    this.updateRequestSent = true;
+    const isin = this.isinControl;
+    if (isin) {
+      this.priceService.updateSingle(isin).subscribe(result => this.updateStatistic = result,
+        error => console.log('Error: ', error),
+        () => { this.updateFinished = true; this.updateRequestSent = false; }
+      );
+    }
   }
 }

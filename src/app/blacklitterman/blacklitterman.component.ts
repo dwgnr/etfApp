@@ -13,6 +13,9 @@ import {Subscription} from 'rxjs/Subscription';
 import {Chart} from 'chart.js';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import {BacktestingService} from '../services/backtesting.service';
+import {AuthenticationService} from '../services/authentication.service';
+import {ETFStore, User} from '../models/user.model';
+import {UserService} from '../services/user.service';
 
 declare var moment: any;
 // declare var $: any;
@@ -68,7 +71,6 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
   isinNameWgt = [];
   etflist: EtfInfo[];
   views: ViewInput[] = [];
-  noViews = 1;
   portfolios: BlackLittermanPortfolio[];
   rf: number;
   tau: number;
@@ -76,18 +78,25 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
   backtestingInput: BacktestingInput;
 
   btInitialInvestment: number;
-  btBrownianMotion: boolean;
+  btBrownianMotion = false;
   btNumSimulations: number;
   btPredictedDays: number;
   btAlpha: number;
   btLookbackDays: number;
-  btConvergenceDays: number;
+
+  isLoggedIn = false;
+  currentUser: User;
+  currentETFstore: ETFStore[];
 
   constructor(private portfolioService: PortfolioService, private infoService: InfoService,
-              private formBuilder: FormBuilder, private backtestingService: BacktestingService) {
+              private authenticationService: AuthenticationService, private userService: UserService) {
   }
 
   ngOnInit() {
+
+    this.authenticationService.isLoggedIn.subscribe(status => this.onLoggedInStatusChange(status));
+
+
     // Load current state of shoppinglist once, then subscribe to changes
     this.etflist = this.infoService.ETFShoppingList as EtfInfo[];
 
@@ -132,15 +141,23 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
       this.warnMessage.push('Kein Skalierungsfaktor angegeben. Verwende ' + tau + '.');
     }
     if (this.recommendationsChecked) {
-      console.log('Using recommendations as BlackLitterman Input.');
-      symbols = this.recommendations;
-      const newInput: BlackLittermanInput = {symbols, views, date_from, date_to, rf, tau, shrinkage} as BlackLittermanInput;
-      console.log('BlackLitterman Input:');
-      console.log(JSON.stringify(newInput));
-      this.portfolioService.getBLPortfolios(newInput).subscribe(portfolios => this.portfolios = portfolios,
-        error => this.errorMessage = 'Portfolios konnten nicht konstruiert werden!',
-        () => this.handlePortfolioResponse()
-      );
+      console.log('Using list stored by user as BlackLitterman Input.');
+      symbols = [];
+      if (this.currentETFstore && this.currentETFstore.length > 0) {
+        for (const etf of this.currentETFstore) {
+          symbols.push(etf.isin);
+        }
+        const newInput: BlackLittermanInput = {symbols, views, date_from, date_to, rf, tau, shrinkage} as BlackLittermanInput;
+        console.log('BlackLitterman Input:');
+        console.log(JSON.stringify(newInput));
+        this.portfolioService.getBLPortfolios(newInput).subscribe(portfolios => this.portfolios = portfolios,
+          error => this.errorMessage = 'Portfolios konnten nicht konstruiert werden!',
+          () => this.handlePortfolioResponse()
+        );
+      } else {
+        this.warnMessage.push('Keine ETF-Liste gespeichert.');
+        this.errorMessage = 'Portfolios können nicht konstruiert werden!';
+      }
     } else {
       if (etfinfos && etfinfos.length > 0) {
         for (const etf of etfinfos) {
@@ -224,6 +241,7 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
   }
 
   getETFNames() {
+    this.isinNameWgt = [];
     let tmpETFinfo: EtfInfo;
     for (const portfolio of this.portfolios) {
       const currentPortfolio = [];
@@ -232,15 +250,15 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
           error => this.errorMessage = 'Fehler beim Aufruf von getETFInfoByISIN()!',
           () => currentPortfolio.push({isin: elem.isin, weight: elem.weight, name: tmpETFinfo.name})
         );
-      this.isinNameWgt.push(currentPortfolio);
       }
+      this.isinNameWgt.push(currentPortfolio);
     }
   }
 
   buildBacktestingInput() {
     const portfolios = this.portfolios;
     let initial_investment = this.btInitialInvestment;
-    let brownian_motion = this.btBrownianMotion;
+    const brownian_motion = this.btBrownianMotion;
     let num_simulations = this.btNumSimulations;
     let predicted_days = this.btPredictedDays;
     let date_from = this.from_date;
@@ -251,9 +269,6 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
     if (!initial_investment) {
       initial_investment = 10000.00;
       this.warnMessage.push('Kein Anlagebetrag angegeben. Verwende ' + initial_investment + ' EUR.');
-    }
-    if (!brownian_motion) {
-      brownian_motion = true;
     }
     if (!num_simulations) {
       num_simulations = 1000;
@@ -553,6 +568,22 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
     this.btLookBackDaysControl.valueChanges.subscribe(val => {
       this.btLookbackDays = this.btLookBackDaysControl.value;
     });
+  }
+
+
+  private onLoggedInStatusChange(status: boolean) {
+    this.isLoggedIn = status;
+    if (status) {
+      if (!this.currentUser) {
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.loadAllStoredETF();
+      }
+    }
+  }
+
+  private loadAllStoredETF() {
+    this.userService.getAllStoredETF(this.currentUser.public_id).subscribe(etf => this.currentETFstore = etf,
+      error => console.log('Error: ', error));
   }
 
 }

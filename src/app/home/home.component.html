@@ -37,6 +37,74 @@
           </div>
 
 
+          <div *ngIf="currentUser.admin" class="card">
+            <div class="card-divider">
+              <h3>Update Historische Preise</h3>
+            </div>
+            <div class="card-section">
+              <div class="grid-x grid-margin-x">
+                <div class="cell small-6 margin-1">
+                <div class="card">
+                  <div class="card-divider">
+                    <h4>Alle Preise</h4>
+                  </div>
+                  <div class="card-section">
+                    <p></p>
+                    <p></p>
+                    <a (click)="updateAllETFPrices()" class="button primary expanded">Senden</a>
+                    <p></p>
+                    <p></p>
+                  </div>
+                </div>
+                </div>
+                <div class="cell small-6 margin-1">
+                  <div class="card">
+                    <div class="card-divider">
+                      <h4>ISIN</h4>
+                    </div>
+                    <div class="card-section">
+                      <mat-form-field class="mat-form-field">
+                        <input matInput type="text" [(ngModel)]="isinControl"
+                               placeholder="ISIN">
+                        <button mat-button *ngIf="isinControl" matSuffix
+                                mat-icon-button aria-label="Clear" (click)="isinControl=''">
+                          <mat-icon>close</mat-icon>
+                        </button>
+                      </mat-form-field>
+                      <a (click)="updateISIN()" class="button primary">Senden</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="updateRequestSent && !updateFinished">
+              <mat-spinner></mat-spinner>
+            </div>
+            <div class="grid-x" *ngIf="updateFinished">
+              <div class="small-2"></div>
+              <div class="small-8">
+                <div *ngIf="updateStatistic.success" class="callout success">
+                  <p>Erfolgreiches Update: {{updateStatistic?.updated}}</p>
+                  <p>Übersprungen: {{updateStatistic?.skipped}}</p>
+                  <p>Fehler: {{updateStatistic?.errors}}</p>
+                  <p>Gesamt: {{updateStatistic?.total}}</p>
+                </div>
+                <div *ngIf="!updateStatistic.success" class="callout alert">
+                  <strong>Bei dem Update der Preise ist ein Fehler aufgetreten!</strong>
+                  <p>Erfolgreiches Update: {{updateStatistic?.updated}}</p>
+                  <p>Übersprungen: {{updateStatistic?.skipped}}</p>
+                  <p>Fehler: {{updateStatistic?.errors}}</p>
+                  <p>Gesamt: {{updateStatistic?.total}}</p>
+                </div>
+              </div>
+              <div class="small-2"></div>
+            </div>
+
+
+          </div>
+
+
           <div class="card" *ngIf="currentETFstore && currentETFstore.length > 0; else noetfs">
             <div class="card-divider">
               <h3>Gespeicherte ETFs</h3>
@@ -78,6 +146,12 @@
     <div class="card-section">
       <p>Liste leer</p>
     </div>
+  </div>
+</ng-template>
+
+<ng-template #updateError>
+  <div class="callout warning">
+    <span>Es ist ein Fehler aufgetreten!</span>
   </div>
 </ng-template>
 

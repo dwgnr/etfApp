@@ -17,6 +17,8 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
   submitted = false;
+  returnUrl: string;
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -37,6 +39,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    this.returnUrl = this.router.url || '/';
 
     // stop here if form is invalid
     if (this.registerForm.invalid) {
@@ -49,12 +52,13 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         data => {
           this.alertService.success('Registrierung erfolgreich', true);
-          this.router.navigate(['/']);
-          $('#registrationModal').foundation('close');
+          // this.router.navigate(['/']);
+          this.router.navigate([this.returnUrl]);
         },
         error => {
           this.alertService.error(error);
           this.loading = false;
-        });
+        },
+        () => $('#registrationModal').foundation('close'));
   }
 }

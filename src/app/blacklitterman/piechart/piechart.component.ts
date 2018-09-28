@@ -45,11 +45,10 @@ export class PiechartComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-
-      if (this.pieChartsCreated) {
+    if (this.pieChartsCreated) {
         this.pieChart0.destroy();
         this.pieChart1.destroy();
-        if (this.portfolios.length > 2) {
+        if (changes.portfolios.previousValue && changes.portfolios.previousValue.length > 2) {
           this.pieChart2.destroy();
         }
         this.pieChartsCreated = false;

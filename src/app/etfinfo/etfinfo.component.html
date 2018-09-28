@@ -3,6 +3,7 @@
   <div class="cell small-10">
     <mat-form-field *ngIf="regions">
       <mat-select placeholder="Region" [formControl]="regionFilterField">
+        <mat-option value="none">kein Filter</mat-option>
         <mat-option *ngFor="let region of regions.region" value="{{region}}">{{region}}</mat-option>
       </mat-select>
     </mat-form-field>
