@@ -22,6 +22,7 @@ export class BacktestingComponent implements OnInit, OnChanges {
   convergenceChart = Chart;
   scaledHistVaRs  = [];
   scaledHistCVaRs = [];
+  backtestLoading = false;
 
   constructor(private backtestingService: BacktestingService) { }
 
@@ -33,6 +34,7 @@ export class BacktestingComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    this.backtestLoading = true;
     this.backtestingService.getBacktestingResults(this.backtestingInput).subscribe(result => this.backtestingResults = result,
       error => console.log('Error: ', error),
       () => this.handleChanges()
@@ -40,6 +42,7 @@ export class BacktestingComponent implements OnInit, OnChanges {
   }
 
   handleChanges() {
+    this.backtestLoading = false;
     this.plotHistPerformance();
     this.scaleVaRToAnnual();
     this.plotConvergence();

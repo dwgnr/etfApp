@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {EtfInfo} from './models/etfinfo.model';
 import {InfoService} from './services/info.service';
 
+
 declare var $: any;
 declare var moment: any;
 // https://stackoverflow.com/questions/45106174/how-do-i-get-zurb-foundation-6-4-1-to-work-with-angular-4

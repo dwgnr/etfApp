@@ -216,12 +216,13 @@
           <h4>Ergebnisse</h4>
         </div>
         <div class="card-section">
+          <div *ngIf="loading"><mat-spinner></mat-spinner></div>
           <div *ngIf="chart">
             <canvas id="canvas">{{ chart }}</canvas>
           </div>
 
           <br>
-          <div class="card" *ngIf="portfolios">
+          <div class="card" *ngIf="portfolios && !loading; else noresults">
             <div class="card-divider">
               <h5>Portfoliozusammensetzung</h5>
             </div>
@@ -308,5 +309,11 @@
 <ng-template #noelements>
   <div class="cell">
     Liste leer
+  </div>
+</ng-template>
+
+<ng-template #noresults>
+  <div class="cell">
+    Noch keine Ergebnisse
   </div>
 </ng-template>

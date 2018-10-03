@@ -21,3 +21,13 @@
   z-index: -1;
 }
 
+#paginationCell {
+  background-color: #e6e6e6;
+  margin-bottom: 0px !important;
+  margin-top: 1em;
+}
+
+.pagination {
+  margin-top: 1rem;
+}
+

@@ -3,6 +3,7 @@
     <h5>Backtesting</h5>
   </div>
   <div class="card-section">
+    <div *ngIf="backtestLoading"><mat-spinner></mat-spinner></div>
     <canvas id="backtestingCanvas">{{ chart }}</canvas>
     <div class="cell" *ngIf="backtestingResults">
       <div class="card">
@@ -122,6 +123,7 @@
         <h6>VaR Convergence Chart</h6>
       </div>
       <div class="card-section">
+        <div *ngIf="backtestLoading"><mat-spinner></mat-spinner></div>
         <canvas id="convergenceCanvas">{{ convergenceChart }}</canvas>
       </div>
     </div>

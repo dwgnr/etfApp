@@ -87,6 +87,7 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
   currentUser: User;
   currentETFstore: ETFStore[];
+  loading = false;
 
   constructor(private portfolioService: PortfolioService, private infoService: InfoService,
               private authenticationService: AuthenticationService, private userService: UserService) {
@@ -233,6 +234,7 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
       }];
 
     }
+    this.loading = false;
     // console.log('equilibrium_ret_frontier:');
     // console.log(equilibrium_ret_frontier);
     this.plotPortfolios(hist_ret_frontier, equilibrium_ret_frontier,
@@ -502,6 +504,7 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
     }
   }
   onButtonPressed() {
+    this.loading = true;
     this.getBLPortfolios(this.etflist, this.views, this.from_date,
       this.to_date, this.rf, this.tau, this.shrinkageChecked);
   }

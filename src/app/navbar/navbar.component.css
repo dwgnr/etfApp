@@ -7,3 +7,12 @@
 .slide {
   @include mui-animation(slide);
 }
+
+
+.route-active {
+  background-color: #e6e6e6 !important;
+}
+
+#loginModal {
+
+}

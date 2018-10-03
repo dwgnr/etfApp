@@ -51,41 +51,6 @@
 </div>
 
 
-<!-- Pagination BEGIN-->
-<div class="cell" *ngIf="pager && pager.pages && pager.pages.length">
-  <ul class="pagination text-center" role="navigation" aria-label="Pagination">
-    <li [ngClass]="{ 'disabled': pager.currentPage === 1,
-            'pagination-previous': pager.currentPage >= 1 }">
-      <a *ngIf="pager.currentPage !== 1" (click)="setPage(pager.currentPage - 1, filterActive)">Rückwärts</a>
-      <span *ngIf="pager.currentPage === 1">Rückwärts</span>
-    </li>
-    <li *ngFor="let page of pager.pages" [ngClass]="{ 'current': pager.currentPage === page }">
-      <a *ngIf="pager.currentPage !== page" (click)="setPage(page, filterActive)" aria-label="Page">{{page}}</a>
-      <span *ngIf="pager.currentPage === page">{{page}}</span>
-    </li>
-
-    <li class="ellipsis"></li>
-    <li [ngClass]="{ 'current': pager.currentPage === pager.totalPages - 1 }">
-      <a *ngIf="pager.currentPage !== pager.totalPages - 1" (click)="setPage(pager.totalPages - 1, filterActive)" aria-label="Page">{{ pager.totalPages - 1 }}</a>
-      <span *ngIf="pager.currentPage === pager.totalPages - 1">{{pager.totalPages - 1}}</span>
-    </li>
-    <li [ngClass]="{ 'current': pager.currentPage === pager.totalPages}">
-      <a *ngIf="pager.currentPage !== pager.totalPages" (click)="setPage(pager.totalPages, filterActive)" aria-label="Page">{{ pager.totalPages }}</a>
-      <span *ngIf="pager.currentPage === pager.totalPages">{{pager.totalPages}}</span>
-    </li>
-    <li [ngClass]="{ 'disabled': pager.currentPage === pager.totalPages,
-            'pagination-next': pager.currentPage >= 1}">
-      <a *ngIf="pager.currentPage !== pager.totalPages" (click)="setPage(pager.currentPage + 1, filterActive)">Vorwärts</a>
-      <span *ngIf="pager.currentPage === pager.totalPages">Vorwärts</span>
-    </li>
-  </ul>
-</div>
-<!-- Pagination END-->
-
-
-
-
-
 <div class="grid-container" id="grid">
   <div class="grid-x grid-margin-x grid-padding-y">
     <div class="cell small-4 medium-4 large-4">
@@ -206,35 +171,42 @@
 
 
 <!-- Pagination BEGIN-->
-<div class="cell" *ngIf="pager && pager.pages && pager.pages.length">
-  <ul class="pagination text-center" role="navigation" aria-label="Pagination">
-    <li [ngClass]="{ 'disabled': pager.currentPage === 1,
-            'pagination-previous': pager.currentPage >= 1 }">
-      <a *ngIf="pager.currentPage !== 1" (click)="setPage(pager.currentPage - 1, filterActive)">Rückwärts</a>
-      <span *ngIf="pager.currentPage === 1">Rückwärts</span>
-    </li>
-    <li *ngFor="let page of pager.pages" [ngClass]="{ 'current': pager.currentPage === page }">
-      <a *ngIf="pager.currentPage !== page" (click)="setPage(page, filterActive)" aria-label="Page">{{page}}</a>
-      <span *ngIf="pager.currentPage === page">{{page}}</span>
-    </li>
+<div data-sticky-container>
+  <div class="sticky" id="paginationCell" data-sticky data-stick-to="bottom">
 
-    <li class="ellipsis"></li>
-    <li [ngClass]="{ 'current': pager.currentPage === pager.totalPages - 1 }">
-      <a *ngIf="pager.currentPage !== pager.totalPages - 1" (click)="setPage(pager.totalPages - 1, filterActive)" aria-label="Page">{{ pager.totalPages - 1 }}</a>
-      <span *ngIf="pager.currentPage === pager.totalPages - 1">{{pager.totalPages - 1}}</span>
-    </li>
-    <li [ngClass]="{ 'current': pager.currentPage === pager.totalPages}">
-      <a *ngIf="pager.currentPage !== pager.totalPages" (click)="setPage(pager.totalPages, filterActive)" aria-label="Page">{{ pager.totalPages }}</a>
-      <span *ngIf="pager.currentPage === pager.totalPages">{{pager.totalPages}}</span>
-    </li>
-    <li [ngClass]="{ 'disabled': pager.currentPage === pager.totalPages,
+
+    <div class="cell" *ngIf="pager && pager.pages && pager.pages.length">
+      <ul class="pagination text-center" role="navigation" aria-label="Pagination">
+        <li [ngClass]="{ 'disabled': pager.currentPage === 1,
+            'pagination-previous': pager.currentPage >= 1 }">
+          <a *ngIf="pager.currentPage !== 1" (click)="setPage(pager.currentPage - 1, filterActive)">Rückwärts</a>
+          <span *ngIf="pager.currentPage === 1">Rückwärts</span>
+        </li>
+        <li *ngFor="let page of pager.pages" [ngClass]="{ 'current': pager.currentPage === page }">
+          <a *ngIf="pager.currentPage !== page" (click)="setPage(page, filterActive)" aria-label="Page">{{page}}</a>
+          <span *ngIf="pager.currentPage === page">{{page}}</span>
+        </li>
+
+        <li class="ellipsis"></li>
+        <li [ngClass]="{ 'current': pager.currentPage === pager.totalPages - 1 }">
+          <a *ngIf="pager.currentPage !== pager.totalPages - 1" (click)="setPage(pager.totalPages - 1, filterActive)" aria-label="Page">{{ pager.totalPages - 1 }}</a>
+          <span *ngIf="pager.currentPage === pager.totalPages - 1">{{pager.totalPages - 1}}</span>
+        </li>
+        <li [ngClass]="{ 'current': pager.currentPage === pager.totalPages}">
+          <a *ngIf="pager.currentPage !== pager.totalPages" (click)="setPage(pager.totalPages, filterActive)" aria-label="Page">{{ pager.totalPages }}</a>
+          <span *ngIf="pager.currentPage === pager.totalPages">{{pager.totalPages}}</span>
+        </li>
+        <li [ngClass]="{ 'disabled': pager.currentPage === pager.totalPages,
             'pagination-next': pager.currentPage >= 1}">
-      <a *ngIf="pager.currentPage !== pager.totalPages" (click)="setPage(pager.currentPage + 1, filterActive)">Vorwärts</a>
-      <span *ngIf="pager.currentPage === pager.totalPages">Vorwärts</span>
-    </li>
-  </ul>
+          <a *ngIf="pager.currentPage !== pager.totalPages" (click)="setPage(pager.currentPage + 1, filterActive)">Vorwärts</a>
+          <span *ngIf="pager.currentPage === pager.totalPages">Vorwärts</span>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
 <!-- Pagination END-->
+
 
 
 <ng-template #loading>
