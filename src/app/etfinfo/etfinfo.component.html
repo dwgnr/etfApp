@@ -155,6 +155,12 @@
               </b></div>
               <div class="cell">Sharpe Ratio 5 Jahre: <b>{{performance5y.sharpe | number:'1.2-2'}}</b></div>
             </div>
+            <div class="card-section" *ngIf="minTrackingError">
+              <div class="cell">Tracking Error (annualisiert): <b [ngClass]="{'positive' : minTrackingError.te > 0,
+              'negative' : minTrackingError.te < 0}">{{minTrackingError.te | percent:'1.0-2'}}</b>
+                <small> [Verwendete Benchmark: {{minTrackingError.bm_name}}]</small>
+              </div>
+            </div>
           </div>
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, HostListener } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {AuthenticationService} from '../services/authentication.service';
 import {
@@ -12,6 +12,10 @@ import {
 // import * as MotionUI from 'motion-ui';
 
 declare var $: any;
+export enum KEY_CODE {
+  ESCAPE = 'Escape',
+  ENTER = 'Enter'
+}
 
 @Component({
   selector: 'app-navbar',
@@ -35,6 +39,7 @@ declare var $: any;
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
 export class NavbarComponent implements OnInit {
 
   constructor(private authenticationService: AuthenticationService, private router: Router) { }
@@ -50,8 +55,21 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  onLogout() {
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    // console.log(event);
 
+    if (event.key === KEY_CODE.ESCAPE) {
+      this.isOpen = false;
+    }
+
+    // if (event.key === KEY_CODE.ENTER) {
+    //   this.isOpen = false;
+    // }
+  }
+
+  onLogout() {
+    this.isOpen = false;
     this.returnUrl = this.router.url || '/';
     if (this.returnUrl === '/home') {
       this.returnUrl = '/';

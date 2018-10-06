@@ -10,7 +10,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import {PriceService} from '../services/price.service';
-import {MAResponse, PerformanceResponse, PriceResponse} from '../models/price.model';
+import {MAResponse, PerformanceResponse, PriceResponse, TrackingErrorInput, TrackingErrorResponse} from '../models/price.model';
 import {Chart} from 'chart.js';
 import {CommonModule} from '@angular/common';
 import {MatSelectModule} from '../../../node_modules/@angular/material/select';
@@ -50,6 +50,8 @@ export class EtfinfoComponent implements OnInit {
   performance1y: PerformanceResponse;
   performance3y: PerformanceResponse;
   performance5y: PerformanceResponse;
+  trackingError: TrackingErrorResponse[];
+  minTrackingError: TrackingErrorResponse;
 
   ready = false;
   chartCreated = false;
@@ -182,6 +184,13 @@ export class EtfinfoComponent implements OnInit {
     this.priceService.getPerformanceByISIN(info.isin, '2013-08-01', '2018-07-31').subscribe(performance => this.performance5y = performance,
       error => console.log('Error: ', error)
     );
+
+    const etf = [];
+    etf.push(info.isin);
+    const teInput = {date_from: '2013-08-01', date_to: '2018-07-31', etfs: etf} as TrackingErrorInput;
+    this.priceService.getTrackingError(teInput).subscribe(te => this.trackingError = te,
+      error => console.log('Error: ', error), () => this.findMinTrackingError()
+    );
   }
 
   onChangedRegion(): void {
@@ -248,6 +257,17 @@ export class EtfinfoComponent implements OnInit {
     //   .distinctUntilChanged()
     //   .switchMap((query) =>  this.infoService.search(query))
     //   .subscribe( result => this.searchResults = result);
+  }
+
+  findMinTrackingError() {
+    this.minTrackingError = null;
+    let min = 100;
+    for (const item of this.trackingError) {
+      if (item.te < min) {
+        min = item.te;
+        this.minTrackingError = item;
+      }
+    }
   }
 
   parseDate(mom) {

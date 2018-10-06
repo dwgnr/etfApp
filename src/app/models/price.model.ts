@@ -31,3 +31,17 @@ export interface PriceUpdate {
   'total': number;
   'success': boolean;
 }
+
+export interface TrackingErrorResponse {
+  'etf_isin': string;
+  'etf_name': string;
+  'bm_id': number;
+  'bm_name': string;
+  'te': number;
+}
+
+export interface TrackingErrorInput {
+  'date_from': any;
+  'date_to': any;
+  'etfs': string[];
+}
