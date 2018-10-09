@@ -29,6 +29,10 @@ export class ApiService {
     return this.http.get('/src/app/services/data/data11.json');
   }
 
+  getCountriesJSON (): Observable<any> {
+    return this.http.get('/src/app/services/data/countries.json');
+  }
+
   changeMessage(message: any) {
     this.messageSource.next(message);
   }

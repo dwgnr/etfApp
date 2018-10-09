@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '../../../node_modules/@angular/common/http';
 import {environment} from '../../environments/environment';
-import {PriceResponse, MAResponse, PerformanceResponse, PriceUpdate, TrackingErrorResponse, TrackingErrorInput} from '../models/price.model';
+import {PriceResponse, MAResponse, PerformanceResponse, BMPerformanceResponse, BMPerformanceInput,
+  PriceUpdate, TrackingErrorResponse, TrackingErrorInput} from '../models/price.model';
 import {Observable} from 'rxjs/Observable';
 import {BacktestingInput, BacktestingResults} from '../models/portfolio.model';
 
@@ -33,6 +34,11 @@ export class PriceService {
       return this.http.get<PerformanceResponse>(API_URL + '/price/performance/' +
         start_date + '/' + end_date + '/' + isin);
     }
+  }
+
+  getBenchmarkPerformances(input: BMPerformanceInput): Observable<BMPerformanceResponse[]> {
+    console.log(JSON.stringify(input));
+    return this.http.post<BMPerformanceResponse[]>(API_URL + '/price/benchmark/performance/', input);
   }
 
   updateAll() {

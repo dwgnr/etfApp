@@ -55,6 +55,7 @@ import { UserService } from './services/user.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { AlertComponent } from './alert';
+import { WorldmapComponent } from './worldmap/worldmap.component';
 
 
 
@@ -84,6 +85,7 @@ registerLocaleData(localede);
     HomeComponent,
     RegisterComponent,
     AlertComponent,
+    WorldmapComponent,
   ],
   imports: [
     BrowserAnimationsModule,

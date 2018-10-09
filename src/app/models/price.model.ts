@@ -24,6 +24,19 @@ export interface PerformanceResponse {
   'sharpe': number;
 }
 
+export interface BMPerformanceResponse {
+  'id': number;
+  'mean': number;
+  'std': number;
+  'sharpe': number;
+}
+
+export interface BMPerformanceInput {
+  'date_from': any;
+  'date_to': any;
+  'benchmark_ids': number[];
+}
+
 export interface PriceUpdate {
   'skipped': number;
   'errors': number;

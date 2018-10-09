@@ -31,6 +31,7 @@
     "chart.js": "^2.7.2",
     "core-js": "^2.4.1",
     "d3": "^5.7.0",
+    "d3-geo": "^1.11.1",
     "foundation-sites": "^6.5.0-rc.2",
     "hammerjs": "^2.0.8",
     "jquery": "^3.3.1",
@@ -38,6 +39,7 @@
     "motion-ui": "^2.0.3",
     "rxjs": "^6.2.2",
     "rxjs-compat": "^6.0.0-rc.0",
+    "topojson": "^3.0.2",
     "what-input": "^5.1.1",
     "zone.js": "^0.8.19"
   },

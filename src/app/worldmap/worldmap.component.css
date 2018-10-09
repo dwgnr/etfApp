@@ -1,0 +1,29 @@
+/*body {*/
+  /*background: #222;*/
+  /*font-family: sans-serif;*/
+/*}*/
+
+.border {
+  fill: none;
+  stroke: #222222;
+  stroke-width: 1px;
+}
+
+.regions.selected {
+  fill: #1779ba;
+  stroke: none;
+  stroke-width: 1px;
+  transition: all 0.2s ease;
+}
+
+.regions.selected:hover {
+  fill: rgb(128, 186, 236);
+  stroke: rgb(128, 186, 236);
+  stroke-width: 1px;
+}
+
+.legend {
+  height: 10px;
+  color: #CCC;
+  text-align: center;
+}
