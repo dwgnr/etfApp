@@ -17,10 +17,18 @@
           <!--<li><a routerLink="home">Korrelationsmatrix</a></li>-->
         </ul>
       </li>
+
+      <li class="has-submenu">
+        <a routerLink="/portfolio">Analyse</a>
+        <ul id="dd-menu1" class="submenu menu vertical" data-submenu>
+          <li><a [routerLinkActive]="['route-active']" routerLink="/network">Graph</a></li>
+          <li><a [routerLinkActive]="['route-active']" routerLink="/worldmap">Karte</a></li>
+          <li><a [routerLinkActive]="['route-active']" routerLink="/cluster">Cluster</a></li>
+        </ul>
+      </li>
+
       <li><a [routerLinkActive]="['route-active']" routerLink="/etfinfo">ETF-Überblick</a></li>
       <li><a [routerLinkActive]="['route-active']" routerLink="/etfdetail">ETF-Detailansicht</a></li>
-      <li><a [routerLinkActive]="['route-active']" routerLink="/cluster">Cluster</a></li>
-      <li><a [routerLinkActive]="['route-active']" routerLink="/network">Graph</a></li>
     </ul>
   </div>
   <div class="top-bar-right">

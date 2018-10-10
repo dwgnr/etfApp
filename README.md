@@ -54,3 +54,6 @@ https://angularfirebase.com/lessons/sharing-data-between-angular-components-four
 ## Login/Registration
 http://jasonwatmore.com/post/2018/05/16/angular-6-user-registration-and-login-example-tutorial
 https://github.com/cornflourblue/angular-6-registration-login-example-cli
+
+## Host Binding
+https://dzone.com/articles/what-are-hostbinding-and-hostlistener-in-angular

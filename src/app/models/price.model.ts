@@ -29,6 +29,8 @@ export interface BMPerformanceResponse {
   'mean': number;
   'std': number;
   'sharpe': number;
+  'mean_str': string;
+  'std_str': string;
 }
 
 export interface BMPerformanceInput {

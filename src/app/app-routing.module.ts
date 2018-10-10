@@ -12,6 +12,7 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {HomeComponent} from './home/home.component';
 import { AuthGuard } from './guards';
+import {WorldmapComponent} from './worldmap/worldmap.component';
 
 declare var $: any;
 
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'network',
     component: NetworkComponent
+  },
+  {
+    path: 'worldmap',
+    component: WorldmapComponent
   },
   {
     path: 'login',

@@ -26,6 +26,7 @@ export class WorldmapComponent implements OnInit {
   // colors: [];
   reds = [];
   blues = [];
+  hoveredRegion: string;
 
   sets = [
     {
@@ -42,13 +43,13 @@ export class WorldmapComponent implements OnInit {
     {
       name: 'Nordamerika',
       index: 100090693,
-      indexName: 'FTSE NORTH AMERICA ALL CAP',
+      indexName: 'FTSE NORTH AMERICA',
       set: d3.set(['CAN', 'USA'])
     },
     {
       name: 'Lateinamerika',
       index: 153419019,
-      indexName: 'MSCI BRAZIL FACTOR MIX A-SERIES (USD) (NETR, UHD)',
+      indexName: 'MSCI BRAZIL',
       set: d3.set(['ARG', 'BOL', 'BRA', 'CHL', 'COL', 'ECU', 'FLK', 'GUY', 'PRY', 'PER',
         'SUR', 'URY', 'VEN', 'TTO', 'MEX', 'BLZ', 'CRI', 'CUB', 'GTM', 'HND', 'NIC', 'PAN', 'SLV', 'HTI', 'JAM', 'DOM',
         'PRI', 'BHS', 'TCA', 'ATG', 'DMA', 'BRB', 'GRD'])
@@ -68,19 +69,19 @@ export class WorldmapComponent implements OnInit {
     {
       name: 'Australasien',
       index: 153391044,
-      indexName: 'MSCI AUSTRALIA FACTOR MIX A-SERIES (USD) (NETR, UHD)',
+      indexName: 'MSCI AUSTRALIA',
       set: d3.set(['AUS', 'NZL'])
     },
     {
       name: 'Russland',
       index: 45477165,
-      indexName: 'DAXGLOBAL RUSSIA INDEX (NET RETURN) (EUR)',
+      indexName: 'DAXGLOBAL RUSSIA',
       set: d3.set(['RUS', 'KAZ', 'UZB', 'TKM', 'KGZ', 'TJK'])
     },
     {
       name: 'Asien',
       index: 16634815,
-      indexName: 'DAXGLOBAL ASIA INDEX (NET RETURN) (EUR)',
+      indexName: 'DAXGLOBAL ASIA',
       set: d3.set(['BTN', 'CHN', 'JPN', 'IDN', 'MNG', 'NPL', 'MMR', 'THA', 'KHM',
         'LAO', 'VNM', 'PRK', 'KOR', 'TWN', 'MYS', 'PNG', 'SLB', 'VUT', 'NCL', 'BRN', 'PHL',
         'TLS', 'HKG', 'FJI', 'GUM', 'PLW', 'FSM', 'MNP', 'KAS', 'IND'])
@@ -144,6 +145,11 @@ export class WorldmapComponent implements OnInit {
       .attr('height', this.height)
       .append('g');
 
+    // Define the div for the tooltip
+    const div = d3.select('#perftooltip').append('div')
+      .attr('class', 'tooltip')
+      .style('opacity', 0);
+
 
 
     // d3.json('countries.json', function (error, w) {
@@ -165,21 +171,42 @@ export class WorldmapComponent implements OnInit {
           .attr('d', path)
           .attr('data-name', this.sets[i].name)
           .attr('index-name', this.sets[i].indexName)
-          .attr('index-mean', perf.mean)
-          .attr('index-std', perf.std)
+          .attr('index-mean', perf.mean_str)
+          .attr('index-std', perf.std_str)
           .style('fill', (perf.mean < 0) ? this.findColorById(perf.id, false) : this.findColorById(perf.id, true))
           .on('mouseover', function () {
+
+
             const region = d3.select(this);
-            document.querySelector('.legend').innerHTML = region.attr('data-name');
-            document.querySelector('.index').innerHTML = region.attr('index-name');
-            document.querySelector('.mean').innerHTML = region.attr('index-mean');
-            document.querySelector('.std').innerHTML = region.attr('index-std');
-          }).on('mouseout', function () {
-          document.querySelector('.legend').innerHTML = '';
-          document.querySelector('.index').innerHTML = '';
-          document.querySelector('.mean').innerHTML = '';
-          document.querySelector('.std').innerHTML = '';
-        });
+            // document.querySelector('.legend').innerHTML = 'Region: ' + region.attr('data-name');
+            // document.querySelector('.index').innerHTML = 'Index: ' + region.attr('index-name');
+            // document.querySelector('.mean').innerHTML = 'Performance 1 Jahr: ' + region.attr('index-mean');
+            // document.querySelector('.std').innerHTML = 'Standardabweichung 1 Jahr: ' + region.attr('index-std');
+
+            div.transition()
+              .duration(200)
+              .style('opacity', .9);
+            div.html('<strong>' + region.attr('data-name') + '</strong><br/>'
+              + region.attr('index-name') + '<br/>'
+              + 'Rendite (1 Jahr): <strong>' + region.attr('index-mean') + '</strong><br/>'
+              + 'Risiko (1 Jahr): <strong>' + region.attr('index-std') + '</strong>')
+              .style('left', (d3.event.pageX) + 'px')
+              .style('top', (d3.event.pageY - 28) + 'px');
+
+          })
+          .on('mouseout', function () {
+          // document.querySelector('.legend').innerHTML = '';
+          // document.querySelector('.index').innerHTML = '';
+          // document.querySelector('.mean').innerHTML = '';
+          // document.querySelector('.std').innerHTML = '';
+
+
+            div.transition()
+              .duration(500)
+              .style('opacity', 0);
+
+
+          });
       }
 
     // });
@@ -189,6 +216,15 @@ export class WorldmapComponent implements OnInit {
   findPerformance(id): BMPerformanceResponse {
     for (const index of this.performance) {
       if (index.id === id) {
+        let tmp = String((index.mean * 100).toFixed(2));
+        tmp = tmp.replace('.', ',');
+        tmp = tmp + '%';
+        index.mean_str = tmp;
+
+        tmp = String((index.std * 100).toFixed(2));
+        tmp = tmp.replace('.', ',');
+        tmp = tmp + '%';
+        index.std_str = tmp;
         return index;
       }
     }
