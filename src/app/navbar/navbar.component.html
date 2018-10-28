@@ -28,7 +28,7 @@
       </li>
 
       <li><a [routerLinkActive]="['route-active']" routerLink="/etfinfo">ETF-Überblick</a></li>
-      <li><a [routerLinkActive]="['route-active']" routerLink="/etfdetail">ETF-Detailansicht</a></li>
+      <!--<li><a [routerLinkActive]="['route-active']" routerLink="/etfdetail">ETF-Detailansicht</a></li>-->
     </ul>
   </div>
   <div class="top-bar-right">
@@ -41,7 +41,9 @@
       </div>
       </li>
       <li *ngIf="isLoggedIn">
-        <a class="lineadjust" routerLink="/home">{{ currentUserName }}</a>
+        <a routerLink="/home">
+          <span class="label primary"><mat-icon [inline]="true">home</mat-icon> {{ currentUserName }}</span>
+          </a>
       </li>
       <li *ngIf="!isLoggedIn; else loggedIn"><a (click)="toggleAnimation()" data-toggle="loginModal"><mat-icon>account_circle</mat-icon></a></li>
     </ul>

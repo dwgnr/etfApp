@@ -41,6 +41,7 @@ export class PortfolioComponent implements OnInit, OnDestroy {
   maxSharpePortfolio: Portfolio;
   minVolPortfolio: Portfolio;
   selectedPortfolio: Portfolio;
+  loading = false;
 
   // etfs = ['IE00BJ0KDQ92', 'IE0031442068', 'LU0290355717'];
 
@@ -103,6 +104,7 @@ export class PortfolioComponent implements OnInit, OnDestroy {
     this.plotPortfolios(plotdata);
     this.findMaxSharpePortfolio();
     this.findMinVolPortfolio();
+    this.loading = false;
   }
 
   plotPortfolios(plotdata) {
@@ -168,6 +170,7 @@ export class PortfolioComponent implements OnInit, OnDestroy {
   }
 
   onButtonPressed() {
+    this.loading = true;
     this.getPortfolios(this.num_portfolios, this.from_date, this.to_date, this.etflist, 'last');
   }
 

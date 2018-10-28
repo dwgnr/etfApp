@@ -57,6 +57,9 @@
       <h4>Ergebnisse</h4>
     </div>
     <div class="card-section">
+      <div *ngIf="loading">
+        <mat-spinner></mat-spinner>
+      </div>
       <div *ngIf="chart">
         <canvas id="canvas">{{ chart }}</canvas>
       </div>
