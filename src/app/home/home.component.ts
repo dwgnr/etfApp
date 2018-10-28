@@ -6,6 +6,7 @@ import { PriceUpdate } from '../models/price.model';
 import { UserService } from '../services/user.service';
 import {PriceService} from '../services/price.service';
 import {FormControl} from '@angular/forms';
+declare var $: any;
 
 @Component({
   selector: 'app-home',
@@ -30,6 +31,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+      $(document).foundation();
       this.loadAllUsers();
       this.loadAllStoredETF();
   }

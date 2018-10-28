@@ -18,7 +18,7 @@ import {ETFStore, User} from '../models/user.model';
 import {UserService} from '../services/user.service';
 
 declare var moment: any;
-// declare var $: any;
+declare var $: any;
 
 const dateFormat = 'YYYY-MM-DD';
 
@@ -94,6 +94,7 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    $(document).foundation();
 
     this.authenticationService.isLoggedIn.subscribe(status => this.onLoggedInStatusChange(status));
 

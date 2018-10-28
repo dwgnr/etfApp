@@ -4,129 +4,255 @@
     <div class="cell small-10">
       <div class="card">
         <div class="card-divider">
-          <h1>Hi {{currentUser.name}}!</h1>
+          <h3>Hi {{currentUser.name}}!</h3>
         </div>
         <div class="card-section">
-          <div *ngIf="currentUser.admin" class="card">
-            <div class="card-divider">
-              <h3>Nutzerverwaltung</h3>
-            </div>
-            <div class="card-section">
-              <div class="grid-x">
-                <div class="cell small-6"><h4>Benutzer</h4></div>
-                <div class="cell small-3"><h4>Administrator</h4></div>
-                <div class="cell small-3"></div>
-              </div>
-              <div class="grid-x" *ngFor="let user of users">
-                <div class="cell small-6">{{user.name}}</div>
-                <div class="cell small-3">
-                  <div class="switch">
-                    <input [checked]="user.admin" (change)="changeAdminStatus($event, user)"
-                           class="switch-input" id="{{user.public_id}}" type="checkbox" name="adminSwitch">
-                    <label class="switch-paddle" for="{{user.public_id}}">
-                      <span class="switch-active" aria-hidden="true">Ja</span>
-                      <span class="switch-inactive" aria-hidden="true">Nein</span>
-                    </label>
-                  </div>
-                  <!--<button (click)="changeAdminStatus(user)" class="button primary">Administrator</button>-->
-                </div>
-                <div class="cell small-3">
-                  <a (click)="deleteUser(user.public_id)" class="button alert">Benutzer Löschen</a></div>
-              </div>
-            </div>
-          </div>
 
 
-          <div *ngIf="currentUser.admin" class="card">
-            <div class="card-divider">
-              <h3>Update Historische Preise</h3>
-            </div>
-            <div class="card-section">
-              <div class="grid-x grid-margin-x">
-                <div class="cell small-6 margin-1">
-                <div class="card">
-                  <div class="card-divider">
-                    <h4>Alle Preise</h4>
-                  </div>
-                  <div class="card-section">
-                    <p></p>
-                    <p></p>
-                    <a (click)="updateAllETFPrices()" class="button primary expanded">Senden</a>
-                    <p></p>
-                    <p></p>
-                  </div>
-                </div>
-                </div>
-                <div class="cell small-6 margin-1">
-                  <div class="card">
-                    <div class="card-divider">
-                      <h4>ISIN</h4>
-                    </div>
-                    <div class="card-section">
-                      <mat-form-field class="mat-form-field">
-                        <input matInput type="text" [(ngModel)]="isinControl"
-                               placeholder="ISIN">
-                        <button mat-button *ngIf="isinControl" matSuffix
-                                mat-icon-button aria-label="Clear" (click)="isinControl=''">
-                          <mat-icon>close</mat-icon>
-                        </button>
-                      </mat-form-field>
-                      <a (click)="updateISIN()" class="button primary">Senden</a>
+            <ul class="accordion" data-accordion data-allow-all-closed="true"
+                data-multi-expand="true" id="userhome-accordion">
+              <li class="accordion-item is-active" data-accordion-item>
+                <a href="#deeplink1" class="accordion-title"><h6>Gespeicherte ETFs</h6></a>
+                <div class="accordion-content" data-tab-content id="deeplink1">
+                  <div *ngIf="currentETFstore && currentETFstore.length > 0; else noetfs">
+                    <div class="grid-x" *ngFor="let etf of currentETFstore">
+                      <div class="cell small-9">{{ etf?.name }} ({{ etf?.isin }})</div>
+                      <div class="cell small-3">
+                        <a (click)="deleteETF(etf?.public_id, etf?.isin)" class="button alert">Von Liste Entfernen</a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </li>
+              <li class="accordion-item" data-accordion-item>
+                <a href="#deeplink2" class="accordion-title"><h6>Nutzerverwaltung</h6></a>
+                <div class="accordion-content" data-tab-content id="deeplink2">
+                  <div *ngIf="currentUser.admin">
+                  <div class="grid-x">
+                    <div class="cell small-6"><h4>Benutzer</h4></div>
+                    <div class="cell small-3"><h4>Administrator</h4></div>
+                    <div class="cell small-3"></div>
+                  </div>
+                  <div class="grid-x" *ngFor="let user of users">
+                    <div class="cell small-6">{{user.name}}</div>
+                    <div class="cell small-3">
+                      <div class="switch">
+                        <input [checked]="user.admin" (change)="changeAdminStatus($event, user)"
+                               class="switch-input" id="{{ user.public_id }}" type="checkbox" name="adminSwitch">
+                        <label class="switch-paddle" for="{{ user.public_id }}">
+                          <span class="switch-active" aria-hidden="true">Ja</span>
+                          <span class="switch-inactive" aria-hidden="true">Nein</span>
+                        </label>
+                      </div>
+                      <!--<button (click)="changeAdminStatus(user)" class="button primary">Administrator</button>-->
+                    </div>
+                    <div class="cell small-3">
+                      <a (click)="deleteUser(user.public_id)" class="button alert">Benutzer Löschen</a></div>
+                  </div>
+                  </div>
 
-            <div *ngIf="updateRequestSent && !updateFinished">
-              <mat-spinner></mat-spinner>
-            </div>
-            <div class="grid-x" *ngIf="updateFinished">
-              <div class="small-2"></div>
-              <div class="small-8">
-                <div *ngIf="updateStatistic.success" class="callout success">
-                  <p>Erfolgreiches Update: {{updateStatistic?.updated}}</p>
-                  <p>Übersprungen: {{updateStatistic?.skipped}}</p>
-                  <p>Fehler: {{updateStatistic?.errors}}</p>
-                  <p>Gesamt: {{updateStatistic?.total}}</p>
+
                 </div>
-                <div *ngIf="!updateStatistic.success" class="callout alert">
-                  <strong>Bei dem Update der Preise ist ein Fehler aufgetreten!</strong>
-                  <p>Erfolgreiches Update: {{updateStatistic?.updated}}</p>
-                  <p>Übersprungen: {{updateStatistic?.skipped}}</p>
-                  <p>Fehler: {{updateStatistic?.errors}}</p>
-                  <p>Gesamt: {{updateStatistic?.total}}</p>
+              </li>
+              <li class="accordion-item" data-accordion-item>
+                <a href="#deeplink3" class="accordion-title"><h6>Update Historische Preise</h6></a>
+                <div class="accordion-content" data-tab-content id="deeplink3">
+
+                  <div class="grid-x grid-margin-x" *ngIf="currentUser.admin">
+                    <div class="cell small-6 margin-1">
+                      <div class="card">
+                        <div class="card-divider">
+                          <h6>Alle Preise</h6>
+                        </div>
+                        <div class="card-section">
+                          <p></p>
+                          <p></p>
+                          <a (click)="updateAllETFPrices()" class="button primary expanded">Senden</a>
+                          <p></p>
+                          <p></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell small-6 margin-1">
+                      <div class="card">
+                        <div class="card-divider">
+                          <h6>ISIN</h6>
+                        </div>
+                        <div class="card-section">
+                          <mat-form-field class="mat-form-field">
+                            <input matInput type="text" [(ngModel)]="isinControl"
+                                   placeholder="ISIN">
+                            <button mat-button *ngIf="isinControl" matSuffix
+                                    mat-icon-button aria-label="Clear" (click)="isinControl=''">
+                              <mat-icon>close</mat-icon>
+                            </button>
+                          </mat-form-field>
+                          <a (click)="updateISIN()" class="button primary">Senden</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div *ngIf="updateRequestSent && !updateFinished">
+                    <mat-spinner></mat-spinner>
+                  </div>
+                  <div class="grid-x" *ngIf="updateFinished">
+                    <div class="small-2"></div>
+                    <div class="small-8">
+                      <div *ngIf="updateStatistic.success" class="callout success">
+                        <p>Erfolgreiches Update: {{updateStatistic?.updated}}</p>
+                        <p>Übersprungen: {{updateStatistic?.skipped}}</p>
+                        <p>Fehler: {{updateStatistic?.errors}}</p>
+                        <p>Gesamt: {{updateStatistic?.total}}</p>
+                      </div>
+                      <div *ngIf="!updateStatistic.success" class="callout alert">
+                        <strong>Bei dem Update der Preise ist ein Fehler aufgetreten!</strong>
+                        <p>Erfolgreiches Update: {{updateStatistic?.updated}}</p>
+                        <p>Übersprungen: {{updateStatistic?.skipped}}</p>
+                        <p>Fehler: {{updateStatistic?.errors}}</p>
+                        <p>Gesamt: {{updateStatistic?.total}}</p>
+                      </div>
+                    </div>
+                    <div class="small-2"></div>
+                  </div>
+
+
+
                 </div>
-              </div>
-              <div class="small-2"></div>
-            </div>
-
-
-          </div>
-
-
-          <div class="card" *ngIf="currentETFstore && currentETFstore.length > 0; else noetfs">
-            <div class="card-divider">
-              <h3>Gespeicherte ETFs</h3>
-            </div>
-            <div class="card-section">
-              <div class="grid-x" *ngFor="let etf of currentETFstore">
-                <div class="cell small-9">{{ etf?.name }} ({{ etf?.isin }})</div>
-                <div class="cell small-3">
-                  <a (click)="deleteETF(etf?.public_id, etf?.isin)" class="button alert">Von Liste Entfernen</a>
+              </li>
+              <li class="accordion-item" data-accordion-item>
+                <a href="#deeplink4" class="accordion-title"><h6>Gespeicherte Konfigurationen</h6></a>
+                <div class="accordion-content" data-tab-content id="deeplink4">
+                  Noch nicht implementiert
                 </div>
-              </div>
-            </div>
-          </div>
+              </li>
+            </ul>
 
-          <div class="card">
-            <div class="card-divider">
-              <h3>Gespeicherte Konfigurationen</h3>
-            </div>
-            <div class="card-section">
 
-            </div>
-          </div>
+
+
+
+          <!--<div *ngIf="currentUser.admin" class="card">-->
+            <!--<div class="card-divider">-->
+              <!--<h3>Nutzerverwaltung</h3>-->
+            <!--</div>-->
+            <!--<div class="card-section">-->
+              <!--<div class="grid-x">-->
+                <!--<div class="cell small-6"><h4>Benutzer</h4></div>-->
+                <!--<div class="cell small-3"><h4>Administrator</h4></div>-->
+                <!--<div class="cell small-3"></div>-->
+              <!--</div>-->
+              <!--<div class="grid-x" *ngFor="let user of users">-->
+                <!--<div class="cell small-6">{{user.name}}</div>-->
+                <!--<div class="cell small-3">-->
+                  <!--<div class="switch">-->
+                    <!--<input [checked]="user.admin" (change)="changeAdminStatus($event, user)"-->
+                           <!--class="switch-input" id="{{user.public_id}}" type="checkbox" name="adminSwitch">-->
+                    <!--<label class="switch-paddle" for="{{user.public_id}}">-->
+                      <!--<span class="switch-active" aria-hidden="true">Ja</span>-->
+                      <!--<span class="switch-inactive" aria-hidden="true">Nein</span>-->
+                    <!--</label>-->
+                  <!--</div>-->
+                  <!--&lt;!&ndash;<button (click)="changeAdminStatus(user)" class="button primary">Administrator</button>&ndash;&gt;-->
+                <!--</div>-->
+                <!--<div class="cell small-3">-->
+                  <!--<a (click)="deleteUser(user.public_id)" class="button alert">Benutzer Löschen</a></div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+
+          <!--<div *ngIf="currentUser.admin" class="card">-->
+            <!--<div class="card-divider">-->
+              <!--<h3>Update Historische Preise</h3>-->
+            <!--</div>-->
+            <!--<div class="card-section">-->
+              <!--<div class="grid-x grid-margin-x">-->
+                <!--<div class="cell small-6 margin-1">-->
+                <!--<div class="card">-->
+                  <!--<div class="card-divider">-->
+                    <!--<h4>Alle Preise</h4>-->
+                  <!--</div>-->
+                  <!--<div class="card-section">-->
+                    <!--<p></p>-->
+                    <!--<p></p>-->
+                    <!--<a (click)="updateAllETFPrices()" class="button primary expanded">Senden</a>-->
+                    <!--<p></p>-->
+                    <!--<p></p>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="cell small-6 margin-1">-->
+                  <!--<div class="card">-->
+                    <!--<div class="card-divider">-->
+                      <!--<h4>ISIN</h4>-->
+                    <!--</div>-->
+                    <!--<div class="card-section">-->
+                      <!--<mat-form-field class="mat-form-field">-->
+                        <!--<input matInput type="text" [(ngModel)]="isinControl"-->
+                               <!--placeholder="ISIN">-->
+                        <!--<button mat-button *ngIf="isinControl" matSuffix-->
+                                <!--mat-icon-button aria-label="Clear" (click)="isinControl=''">-->
+                          <!--<mat-icon>close</mat-icon>-->
+                        <!--</button>-->
+                      <!--</mat-form-field>-->
+                      <!--<a (click)="updateISIN()" class="button primary">Senden</a>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+
+            <!--<div *ngIf="updateRequestSent && !updateFinished">-->
+              <!--<mat-spinner></mat-spinner>-->
+            <!--</div>-->
+            <!--<div class="grid-x" *ngIf="updateFinished">-->
+              <!--<div class="small-2"></div>-->
+              <!--<div class="small-8">-->
+                <!--<div *ngIf="updateStatistic.success" class="callout success">-->
+                  <!--<p>Erfolgreiches Update: {{updateStatistic?.updated}}</p>-->
+                  <!--<p>Übersprungen: {{updateStatistic?.skipped}}</p>-->
+                  <!--<p>Fehler: {{updateStatistic?.errors}}</p>-->
+                  <!--<p>Gesamt: {{updateStatistic?.total}}</p>-->
+                <!--</div>-->
+                <!--<div *ngIf="!updateStatistic.success" class="callout alert">-->
+                  <!--<strong>Bei dem Update der Preise ist ein Fehler aufgetreten!</strong>-->
+                  <!--<p>Erfolgreiches Update: {{updateStatistic?.updated}}</p>-->
+                  <!--<p>Übersprungen: {{updateStatistic?.skipped}}</p>-->
+                  <!--<p>Fehler: {{updateStatistic?.errors}}</p>-->
+                  <!--<p>Gesamt: {{updateStatistic?.total}}</p>-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<div class="small-2"></div>-->
+            <!--</div>-->
+
+
+          <!--</div>-->
+
+
+          <!--<div class="card" *ngIf="currentETFstore && currentETFstore.length > 0; else noetfs">-->
+            <!--<div class="card-divider">-->
+              <!--<h3>Gespeicherte ETFs</h3>-->
+            <!--</div>-->
+            <!--<div class="card-section">-->
+              <!--<div class="grid-x" *ngFor="let etf of currentETFstore">-->
+                <!--<div class="cell small-9">{{ etf?.name }} ({{ etf?.isin }})</div>-->
+                <!--<div class="cell small-3">-->
+                  <!--<a (click)="deleteETF(etf?.public_id, etf?.isin)" class="button alert">Von Liste Entfernen</a>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <!--<div class="card">-->
+            <!--<div class="card-divider">-->
+              <!--<h3>Gespeicherte Konfigurationen</h3>-->
+            <!--</div>-->
+            <!--<div class="card-section">-->
+
+            <!--</div>-->
+          <!--</div>-->
 
 
 

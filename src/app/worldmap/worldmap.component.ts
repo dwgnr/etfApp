@@ -23,10 +23,8 @@ export class WorldmapComponent implements OnInit {
   isLoading = false;
   w: any;
   performance: BMPerformanceResponse[];
-  // colors: [];
   reds = [];
   blues = [];
-  hoveredRegion: string;
 
   sets = [
     {

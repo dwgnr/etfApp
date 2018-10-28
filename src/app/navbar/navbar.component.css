@@ -20,3 +20,8 @@
 a:hover {
   background-color: #e6e6e6 !important;
 }
+
+
+.lineadjust {
+  line-height: 1.65;
+}

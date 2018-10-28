@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {EtfInfo} from './models/etfinfo.model';
 import {InfoService} from './services/info.service';
+import { Title } from '@angular/platform-browser';
 
 
 declare var $: any;
@@ -14,13 +15,14 @@ declare var moment: any;
 
 export class AppComponent implements OnInit {
 
-  constructor(private infoService: InfoService) {}
+  constructor(private infoService: InfoService, private title: Title) {}
 
   etfinfos:  EtfInfo[];
 
   public ngOnInit() {
     moment.locale('de');
     $(document).foundation();
+    this.title.setTitle('PortfolioApp');
     // this.infoService.initAllETFInfos();
     // console.log(this.infoService.Data);
     // this.getAllETFInfos();

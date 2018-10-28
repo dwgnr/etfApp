@@ -178,32 +178,66 @@
             <a class="button primary" (click)="onButtonPressed()">Portfolios konstruieren</a>
           </div>
 
-          <div class="card">
-            <div class="card-divider"> <h5>ETF-Liste</h5></div>
-            <div class="card-section">
 
-              <div *ngIf="etflist && etflist.length > 0; else noelements">
-                <div *ngFor="let etf of etflist">
-                  <p>{{etf.name}} ({{etf.isin}}) <br>
-                    <small>Market Cap: {{etf.market_cap_eur / 1000000000 | number:'1.2-2'}} Mrd. EUR</small>
-                    <app-cartitem [product]="etf" ></app-cartitem>
-                  </p>
+          <ul class="accordion" data-accordion id="etflist-accordion" data-allow-all-closed="true" data-multi-expand="true">
+            <li class="accordion-item is-active" data-accordion-item>
+              <a href="#deeplink1" class="accordion-title">ETF-Liste</a>
+              <div class="accordion-content" data-tab-content id="deeplink1">
+
+                <div *ngIf="etflist && etflist.length > 0; else noelements">
+                  <div *ngFor="let etf of etflist">
+                    <p>{{etf.name}} ({{etf.isin}}) <br>
+                      <small>Market Cap: {{etf.market_cap_eur / 1000000000 | number:'1.2-2'}} Mrd. EUR</small>
+                      <app-cartitem [product]="etf" ></app-cartitem>
+                    </p>
+                  </div>
                 </div>
+
               </div>
-            </div>
-          </div>
+            </li>
+            <li class="accordion-item" data-accordion-item>
+              <a href="#deeplink2" class="accordion-title">Gespeicherte ETFs</a>
+              <div class="accordion-content" data-tab-content id="deeplink2">
 
-          <div class="card" *ngIf="isLoggedIn">
-            <div class="card-divider"> <h5>Gespeicherte ETFs</h5></div>
-            <div class="card-section">
-
-              <div *ngIf="currentETFstore && currentETFstore.length > 0; else noelements">
-                <div *ngFor="let etf of currentETFstore">
-                  <p>{{etf.name}} ({{etf.isin}})</p>
+                <div *ngIf="currentETFstore && currentETFstore.length > 0; else noelements">
+                  <div *ngFor="let etf of currentETFstore">
+                    <p>{{etf.name}} ({{etf.isin}})</p>
+                  </div>
                 </div>
+
               </div>
-            </div>
-          </div>
+            </li>
+          </ul>
+
+
+
+
+          <!--<div class="card">-->
+            <!--<div class="card-divider"> <h5>ETF-Liste</h5></div>-->
+            <!--<div class="card-section">-->
+
+              <!--<div *ngIf="etflist && etflist.length > 0; else noelements">-->
+                <!--<div *ngFor="let etf of etflist">-->
+                  <!--<p>{{etf.name}} ({{etf.isin}}) <br>-->
+                    <!--<small>Market Cap: {{etf.market_cap_eur / 1000000000 | number:'1.2-2'}} Mrd. EUR</small>-->
+                    <!--<app-cartitem [product]="etf" ></app-cartitem>-->
+                  <!--</p>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <!--<div class="card" *ngIf="isLoggedIn">-->
+            <!--<div class="card-divider"> <h5>Gespeicherte ETFs</h5></div>-->
+            <!--<div class="card-section">-->
+
+              <!--<div *ngIf="currentETFstore && currentETFstore.length > 0; else noelements">-->
+                <!--<div *ngFor="let etf of currentETFstore">-->
+                  <!--<p>{{etf.name}} ({{etf.isin}})</p>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
 
 
         </div>
@@ -216,90 +250,189 @@
           <h4>Ergebnisse</h4>
         </div>
         <div class="card-section">
+
+
+
+
           <div *ngIf="loading"><mat-spinner></mat-spinner></div>
-          <div *ngIf="chart">
-            <canvas id="canvas">{{ chart }}</canvas>
-          </div>
+          <!--<div *ngIf="chart">-->
+            <!--<canvas id="canvas">{{ chart }}</canvas>-->
+          <!--</div>-->
 
-          <br>
-          <div class="card" *ngIf="portfolios && !loading; else noresults">
-            <div class="card-divider">
-              <h5>Portfoliozusammensetzung</h5>
-            </div>
-            <div class="card-section">
-                <app-piechart [portfolios]="portfolios"></app-piechart>
-            </div>
-          </div>
-          <div class="card" *ngIf="portfolios">
-            <div class="card-divider">
-              <h5>Mean-Variance Optimization basierend auf historischen Renditen</h5>
-            </div>
-            <div class="card-section">
-              <div class="callout">
-              <p>Erwartete Rendite (annualisiert): <strong>{{portfolios[0].tan_ret | percent:'1.0-0'}}</strong></p>
-              <p>Erwartete Volatilität (annualisiert): <strong>{{portfolios[0].tan_stdev | percent:'1.0-0'}}</strong></p>
-              </div>
-              <!--<p *ngFor="let wgt of portfolios[0].tan_weights">-->
-                <!--{{wgt.isin}}: {{wgt.weight | percent:'1.0-0'}}-->
+          <!--<br>-->
+          <!--<div class="card" *ngIf="portfolios && !loading; else noresults">-->
+            <!--<div class="card-divider">-->
+              <!--<h5>Portfoliozusammensetzung</h5>-->
+            <!--</div>-->
+            <!--<div class="card-section">-->
+                <!--<app-piechart [portfolios]="portfolios"></app-piechart>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!---->
+          <!---->
+          <!---->
+          <!--<div class="card" *ngIf="portfolios">-->
+            <!--<div class="card-divider">-->
+              <!--<h5>Mean-Variance Optimization basierend auf historischen Renditen</h5>-->
+            <!--</div>-->
+            <!--<div class="card-section">-->
+              <!--<div class="callout">-->
+              <!--<p>Erwartete Rendite (annualisiert): <strong>{{portfolios[0].tan_ret | percent:'1.0-0'}}</strong></p>-->
+              <!--<p>Erwartete Volatilität (annualisiert): <strong>{{portfolios[0].tan_stdev | percent:'1.0-0'}}</strong></p>-->
+              <!--</div>-->
+              <!--&lt;!&ndash;<p *ngFor="let wgt of portfolios[0].tan_weights">&ndash;&gt;-->
+                <!--&lt;!&ndash;{{wgt.isin}}: {{wgt.weight | percent:'1.0-0'}}&ndash;&gt;-->
+              <!--&lt;!&ndash;</p>&ndash;&gt;-->
+              <!--<div class="callout" *ngIf="isinNameWgt">-->
+              <!--<p *ngFor="let port of isinNameWgt[0]">-->
+                <!--{{port.name}} ({{port.isin}}): <strong>{{port.weight | percent: '1.0-0'}}</strong>-->
               <!--</p>-->
-              <div class="callout" *ngIf="isinNameWgt">
-              <p *ngFor="let port of isinNameWgt[0]">
-                {{port.name}} ({{port.isin}}): <strong>{{port.weight | percent: '1.0-0'}}</strong>
-              </p>
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="card" *ngIf="portfolios">-->
+            <!--<div class="card-divider">-->
+              <!--<h5>Mean-variance Optimization basierend auf Gleichgewichtsrenditen</h5>-->
+            <!--</div>-->
+            <!--<div class="card-section">-->
+              <!--<div class="callout">-->
+              <!--<p>Erwartete Rendite (annualisiert): <strong>{{portfolios[1].tan_ret | percent:'1.0-0'}}</strong></p>-->
+              <!--<p>Erwartete Volatilität (annualisiert):<strong> {{portfolios[1].tan_stdev | percent:'1.0-0'}}</strong></p>-->
+              <!--</div>-->
+              <!--&lt;!&ndash;<p *ngFor="let wgt of portfolios[1].tan_weights">&ndash;&gt;-->
+                <!--&lt;!&ndash;{{wgt.isin}}: {{wgt.weight | percent:'1.0-0'}}&ndash;&gt;-->
+              <!--&lt;!&ndash;</p>&ndash;&gt;-->
+
+              <!--<div class="callout" *ngIf="isinNameWgt">-->
+                <!--<p *ngFor="let port of isinNameWgt[1]">-->
+                  <!--{{port.name}} ({{port.isin}}): <strong>{{port.weight | percent: '1.0-0'}}</strong>-->
+                <!--</p>-->
+              <!--</div>-->
+
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="card" *ngIf="portfolios && portfolios.length > 2">-->
+            <!--<div class="card-divider">-->
+              <!--<h5>Mean-variance Optimization basierend auf Gleichgewichtsrenditen mit angepassten Views</h5>-->
+            <!--</div>-->
+            <!--<div class="card-section">-->
+              <!--<div class="callout">-->
+              <!--<p>Erwartete Rendite (annualisiert): <strong>{{portfolios[2].tan_ret | percent:'1.0-0'}}</strong></p>-->
+              <!--<p>Erwartete Volatilität (annualisiert): <strong>{{portfolios[2].tan_stdev | percent:'1.0-0'}}</strong></p>-->
+              <!--</div>-->
+
+              <!--&lt;!&ndash;<p *ngFor="let wgt of portfolios[2].tan_weights">&ndash;&gt;-->
+                <!--&lt;!&ndash;{{wgt.isin}}: {{wgt.weight | percent:'1.0-0'}}&ndash;&gt;-->
+              <!--&lt;!&ndash;</p>&ndash;&gt;-->
+
+              <!--<div class="callout" *ngIf="isinNameWgt">-->
+                <!--<p *ngFor="let port of isinNameWgt[2]">-->
+                  <!--{{port.name}} ({{port.isin}}): <strong>{{port.weight | percent: '1.0-0'}}</strong>-->
+                <!--</p>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!---->
+          <!---->
+          <!---->
+
+          <!--<div *ngIf="backtestingInput">-->
+            <!--<app-backtesting [backtestingInput]="backtestingInput"></app-backtesting>-->
+          <!--</div>-->
+
+
+
+          <ul class="accordion" data-accordion data-allow-all-closed="true" data-multi-expand="true" id="results-accordion">
+            <li class="accordion-item" data-accordion-item>
+              <a href="#deeplink6" class="accordion-title"><h6>Effizienter Rand</h6></a>
+              <div class="accordion-content" data-tab-content id="deeplink6">
+                <div *ngIf="chart">
+                  <canvas id="canvas">{{ chart }}</canvas>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="card" *ngIf="portfolios">
-            <div class="card-divider">
-              <h5>Mean-variance Optimization basierend auf Gleichgewichtsrenditen</h5>
-            </div>
-            <div class="card-section">
-              <div class="callout">
-              <p>Erwartete Rendite (annualisiert): <strong>{{portfolios[1].tan_ret | percent:'1.0-0'}}</strong></p>
-              <p>Erwartete Volatilität (annualisiert):<strong> {{portfolios[1].tan_stdev | percent:'1.0-0'}}</strong></p>
+            </li>
+            <li class="accordion-item" data-accordion-item>
+              <a href="#deeplink3" class="accordion-title"><h6>Portfoliozusammensetzung</h6></a>
+              <div class="accordion-content" data-tab-content id="deeplink3">
+                <div *ngIf="portfolios">
+                  <app-piechart [portfolios]="portfolios"></app-piechart>
+                </div>
               </div>
-              <!--<p *ngFor="let wgt of portfolios[1].tan_weights">-->
-                <!--{{wgt.isin}}: {{wgt.weight | percent:'1.0-0'}}-->
-              <!--</p>-->
+            </li>
+            <li class="accordion-item" data-accordion-item>
+              <a href="#deeplink4" class="accordion-title"><h6>Rendite und Risiko</h6></a>
+              <div class="accordion-content" data-tab-content id="deeplink4">
 
-              <div class="callout" *ngIf="isinNameWgt">
-                <p *ngFor="let port of isinNameWgt[1]">
-                  {{port.name}} ({{port.isin}}): <strong>{{port.weight | percent: '1.0-0'}}</strong>
-                </p>
+                <div class="card" *ngIf="portfolios">
+                  <div class="card-divider">
+                    <h5>Mean-Variance Optimization basierend auf historischen Renditen</h5>
+                  </div>
+                  <div class="card-section">
+                    <div class="callout">
+                      <p>Erwartete Rendite (annualisiert): <strong>{{portfolios[0].tan_ret | percent:'1.0-0'}}</strong></p>
+                      <p>Erwartete Volatilität (annualisiert): <strong>{{portfolios[0].tan_stdev | percent:'1.0-0'}}</strong></p>
+                    </div>
+
+                    <div class="callout" *ngIf="isinNameWgt">
+                      <p *ngFor="let port of isinNameWgt[0]">
+                        {{port.name}} ({{port.isin}}): <strong>{{port.weight | percent: '1.0-0'}}</strong>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card" *ngIf="portfolios">
+                  <div class="card-divider">
+                    <h5>Mean-variance Optimization basierend auf Gleichgewichtsrenditen</h5>
+                  </div>
+                  <div class="card-section">
+                    <div class="callout">
+                      <p>Erwartete Rendite (annualisiert): <strong>{{portfolios[1].tan_ret | percent:'1.0-0'}}</strong></p>
+                      <p>Erwartete Volatilität (annualisiert):<strong> {{portfolios[1].tan_stdev | percent:'1.0-0'}}</strong></p>
+                    </div>
+
+                    <div class="callout" *ngIf="isinNameWgt">
+                      <p *ngFor="let port of isinNameWgt[1]">
+                        {{port.name}} ({{port.isin}}): <strong>{{port.weight | percent: '1.0-0'}}</strong>
+                      </p>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="card" *ngIf="portfolios && portfolios.length > 2">
+                  <div class="card-divider">
+                    <h5>Mean-variance Optimization basierend auf Gleichgewichtsrenditen mit angepassten Views</h5>
+                  </div>
+                  <div class="card-section">
+                    <div class="callout">
+                      <p>Erwartete Rendite (annualisiert): <strong>{{portfolios[2].tan_ret | percent:'1.0-0'}}</strong></p>
+                      <p>Erwartete Volatilität (annualisiert): <strong>{{portfolios[2].tan_stdev | percent:'1.0-0'}}</strong></p>
+                    </div>
+
+                    <div class="callout" *ngIf="isinNameWgt">
+                      <p *ngFor="let port of isinNameWgt[2]">
+                        {{port.name}} ({{port.isin}}): <strong>{{port.weight | percent: '1.0-0'}}</strong>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
               </div>
+            </li>
+            <li class="accordion-item" data-accordion-item>
+              <a href="#deeplink5" class="accordion-title"><h6>Backtesting</h6></a>
+              <div class="accordion-content" data-tab-content id="deeplink5">
 
-            </div>
-          </div>
-          <div class="card" *ngIf="portfolios && portfolios.length > 2">
-            <div class="card-divider">
-              <h5>Mean-variance Optimization basierend auf Gleichgewichtsrenditen mit angepassten Views</h5>
-            </div>
-            <div class="card-section">
-              <div class="callout">
-              <p>Erwartete Rendite (annualisiert): <strong>{{portfolios[2].tan_ret | percent:'1.0-0'}}</strong></p>
-              <p>Erwartete Volatilität (annualisiert): <strong>{{portfolios[2].tan_stdev | percent:'1.0-0'}}</strong></p>
+                <div *ngIf="backtestingInput">
+                  <app-backtesting [backtestingInput]="backtestingInput"></app-backtesting>
+                </div>
+
               </div>
+            </li>
+          </ul>
 
-              <!--<p *ngFor="let wgt of portfolios[2].tan_weights">-->
-                <!--{{wgt.isin}}: {{wgt.weight | percent:'1.0-0'}}-->
-              <!--</p>-->
 
-              <div class="callout" *ngIf="isinNameWgt">
-                <p *ngFor="let port of isinNameWgt[2]">
-                  {{port.name}} ({{port.isin}}): <strong>{{port.weight | percent: '1.0-0'}}</strong>
-                </p>
-              </div>
-
-            </div>
-          </div>
-
-          <div *ngIf="backtestingInput">
-            <app-backtesting [backtestingInput]="backtestingInput"></app-backtesting>
-          </div>
 
         </div>
-
-
       </div>
     </div>
   </div>

@@ -11,7 +11,9 @@ import { environment } from '../../environments/environment';
 export class AuthenticationService {
   constructor(private http: HttpClient) { }
   private loginSubject = new BehaviorSubject(false);
+  private userSubject = new BehaviorSubject('User');
   isLoggedIn = this.loginSubject.asObservable();
+  userName = this.userSubject.asObservable();
 
   login(username: string, password: string) {
     return this.http.post<any>(`${environment.apiUrl}/user/login/`, { name: username, password: password })
@@ -21,6 +23,7 @@ export class AuthenticationService {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.loginSubject.next(true);
+          this.userSubject.next(user.name);
         }
 
         return user;

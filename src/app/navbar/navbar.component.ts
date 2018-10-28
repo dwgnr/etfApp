@@ -47,11 +47,14 @@ export class NavbarComponent implements OnInit {
   isLoggedIn = false;
   isOpen = false;
   returnUrl: string;
+  currentUserName: string;
 
   ngOnInit() {
     $(document).foundation();
 
     this.authenticationService.isLoggedIn.subscribe(status => this.isLoggedIn = status);
+    this.authenticationService.userName.subscribe(name => this.currentUserName = name);
+
 
   }
 

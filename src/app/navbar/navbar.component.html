@@ -8,12 +8,12 @@
 <div class="top-bar" id="responsive-menu">
   <div class="top-bar-left">
     <ul class="dropdown menu" data-dropdown-menu>
-      <li class="menu-text">ETFApp</li>
+      <li class="menu-text"><mat-icon>pie_chart</mat-icon></li>
       <li class="has-submenu">
         <a routerLink="/portfolio">Portfolio</a>
         <ul id="dd-menu" class="submenu menu vertical" data-submenu>
-          <li><a [routerLinkActive]="['route-active']" routerLink="/portfolio">MVO</a></li>
-          <li><a [routerLinkActive]="['route-active']" routerLink="/blacklitterman">Black-Litterman</a></li>
+          <li><a [routerLinkActive]="['route-active']" routerLink="/portfolio">MVO <mat-icon [inline]="true">bar_chart</mat-icon></a></li>
+          <li><a [routerLinkActive]="['route-active']" routerLink="/blacklitterman">Black-Litterman <mat-icon [inline]="true">insert_chart_outlined</mat-icon></a></li>
           <!--<li><a routerLink="home">Korrelationsmatrix</a></li>-->
         </ul>
       </li>
@@ -21,9 +21,9 @@
       <li class="has-submenu">
         <a routerLink="/portfolio">Analyse</a>
         <ul id="dd-menu1" class="submenu menu vertical" data-submenu>
-          <li><a [routerLinkActive]="['route-active']" routerLink="/network">Graph</a></li>
-          <li><a [routerLinkActive]="['route-active']" routerLink="/worldmap">Karte</a></li>
-          <li><a [routerLinkActive]="['route-active']" routerLink="/cluster">Cluster</a></li>
+          <li><a [routerLinkActive]="['route-active']" routerLink="/network">Graph <mat-icon [inline]="true">bubble_chart</mat-icon></a></li>
+          <li><a [routerLinkActive]="['route-active']" routerLink="/worldmap">Karte <mat-icon [inline]="true">place</mat-icon></a></li>
+          <li><a [routerLinkActive]="['route-active']" routerLink="/cluster">Cluster <mat-icon [inline]="true">dashboard</mat-icon></a></li>
         </ul>
       </li>
 
@@ -34,12 +34,16 @@
   <div class="top-bar-right">
     <ul class="menu">
       <li>
-      <button class="button" type="button" data-toggle="shoppinglist-dropdown">ETF-Liste</button>
+      <button class="clear button small" type="button" data-toggle="shoppinglist-dropdown">
+        <mat-icon>format_list_bulleted</mat-icon></button>
       <div class="dropdown-pane" id="shoppinglist-dropdown" data-dropdown data-hover="true" data-hover-pane="true">
         <app-shoppinglist></app-shoppinglist>
       </div>
       </li>
-      <li *ngIf="!isLoggedIn; else loggedIn"><a (click)="toggleAnimation()" data-toggle="loginModal">Login</a></li>
+      <li *ngIf="isLoggedIn">
+        <a class="lineadjust" routerLink="/home">{{ currentUserName }}</a>
+      </li>
+      <li *ngIf="!isLoggedIn; else loggedIn"><a (click)="toggleAnimation()" data-toggle="loginModal"><mat-icon>account_circle</mat-icon></a></li>
     </ul>
   </div>
 </div>
@@ -49,8 +53,8 @@
 
 <ng-template #loggedIn>
   <!--<li><a routerLink="/login">Logout</a></li>-->
-  <li><a (click)="onLogout()">Logout</a></li>
-  <li><a routerLink="/home">User</a></li>
+  <li><a (click)="onLogout()"><mat-icon>exit_to_app</mat-icon></a></li>
+  <!--<li><a routerLink="/home">{{ currentUserName }}<mat-icon [inline]="true">account_circle</mat-icon></a></li>-->
 </ng-template>
 
 <!-- Login Modal -->

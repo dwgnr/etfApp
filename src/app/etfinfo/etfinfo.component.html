@@ -72,99 +72,201 @@
 
     <div class="cell small-8 medium-8 large-8" data-sticky-container>
       <div class="sticky" data-sticky data-margin-top="4.35" data-anchor="all-etfs">
-      <div class="card" *ngIf="selectedETF">
+      <!--<div class="card" *ngIf="selectedETF">-->
+      <div class="card">
         <div class="card-divider">
-          <h4>{{selectedETF?.name}} <small>({{selectedETF.isin}})</small></h4>
+          <div *ngIf="selectedETF; else noSelection">
+            <h4>{{selectedETF?.name}} <small>({{selectedETF?.isin}})</small></h4>
+          </div>
         </div>
         <div class="card-section" id="info-card">
-          <div class="card">
-          <div class="card-divider">
-            <h5>Details</h5>
-          </div>
-          <div class="card-section">
-          <div class="grid-x">
-            <div class="cell small-6">
-              <div class="cell large-auto">Emittent: {{selectedETF.issuer}}</div>
-              <div class="cell large-auto">Total Expense Ratio: {{selectedETF?.ter / 100 | percent:'1.2-4'}}</div>
-              <div class="cell large-auto">Assets under Management: {{selectedETF?.aum_mn_eur * 1000000 | currency:'EUR':'symbol':'4.0-0'}}</div>
-              <div class="cell large-auto">Auflagedatum: {{selectedETF?.inception}}</div>
-              <div class="cell large-auto">Ausschüttungsart: {{selectedETF?.distribution}}</div>
-              <!--<div class="cell large-auto">Replikationsart: {{selectedETF?.replication_kind}}</div>-->
-              <div class="cell large-auto">Replikation: {{selectedETF?.replication_detail}}</div>
-              <div class="cell large-auto">Produkttyp: {{selectedETF?.product_type}} </div>
-              <div class="cell large-auto">Assetklasse: {{selectedETF?.asset_class}}</div>
-              <div class="cell large-auto">Region: {{selectedETF?.region}}</div>
-              <div class="cell large-auto">Land: {{selectedETF?.country}}</div>
-              <div class="cell large-auto">Sektor: {{selectedETF?.sector}}</div>
-              <div class="cell large-auto">Indexname: {{selectedETF?.index_name}}</div>
-              <div class="cell large-auto">Indexart: {{selectedETF?.index_type}}</div>
-              <div class="cell large-auto">Indexreplikation: {{selectedETF?.index_replication}}</div>
-              <div class="cell large-auto">Fondswährung: {{selectedETF?.fund_currency}}</div>
-              <div class="cell large-auto">Handelswährung: {{selectedETF?.trade_currency}}</div>
-            </div>
-            <div class="cell small-6">
-              <div class="cell large-auto">Strategie: {{selectedETF?.strategy}}</div>
-              <div class="cell large-auto">Zugelassen in: {{selectedETF?.sale_permit}}</div>
-              <div class="cell large-auto">Swap-Gegenpartei: {{selectedETF?.swap_counterpart}}</div>
-              <div class="cell large-auto">Wertpapierleihe: {{selectedETF?.securities_lending}}</div>
-              <div class="cell large-auto">Leihe-Gegenpartei: {{selectedETF?.lending_counterpart}}</div>
-              <div class="cell large-auto">Wertpapiermanager: {{selectedETF?.securities_manager}}</div>
-              <div class="cell large-auto"><a href="{{selectedETF?.pdf}}" target="_blank">PDF</a></div>
-            </div>
-          </div>
-          </div>
-          </div>
 
-          <div class="card" *ngIf="chart">
-            <div class="card-divider">
-              <h5>Chart</h5>
-            </div>
-            <div class="card-section">
-            <canvas id="canvas">{{ chart }}</canvas>
-            </div>
-          </div>
 
-          <div class="card">
-            <div class="card-divider">
-              <h5>Wertentwicklung und Risiko</h5>
-            </div>
-            <div class="card-section" *ngIf="performance6m">
-              <div class="cell">Performance 6 Monate (annualisiert): <b [ngClass]="{'positive' : performance6m.mean > 0,
-               'negative' : performance6m.mean < 0}">{{performance6m.mean | percent:'1.0-2'}}</b></div>
-              <div class="cell">Standardabweichung 6 Monate (annualisiert): <b>{{performance6m.std | percent:'1.0-2'}}
-              </b></div>
-              <div class="cell">Sharpe Ratio 6 Monate: <b>{{performance6m.sharpe | number:'1.2-2'}}</b></div>
-            </div>
-            <div class="card-section" *ngIf="performance1y">
-              <div class="cell">Performance 1 Jahr: <b [ngClass]="{'positive' : performance1y.mean > 0,
-              'negative' : performance1y.mean < 0}">{{performance1y.mean | percent:'1.0-2'}}</b></div>
-              <div class="cell">Standardabweichung 1 Jahr: <b>{{performance1y.std | percent:'1.0-2'}}</b></div>
-              <div class="cell">Sharpe Ratio 1 Jahr: <b>{{performance1y.sharpe | number:'1.2-2'}}</b></div>
-            </div>
-            <div class="card-section" *ngIf="performance3y">
-              <div class="cell">Performance 3 Jahre (annualisiert): <b [ngClass]="{'positive' : performance3y.mean > 0,
-              'negative' : performance3y.mean < 0}">{{performance3y.mean | percent:'1.0-2'}}</b></div>
-              <div class="cell">Standardabweichung 3 Jahre (annualisiert): <b>{{performance3y.std | percent:'1.0-2'}}
-              </b></div>
-              <div class="cell">Sharpe Ratio 3 Jahre: <b>{{performance3y.sharpe | number:'1.2-2'}}</b></div>
-            </div>
-            <div class="card-section" *ngIf="performance5y">
-              <div class="cell">Performance 5 Jahre (annualisiert): <b [ngClass]="{'positive' : performance5y.mean > 0,
-              'negative' : performance5y.mean < 0}">{{performance5y.mean | percent:'1.0-2'}}</b></div>
-              <div class="cell">Standardabweichung 5 Jahre (annualisiert): <b>{{performance5y.std | percent:'1.0-2'}}
-              </b></div>
-              <div class="cell">Sharpe Ratio 5 Jahre: <b>{{performance5y.sharpe | number:'1.2-2'}}</b></div>
-            </div>
-            <div class="card-section" *ngIf="minTrackingError">
-              <div class="cell">Tracking Error (annualisiert): <b [ngClass]="{'positive' : minTrackingError.te > 0,
-              'negative' : minTrackingError.te < 0}">{{minTrackingError.te | percent:'1.0-2'}}</b>
-                <small> [Verwendete Benchmark: {{minTrackingError.bm_name}}]</small>
+          <ul class="accordion" data-accordion id="etfinfo-accordion" data-allow-all-closed="true" data-multi-expand="true">
+            <li class="accordion-item" data-accordion-item>
+              <a href="#deeplink1" class="accordion-title"><h6>Details</h6></a>
+              <div class="accordion-content" data-tab-content id="deeplink1">
+
+                <div class="grid-x">
+                  <div class="cell small-6">
+                    <div class="cell large-auto">Emittent: {{selectedETF?.issuer}}</div>
+                    <div class="cell large-auto">Total Expense Ratio: {{selectedETF?.ter / 100 | percent:'1.2-4'}}</div>
+                    <div class="cell large-auto">Assets under Management: {{selectedETF?.aum_mn_eur * 1000000 | currency:'EUR':'symbol':'4.0-0'}}</div>
+                    <div class="cell large-auto">Auflagedatum: {{selectedETF?.inception}}</div>
+                    <div class="cell large-auto">Ausschüttungsart: {{selectedETF?.distribution}}</div>
+                    <!--<div class="cell large-auto">Replikationsart: {{selectedETF?.replication_kind}}</div>-->
+                    <div class="cell large-auto">Replikation: {{selectedETF?.replication_detail}}</div>
+                    <div class="cell large-auto">Produkttyp: {{selectedETF?.product_type}} </div>
+                    <div class="cell large-auto">Assetklasse: {{selectedETF?.asset_class}}</div>
+                    <div class="cell large-auto">Region: {{selectedETF?.region}}</div>
+                    <div class="cell large-auto">Land: {{selectedETF?.country}}</div>
+                    <div class="cell large-auto">Sektor: {{selectedETF?.sector}}</div>
+                    <div class="cell large-auto">Indexname: {{selectedETF?.index_name}}</div>
+                    <div class="cell large-auto">Indexart: {{selectedETF?.index_type}}</div>
+                    <div class="cell large-auto">Indexreplikation: {{selectedETF?.index_replication}}</div>
+                    <div class="cell large-auto">Fondswährung: {{selectedETF?.fund_currency}}</div>
+                    <div class="cell large-auto">Handelswährung: {{selectedETF?.trade_currency}}</div>
+                  </div>
+                  <div class="cell small-6">
+                    <div class="cell large-auto">Strategie: {{selectedETF?.strategy}}</div>
+                    <div class="cell large-auto">Zugelassen in: {{selectedETF?.sale_permit}}</div>
+                    <div class="cell large-auto">Swap-Gegenpartei: {{selectedETF?.swap_counterpart}}</div>
+                    <div class="cell large-auto">Wertpapierleihe: {{selectedETF?.securities_lending}}</div>
+                    <div class="cell large-auto">Leihe-Gegenpartei: {{selectedETF?.lending_counterpart}}</div>
+                    <div class="cell large-auto">Wertpapiermanager: {{selectedETF?.securities_manager}}</div>
+                    <div class="cell large-auto"><a href="{{selectedETF?.pdf}}" target="_blank">PDF</a></div>
+                  </div>
+                </div>
+
               </div>
-            </div>
-          </div>
+            </li>
+            <li class="accordion-item" data-accordion-item>
+              <a href="#deeplink2" class="accordion-title"><h6>Chart</h6></a>
+              <div class="accordion-content" data-tab-content id="deeplink2">
+
+                <div *ngIf="chart">
+                  <canvas id="canvas">{{ chart }}</canvas>
+                </div>
+
+              </div>
+            </li>
+            <li class="accordion-item" data-accordion-item>
+              <a href="#deeplink3" class="accordion-title"><h6>Wertentwicklung und Risiko</h6></a>
+              <div class="accordion-content" data-tab-content id="deeplink3">
+
+                <div class="callout" *ngIf="performance6m">
+                  <div class="cell">Performance 6 Monate (annualisiert): <b [ngClass]="{'positive' : performance6m.mean > 0,
+               'negative' : performance6m.mean < 0}">{{performance6m.mean | percent:'1.0-2'}}</b></div>
+                  <div class="cell">Standardabweichung 6 Monate (annualisiert): <b>{{performance6m.std | percent:'1.0-2'}}
+                  </b></div>
+                  <div class="cell">Sharpe Ratio 6 Monate: <b>{{performance6m.sharpe | number:'1.2-2'}}</b></div>
+                </div>
+                <div class="callout" *ngIf="performance1y">
+                  <div class="cell">Performance 1 Jahr: <b [ngClass]="{'positive' : performance1y.mean > 0,
+              'negative' : performance1y.mean < 0}">{{performance1y.mean | percent:'1.0-2'}}</b></div>
+                  <div class="cell">Standardabweichung 1 Jahr: <b>{{performance1y.std | percent:'1.0-2'}}</b></div>
+                  <div class="cell">Sharpe Ratio 1 Jahr: <b>{{performance1y.sharpe | number:'1.2-2'}}</b></div>
+                </div>
+                <div class="callout" *ngIf="performance3y">
+                  <div class="cell">Performance 3 Jahre (annualisiert): <b [ngClass]="{'positive' : performance3y.mean > 0,
+              'negative' : performance3y.mean < 0}">{{performance3y.mean | percent:'1.0-2'}}</b></div>
+                  <div class="cell">Standardabweichung 3 Jahre (annualisiert): <b>{{performance3y.std | percent:'1.0-2'}}
+                  </b></div>
+                  <div class="cell">Sharpe Ratio 3 Jahre: <b>{{performance3y.sharpe | number:'1.2-2'}}</b></div>
+                </div>
+                <div class="callout" *ngIf="performance5y">
+                  <div class="cell">Performance 5 Jahre (annualisiert): <b [ngClass]="{'positive' : performance5y.mean > 0,
+              'negative' : performance5y.mean < 0}">{{performance5y.mean | percent:'1.0-2'}}</b></div>
+                  <div class="cell">Standardabweichung 5 Jahre (annualisiert): <b>{{performance5y.std | percent:'1.0-2'}}
+                  </b></div>
+                  <div class="cell">Sharpe Ratio 5 Jahre: <b>{{performance5y.sharpe | number:'1.2-2'}}</b></div>
+                </div>
+                <div class="callout" *ngIf="minTrackingError">
+                  <div class="cell">Tracking Error (annualisiert): <b [ngClass]="{'positive' : minTrackingError.te > 0,
+              'negative' : minTrackingError.te < 0}">{{minTrackingError.te | percent:'1.0-2'}}</b>
+                    <small> [Verwendete Benchmark: {{minTrackingError.bm_name}}]</small>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+          </ul>
+
+
+
+
+          <!--<div class="card">-->
+          <!--<div class="card-divider">-->
+            <!--<h5>Details</h5>-->
+          <!--</div>-->
+          <!--<div class="card-section">-->
+          <!--<div class="grid-x">-->
+            <!--<div class="cell small-6">-->
+              <!--<div class="cell large-auto">Emittent: {{selectedETF.issuer}}</div>-->
+              <!--<div class="cell large-auto">Total Expense Ratio: {{selectedETF?.ter / 100 | percent:'1.2-4'}}</div>-->
+              <!--<div class="cell large-auto">Assets under Management: {{selectedETF?.aum_mn_eur * 1000000 | currency:'EUR':'symbol':'4.0-0'}}</div>-->
+              <!--<div class="cell large-auto">Auflagedatum: {{selectedETF?.inception}}</div>-->
+              <!--<div class="cell large-auto">Ausschüttungsart: {{selectedETF?.distribution}}</div>-->
+              <!--&lt;!&ndash;<div class="cell large-auto">Replikationsart: {{selectedETF?.replication_kind}}</div>&ndash;&gt;-->
+              <!--<div class="cell large-auto">Replikation: {{selectedETF?.replication_detail}}</div>-->
+              <!--<div class="cell large-auto">Produkttyp: {{selectedETF?.product_type}} </div>-->
+              <!--<div class="cell large-auto">Assetklasse: {{selectedETF?.asset_class}}</div>-->
+              <!--<div class="cell large-auto">Region: {{selectedETF?.region}}</div>-->
+              <!--<div class="cell large-auto">Land: {{selectedETF?.country}}</div>-->
+              <!--<div class="cell large-auto">Sektor: {{selectedETF?.sector}}</div>-->
+              <!--<div class="cell large-auto">Indexname: {{selectedETF?.index_name}}</div>-->
+              <!--<div class="cell large-auto">Indexart: {{selectedETF?.index_type}}</div>-->
+              <!--<div class="cell large-auto">Indexreplikation: {{selectedETF?.index_replication}}</div>-->
+              <!--<div class="cell large-auto">Fondswährung: {{selectedETF?.fund_currency}}</div>-->
+              <!--<div class="cell large-auto">Handelswährung: {{selectedETF?.trade_currency}}</div>-->
+            <!--</div>-->
+            <!--<div class="cell small-6">-->
+              <!--<div class="cell large-auto">Strategie: {{selectedETF?.strategy}}</div>-->
+              <!--<div class="cell large-auto">Zugelassen in: {{selectedETF?.sale_permit}}</div>-->
+              <!--<div class="cell large-auto">Swap-Gegenpartei: {{selectedETF?.swap_counterpart}}</div>-->
+              <!--<div class="cell large-auto">Wertpapierleihe: {{selectedETF?.securities_lending}}</div>-->
+              <!--<div class="cell large-auto">Leihe-Gegenpartei: {{selectedETF?.lending_counterpart}}</div>-->
+              <!--<div class="cell large-auto">Wertpapiermanager: {{selectedETF?.securities_manager}}</div>-->
+              <!--<div class="cell large-auto"><a href="{{selectedETF?.pdf}}" target="_blank">PDF</a></div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--</div>-->
+          <!--</div>-->
+
+          <!--<div class="card" *ngIf="chart">-->
+            <!--<div class="card-divider">-->
+              <!--<h5>Chart</h5>-->
+            <!--</div>-->
+            <!--<div class="card-section">-->
+            <!--<canvas id="canvas">{{ chart }}</canvas>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <!--<div class="card">-->
+            <!--<div class="card-divider">-->
+              <!--<h5>Wertentwicklung und Risiko</h5>-->
+            <!--</div>-->
+            <!--<div class="card-section" *ngIf="performance6m">-->
+              <!--<div class="cell">Performance 6 Monate (annualisiert): <b [ngClass]="{'positive' : performance6m.mean > 0,-->
+               <!--'negative' : performance6m.mean < 0}">{{performance6m.mean | percent:'1.0-2'}}</b></div>-->
+              <!--<div class="cell">Standardabweichung 6 Monate (annualisiert): <b>{{performance6m.std | percent:'1.0-2'}}-->
+              <!--</b></div>-->
+              <!--<div class="cell">Sharpe Ratio 6 Monate: <b>{{performance6m.sharpe | number:'1.2-2'}}</b></div>-->
+            <!--</div>-->
+            <!--<div class="card-section" *ngIf="performance1y">-->
+              <!--<div class="cell">Performance 1 Jahr: <b [ngClass]="{'positive' : performance1y.mean > 0,-->
+              <!--'negative' : performance1y.mean < 0}">{{performance1y.mean | percent:'1.0-2'}}</b></div>-->
+              <!--<div class="cell">Standardabweichung 1 Jahr: <b>{{performance1y.std | percent:'1.0-2'}}</b></div>-->
+              <!--<div class="cell">Sharpe Ratio 1 Jahr: <b>{{performance1y.sharpe | number:'1.2-2'}}</b></div>-->
+            <!--</div>-->
+            <!--<div class="card-section" *ngIf="performance3y">-->
+              <!--<div class="cell">Performance 3 Jahre (annualisiert): <b [ngClass]="{'positive' : performance3y.mean > 0,-->
+              <!--'negative' : performance3y.mean < 0}">{{performance3y.mean | percent:'1.0-2'}}</b></div>-->
+              <!--<div class="cell">Standardabweichung 3 Jahre (annualisiert): <b>{{performance3y.std | percent:'1.0-2'}}-->
+              <!--</b></div>-->
+              <!--<div class="cell">Sharpe Ratio 3 Jahre: <b>{{performance3y.sharpe | number:'1.2-2'}}</b></div>-->
+            <!--</div>-->
+            <!--<div class="card-section" *ngIf="performance5y">-->
+              <!--<div class="cell">Performance 5 Jahre (annualisiert): <b [ngClass]="{'positive' : performance5y.mean > 0,-->
+              <!--'negative' : performance5y.mean < 0}">{{performance5y.mean | percent:'1.0-2'}}</b></div>-->
+              <!--<div class="cell">Standardabweichung 5 Jahre (annualisiert): <b>{{performance5y.std | percent:'1.0-2'}}-->
+              <!--</b></div>-->
+              <!--<div class="cell">Sharpe Ratio 5 Jahre: <b>{{performance5y.sharpe | number:'1.2-2'}}</b></div>-->
+            <!--</div>-->
+            <!--<div class="card-section" *ngIf="minTrackingError">-->
+              <!--<div class="cell">Tracking Error (annualisiert): <b [ngClass]="{'positive' : minTrackingError.te > 0,-->
+              <!--'negative' : minTrackingError.te < 0}">{{minTrackingError.te | percent:'1.0-2'}}</b>-->
+                <!--<small> [Verwendete Benchmark: {{minTrackingError.bm_name}}]</small>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
 
 
         </div>
+
+
+
+
 
 
       </div>
@@ -221,4 +323,8 @@
 
 <ng-template #noResults>
   <h4>Keine Ergebnisse</h4>
+</ng-template>
+
+<ng-template #noSelection>
+  <h4>Kein ETF ausgewählt</h4>
 </ng-template>
