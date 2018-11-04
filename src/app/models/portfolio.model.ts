@@ -47,6 +47,13 @@ export interface BacktestingResults {
   'hist_var_series': any[];
   'hist_stationary_process': boolean[];
   'hist_normal': boolean[];
+  'bootstrap_results': BootstrapResults[];
+}
+
+export interface BootstrapResults {
+  'lower_quantile': number[];
+  'average_quantile': number[];
+  'upper_quantile': number[];
 }
 
 export interface PortfolioWeight {
@@ -77,4 +84,13 @@ export interface ViewInput {
   'operator': string;
   'isin2': string;
   'adjustment': number;
+}
+
+export interface BootstrapInput {
+  'num_simulations': number;
+  'price': string;
+  'date_from': any;
+  'date_to': any;
+  'etfs': string[];
+  'weights': number[];
 }

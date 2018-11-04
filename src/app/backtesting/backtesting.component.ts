@@ -4,6 +4,8 @@ import {BacktestingService} from '../services/backtesting.service';
 import {Chart} from 'chart.js';
 
 declare var moment: any;
+declare var $: any;
+
 const dateFormat = 'MMM YYYY';
 
 @Component({
@@ -18,8 +20,14 @@ export class BacktestingComponent implements OnInit, OnChanges {
   backtestingResults: BacktestingResults;
   chartCreated = false;
   convergenceChartCreated = false;
+  bootstrapChartCreated1 = false;
+  bootstrapChartCreated2 = false;
+  bootstrapChartCreated3 = false;
   chart = Chart;
   convergenceChart = Chart;
+  bootstrapChart1 = Chart;
+  bootstrapChart2 = Chart;
+  bootstrapChart3 = Chart;
   scaledHistVaRs  = [];
   scaledHistCVaRs = [];
   backtestLoading = false;
@@ -27,6 +35,9 @@ export class BacktestingComponent implements OnInit, OnChanges {
   constructor(private backtestingService: BacktestingService) { }
 
   ngOnInit() {
+
+
+    $(document).foundation();
   //   this.backtestingService.getBacktestingResults(this.backtestingInput).subscribe(result => this.backtestingResults = result,
   //     error => console.log('Error: ', error),
   //     () => this.plotHistPerformance()
@@ -46,6 +57,7 @@ export class BacktestingComponent implements OnInit, OnChanges {
     this.plotHistPerformance();
     this.scaleVaRToAnnual();
     this.plotConvergence();
+    this.plotBootstrap();
   }
 
 
@@ -199,6 +211,242 @@ export class BacktestingComponent implements OnInit, OnChanges {
       }
     });
     this.convergenceChartCreated = true;
+
+  }
+
+  plotBootstrap() {
+
+    const data = this.backtestingResults.bootstrap_results;
+
+    if (this.bootstrapChartCreated1) {
+      this.bootstrapChart1.destroy();
+      this.bootstrapChartCreated1 = false;
+    }
+    if (this.bootstrapChartCreated2) {
+      this.bootstrapChart2.destroy();
+      this.bootstrapChartCreated2 = false;
+    }
+    if (this.bootstrapChartCreated3) {
+      this.bootstrapChart3.destroy();
+      this.bootstrapChartCreated3 = false;
+    }
+
+    let lower_quantile_data = [];
+    let average_quantile_data = [];
+    let upper_quantile_data = [];
+    let lbls = [];
+
+    for (let i = 0; i < data[0].average_quantile.length; i++) {
+      if (i % 20 === 0) {
+        lbls.push(i + 1);
+        lower_quantile_data.push(data[0].lower_quantile[i]);
+        average_quantile_data.push(data[0].average_quantile[i]);
+        upper_quantile_data.push(data[0].upper_quantile[i]);
+      }
+    }
+
+    this.bootstrapChart1 = new Chart('bootstrapCanvas1', {
+      type: 'line',
+      data: {
+        labels: lbls,
+        datasets: [{
+          label: '5% Quantil',
+          data: lower_quantile_data,
+          fill: false,
+          pointRadius: 1,
+          borderWidth: 3,
+        },
+          {
+            label: '50% Quantil',
+            data: average_quantile_data,
+            fill: false,
+            pointRadius: 1,
+            borderWidth: 3,
+            borderColor: '#1779ba',
+            backgroundColor: '#1779ba',
+          },
+          {
+            label: '95% Quantil',
+            data: upper_quantile_data,
+            fill: false,
+            pointRadius: 1,
+            borderWidth: 3,
+          }]
+      },
+
+      // Configuration options go here
+      options: {
+        scales: {
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Rendite 1 Jahr'
+            }
+          }],
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Tage'
+            }
+          }]
+        },
+        elements: {
+          line: {
+            tension: 0.95, // smoothing of bezier curves
+          }
+        }
+      }
+    });
+    this.bootstrapChartCreated1 = true;
+
+
+    lower_quantile_data = [];
+    average_quantile_data = [];
+    upper_quantile_data = [];
+    lbls = [];
+
+    for (let i = 0; i < data[1].average_quantile.length; i++) {
+      if (i % 20 === 0) {
+        lbls.push(i + 1);
+        lower_quantile_data.push(data[1].lower_quantile[i]);
+        average_quantile_data.push(data[1].average_quantile[i]);
+        upper_quantile_data.push(data[1].upper_quantile[i]);
+      }
+    }
+
+
+
+    this.bootstrapChart2 = new Chart('bootstrapCanvas2', {
+      type: 'line',
+      data: {
+        labels: lbls,
+        datasets: [{
+          label: '5% Quantil',
+          data: lower_quantile_data,
+          fill: false,
+          pointRadius: 1,
+          borderWidth: 3,
+        },
+          {
+            label: '50% Quantil',
+            data: average_quantile_data,
+            fill: false,
+            pointRadius: 1,
+            borderWidth: 3,
+            borderColor: '#1779ba',
+            backgroundColor: '#1779ba',
+          },
+          {
+            label: '95% Quantil',
+            data: upper_quantile_data,
+            fill: false,
+            pointRadius: 1,
+            borderWidth: 3,
+          }]
+      },
+
+      // Configuration options go here
+      options: {
+        scales: {
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Rendite 1 Jahr'
+            }
+          }],
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Tage'
+            }
+          }]
+        },
+        elements: {
+          line: {
+            tension: 0.95, // smoothing of bezier curves
+          }
+        }
+      }
+    });
+    this.bootstrapChartCreated2 = true;
+
+
+
+    if (data.length > 2) {
+
+      lower_quantile_data = [];
+      average_quantile_data = [];
+      upper_quantile_data = [];
+      lbls = [];
+
+      for (let i = 0; i < data[2].average_quantile.length; i++) {
+        if (i % 20 === 0) {
+          lbls.push(i + 1);
+          lower_quantile_data.push(data[2].lower_quantile[i]);
+          average_quantile_data.push(data[2].average_quantile[i]);
+          upper_quantile_data.push(data[2].upper_quantile[i]);
+        }
+      }
+
+
+      this.bootstrapChart3 = new Chart('bootstrapCanvas3', {
+        type: 'line',
+        data: {
+          labels: lbls,
+          datasets: [{
+            label: '5% Quantil',
+            data: lower_quantile_data,
+            fill: false,
+            pointRadius: 1,
+            borderWidth: 3,
+          },
+            {
+              label: '50% Quantil',
+              data: average_quantile_data,
+              fill: false,
+              pointRadius: 1,
+              borderWidth: 3,
+              borderColor: '#1779ba',
+              backgroundColor: '#1779ba',
+            },
+            {
+              label: '95% Quantil',
+              data: upper_quantile_data,
+              fill: false,
+              pointRadius: 1,
+              borderWidth: 3,
+            }]
+        },
+
+        // Configuration options go here
+        options: {
+          scales: {
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Rendite 1 Jahr'
+              }
+            }],
+            xAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Tage'
+              }
+            }]
+          },
+          elements: {
+            line: {
+              tension: 0.95, // smoothing of bezier curves
+            }
+          }
+        }
+      });
+      this.bootstrapChartCreated3 = true;
+
+    }
+
+
+
 
   }
 

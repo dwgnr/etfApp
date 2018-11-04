@@ -1,15 +1,52 @@
-<div class="card" *ngIf="chart">
-  <div class="card-divider">
-    <h5>Backtesting</h5>
-  </div>
-  <div class="card-section">
-    <div *ngIf="backtestLoading"><mat-spinner></mat-spinner></div>
-    <canvas id="backtestingCanvas">{{ chart }}</canvas>
-    <div class="cell" *ngIf="backtestingResults">
-      <div class="card">
-        <div class="card-divider"><h6>Historische Renditen</h6></div>
-        <div class="card-section">
-          <div class="callout">
+
+
+
+  <!--<div class="card" *ngIf="chart">-->
+    <!--<div class="card-divider">-->
+      <!--<h6>Performance</h6>-->
+    <!--</div>-->
+    <!--<div class="card-section">-->
+      <!--<div *ngIf="backtestLoading"><mat-spinner></mat-spinner></div>-->
+      <!--<canvas id="backtestingCanvas">{{ chart }}</canvas>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="card" *ngIf="bootstrapChart1">-->
+    <!--<div class="card-divider">-->
+      <!--<h6>Bootstrapping</h6>-->
+    <!--</div>-->
+    <!--<div class="card-section">-->
+      <!--<div *ngIf="backtestLoading"><mat-spinner></mat-spinner></div>-->
+      <!--<canvas id="bootstrapCanvas1">{{ bootstrapChart1 }}</canvas>-->
+      <!--<canvas id="bootstrapCanvas2">{{ bootstrapChart2 }}</canvas>-->
+      <!--<canvas id="bootstrapCanvas3">{{ bootstrapChart3 }}</canvas>-->
+
+    <!--</div>-->
+  <!--</div>-->
+
+
+
+
+
+
+  <ul class="accordion" data-accordion data-allow-all-closed="true" data-multi-expand="true" id="backtest-accordion">
+
+    <li class="accordion-item is-active" data-accordion-item>
+      <a href="#btlink0" class="accordion-title">Performance Chart</a>
+      <div class="accordion-content" data-tab-content id="btlink0">
+        <div *ngIf="backtestLoading"><mat-spinner></mat-spinner></div>
+        <canvas id="backtestingCanvas">{{ chart }}</canvas>
+      </div>
+    </li>
+
+
+    <li class="accordion-item" data-accordion-item>
+      <a href="#btlink1" class="accordion-title">Historische Renditen</a>
+      <div class="accordion-content" data-tab-content id="btlink1">
+
+        <canvas id="bootstrapCanvas1">{{ bootstrapChart1 }}</canvas>
+      <div *ngIf="backtestingResults">
+        <div class="callout">
           <p>Value at Risk Monte Carlo Simulation (über Prognosezeitraum):
             <strong>{{backtestingResults?.mc_value_at_risk[0] | currency:'EUR':'symbol':'1.0-0'}}</strong></p>
           <p>Value at Risk historische Simulation:
@@ -20,8 +57,8 @@
             Value at Risk historische Simulation:
             <strong>{{scaledHistVaRs[0] | currency:'EUR':'symbol':'1.0-0'}}</strong> <small> 1 Jahr</small>
           </p>
-          </div>
-          <div class="callout">
+        </div>
+        <div class="callout">
           <p>Conditional VaR (Expected Shortfall) historische Simulation:
             <strong>{{backtestingResults?.hist_cvar[0] | currency:'EUR':'symbol':'1.0-0' }}</strong>
             <small> 1 Tag</small>
@@ -30,22 +67,27 @@
             Conditional VaR (Expected Shortfall) historische Simulation:
             <strong>{{scaledHistCVaRs[0] | currency:'EUR':'symbol':'1.0-0'}}</strong> <small> 1 Jahr</small>
           </p>
-          </div>
-          <div class="callout">
+        </div>
+        <div class="callout">
           <p>Renditen sind normalverteilt (Jarque-Bera Test):
             <strong>{{ backtestingResults?.hist_normal[0] ? 'Ja' : 'Nein' }}</strong>
             <small> Konfidenzniveau 95%</small></p>
           <p>Historische Simulation ist stationärer Prozess (Augmented Dickey–Fuller Test):
             <strong>{{ backtestingResults?.hist_stationary_process[0] ? 'Ja' : 'Nein' }}</strong>
             <small> Konfidenzniveau 95% </small></p>
-          </div>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-divider"><h6>Gleichgewichtsrenditen</h6></div>
-        <div class="card-section">
-          <div class="callout">
+      </div>
+    </li>
+    <li class="accordion-item" data-accordion-item>
+      <a href="#btlink2" class="accordion-title">Gleichgewichtsrenditen</a>
+      <div class="accordion-content" data-tab-content id="btlink2">
+
+        <canvas id="bootstrapCanvas2">{{ bootstrapChart2 }}</canvas>
+
+        <div *ngIf="backtestingResults">
+        <div class="callout">
           <p>Value at Risk Monte Carlo Simulation (über Prognosezeitraum):
             <strong>{{backtestingResults?.mc_value_at_risk[1] | currency:'EUR':'symbol':'1.0-0'}}</strong></p>
           <p>Value at Risk historische Simulation:
@@ -56,8 +98,8 @@
             Value at Risk historische Simulation:
             <strong>{{scaledHistVaRs[1] | currency:'EUR':'symbol':'1.0-0'}}</strong> <small> 1 Jahr</small>
           </p>
-          </div>
-          <div class="callout">
+        </div>
+        <div class="callout">
           <p>Conditional VaR (Expected Shortfall) historische Simulation:
             <strong>{{backtestingResults?.hist_cvar[1] | currency:'EUR':'symbol':'1.0-0' }}</strong>
             <small> 1 Tag</small>
@@ -66,22 +108,29 @@
             Conditional VaR (Expected Shortfall) historische Simulation:
             <strong>{{scaledHistCVaRs[1] | currency:'EUR':'symbol':'1.0-0'}}</strong> <small> 1 Jahr</small>
           </p>
-          </div>
-          <div class="callout">
+        </div>
+        <div class="callout">
           <p>Renditen sind normalverteilt (Jarque-Bera Test):
             <strong>{{ backtestingResults?.hist_normal[1] ? 'Ja' : 'Nein' }}</strong>
             <small> Konfidenzniveau 95%</small></p>
           <p>Historische Simulation ist stationärer Prozess (Augmented Dickey–Fuller Test):
             <strong>{{ backtestingResults?.hist_stationary_process[1] ? 'Ja' : 'Nein' }}</strong>
             <small> Konfidenzniveau 95%</small></p>
-          </div>
         </div>
-      </div>
+        </div>
 
-      <div class="card" *ngIf="backtestingResults.mc_value_at_risk.length > 2">
-        <div class="card-divider"> <h6>Gleichgewichtsrenditen mit angepassten Views</h6></div>
-        <div class="card-section">
-          <div class="callout">
+
+      </div>
+    </li>
+    <li class="accordion-item" data-accordion-item>
+      <a href="#btlink3" class="accordion-title">Gleichgewichtsrenditen mit angepassten Views</a>
+      <div class="accordion-content" data-tab-content id="btlink3">
+
+
+        <canvas id="bootstrapCanvas3">{{ bootstrapChart3 }}</canvas>
+
+        <div *ngIf="backtestingResults">
+        <div class="callout">
           <p *ngIf="backtestingResults.mc_value_at_risk.length > 2">
             Value at Risk Monte Carlo Simulation (über Prognosezeitraum):
             <strong>{{backtestingResults?.mc_value_at_risk[2] | currency:'EUR':'symbol':'1.0-0'}}</strong></p>
@@ -93,8 +142,8 @@
             Value at Risk Monte historische Simulation:
             <strong>{{scaledHistVaRs[2] | currency:'EUR':'symbol':'1.0-0'}}</strong> <small> 1 Jahr</small>
           </p>
-          </div>
-          <div class="callout">
+        </div>
+        <div class="callout">
           <p *ngIf="backtestingResults.hist_cvar.length > 2">Conditional VaR (Expected Shortfall) historische Simulation:
             <strong>{{backtestingResults?.hist_cvar[2] | currency:'EUR':'symbol':'1.0-0' }}</strong>
             <small> 1 Tag</small>
@@ -103,32 +152,162 @@
             Conditional VaR (Expected Shortfall) historische Simulation:
             <strong>{{scaledHistCVaRs[2] | currency:'EUR':'symbol':'1.0-0'}}</strong> <small> 1 Jahr</small>
           </p>
-          </div>
-          <div class="callout">
+        </div>
+        <div class="callout">
           <p *ngIf="backtestingResults.hist_normal.length > 2">Renditen sind normalverteilt (Jarque-Bera Test):
             <strong>{{ backtestingResults?.hist_normal[2] ? 'Ja' : 'Nein' }}</strong>
             <small> Konfidenzniveau 95%</small></p>
           <p *ngIf="backtestingResults.hist_stationary_process.length > 2">Historische Simulation ist stationärer Prozess (Augmented Dickey–Fuller Test):
             <strong>{{ backtestingResults?.hist_stationary_process[2] ? 'Ja' : 'Nein' }}</strong>
             <small> Konfidenzniveau 95%</small></p>
-          </div>
         </div>
+        </div>
+
+
       </div>
-    </div>
+    </li>
 
+    <li class="accordion-item" data-accordion-item>
+      <a href="#btlink4" class="accordion-title">VaR Convergence Chart</a>
+      <div class="accordion-content" data-tab-content id="btlink4">
 
-
-    <div class="card" *ngIf="convergenceChart">
-      <div class="card-divider">
-        <h6>VaR Convergence Chart</h6>
-      </div>
-      <div class="card-section">
         <div *ngIf="backtestLoading"><mat-spinner></mat-spinner></div>
         <canvas id="convergenceCanvas">{{ convergenceChart }}</canvas>
+
       </div>
-    </div>
+    </li>
 
 
-  </div>
-</div>
+  </ul>
+
+
+
+
+
+
+<!--<div *ngIf="!backtestLoading">-->
+    <!--<div class="cell" *ngIf="backtestingResults">-->
+
+      <!--<div class="card">-->
+        <!--<div class="card-divider"><h6>Historische Renditen</h6></div>-->
+        <!--<div class="card-section">-->
+          <!--<div class="callout">-->
+          <!--<p>Value at Risk Monte Carlo Simulation (über Prognosezeitraum):-->
+            <!--<strong>{{backtestingResults?.mc_value_at_risk[0] | currency:'EUR':'symbol':'1.0-0'}}</strong></p>-->
+          <!--<p>Value at Risk historische Simulation:-->
+            <!--<strong>{{backtestingResults?.hist_value_at_risk[0] | currency:'EUR':'symbol':'1.0-0' }} </strong>-->
+            <!--<small> 1 Tag</small>-->
+          <!--</p>-->
+          <!--<p *ngIf="scaledHistVaRs">-->
+            <!--Value at Risk historische Simulation:-->
+            <!--<strong>{{scaledHistVaRs[0] | currency:'EUR':'symbol':'1.0-0'}}</strong> <small> 1 Jahr</small>-->
+          <!--</p>-->
+          <!--</div>-->
+          <!--<div class="callout">-->
+          <!--<p>Conditional VaR (Expected Shortfall) historische Simulation:-->
+            <!--<strong>{{backtestingResults?.hist_cvar[0] | currency:'EUR':'symbol':'1.0-0' }}</strong>-->
+            <!--<small> 1 Tag</small>-->
+          <!--</p>-->
+          <!--<p *ngIf="scaledHistCVaRs">-->
+            <!--Conditional VaR (Expected Shortfall) historische Simulation:-->
+            <!--<strong>{{scaledHistCVaRs[0] | currency:'EUR':'symbol':'1.0-0'}}</strong> <small> 1 Jahr</small>-->
+          <!--</p>-->
+          <!--</div>-->
+          <!--<div class="callout">-->
+          <!--<p>Renditen sind normalverteilt (Jarque-Bera Test):-->
+            <!--<strong>{{ backtestingResults?.hist_normal[0] ? 'Ja' : 'Nein' }}</strong>-->
+            <!--<small> Konfidenzniveau 95%</small></p>-->
+          <!--<p>Historische Simulation ist stationärer Prozess (Augmented Dickey–Fuller Test):-->
+            <!--<strong>{{ backtestingResults?.hist_stationary_process[0] ? 'Ja' : 'Nein' }}</strong>-->
+            <!--<small> Konfidenzniveau 95% </small></p>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="card">-->
+        <!--<div class="card-divider"><h6>Gleichgewichtsrenditen</h6></div>-->
+        <!--<div class="card-section">-->
+          <!--<div class="callout">-->
+          <!--<p>Value at Risk Monte Carlo Simulation (über Prognosezeitraum):-->
+            <!--<strong>{{backtestingResults?.mc_value_at_risk[1] | currency:'EUR':'symbol':'1.0-0'}}</strong></p>-->
+          <!--<p>Value at Risk historische Simulation:-->
+            <!--<strong>{{backtestingResults?.hist_value_at_risk[1] | currency:'EUR':'symbol':'1.0-0'}}</strong>-->
+            <!--<small> 1 Tag</small>-->
+          <!--</p>-->
+          <!--<p *ngIf="scaledHistVaRs">-->
+            <!--Value at Risk historische Simulation:-->
+            <!--<strong>{{scaledHistVaRs[1] | currency:'EUR':'symbol':'1.0-0'}}</strong> <small> 1 Jahr</small>-->
+          <!--</p>-->
+          <!--</div>-->
+          <!--<div class="callout">-->
+          <!--<p>Conditional VaR (Expected Shortfall) historische Simulation:-->
+            <!--<strong>{{backtestingResults?.hist_cvar[1] | currency:'EUR':'symbol':'1.0-0' }}</strong>-->
+            <!--<small> 1 Tag</small>-->
+          <!--</p>-->
+          <!--<p *ngIf="scaledHistCVaRs">-->
+            <!--Conditional VaR (Expected Shortfall) historische Simulation:-->
+            <!--<strong>{{scaledHistCVaRs[1] | currency:'EUR':'symbol':'1.0-0'}}</strong> <small> 1 Jahr</small>-->
+          <!--</p>-->
+          <!--</div>-->
+          <!--<div class="callout">-->
+          <!--<p>Renditen sind normalverteilt (Jarque-Bera Test):-->
+            <!--<strong>{{ backtestingResults?.hist_normal[1] ? 'Ja' : 'Nein' }}</strong>-->
+            <!--<small> Konfidenzniveau 95%</small></p>-->
+          <!--<p>Historische Simulation ist stationärer Prozess (Augmented Dickey–Fuller Test):-->
+            <!--<strong>{{ backtestingResults?.hist_stationary_process[1] ? 'Ja' : 'Nein' }}</strong>-->
+            <!--<small> Konfidenzniveau 95%</small></p>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="card" *ngIf="backtestingResults.mc_value_at_risk.length > 2">-->
+        <!--<div class="card-divider"> <h6>Gleichgewichtsrenditen mit angepassten Views</h6></div>-->
+        <!--<div class="card-section">-->
+          <!--<div class="callout">-->
+          <!--<p *ngIf="backtestingResults.mc_value_at_risk.length > 2">-->
+            <!--Value at Risk Monte Carlo Simulation (über Prognosezeitraum):-->
+            <!--<strong>{{backtestingResults?.mc_value_at_risk[2] | currency:'EUR':'symbol':'1.0-0'}}</strong></p>-->
+          <!--<p *ngIf="backtestingResults.hist_value_at_risk.length > 2">Value at Risk historische Simulation:-->
+            <!--<strong>{{backtestingResults?.hist_value_at_risk[2] | currency:'EUR':'symbol':'1.0-0' }}</strong>-->
+            <!--<small> 1 Tag</small>-->
+          <!--</p>-->
+          <!--<p *ngIf="scaledHistVaRs && scaledHistVaRs.length > 2">-->
+            <!--Value at Risk Monte historische Simulation:-->
+            <!--<strong>{{scaledHistVaRs[2] | currency:'EUR':'symbol':'1.0-0'}}</strong> <small> 1 Jahr</small>-->
+          <!--</p>-->
+          <!--</div>-->
+          <!--<div class="callout">-->
+          <!--<p *ngIf="backtestingResults.hist_cvar.length > 2">Conditional VaR (Expected Shortfall) historische Simulation:-->
+            <!--<strong>{{backtestingResults?.hist_cvar[2] | currency:'EUR':'symbol':'1.0-0' }}</strong>-->
+            <!--<small> 1 Tag</small>-->
+          <!--</p>-->
+          <!--<p *ngIf="scaledHistCVaRs && scaledHistCVaRs.length > 2">-->
+            <!--Conditional VaR (Expected Shortfall) historische Simulation:-->
+            <!--<strong>{{scaledHistCVaRs[2] | currency:'EUR':'symbol':'1.0-0'}}</strong> <small> 1 Jahr</small>-->
+          <!--</p>-->
+          <!--</div>-->
+          <!--<div class="callout">-->
+          <!--<p *ngIf="backtestingResults.hist_normal.length > 2">Renditen sind normalverteilt (Jarque-Bera Test):-->
+            <!--<strong>{{ backtestingResults?.hist_normal[2] ? 'Ja' : 'Nein' }}</strong>-->
+            <!--<small> Konfidenzniveau 95%</small></p>-->
+          <!--<p *ngIf="backtestingResults.hist_stationary_process.length > 2">Historische Simulation ist stationärer Prozess (Augmented Dickey–Fuller Test):-->
+            <!--<strong>{{ backtestingResults?.hist_stationary_process[2] ? 'Ja' : 'Nein' }}</strong>-->
+            <!--<small> Konfidenzniveau 95%</small></p>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
+<!--</div>-->
+
+  <!--<div class="card" *ngIf="convergenceChart">-->
+    <!--<div class="card-divider">-->
+      <!--<h6>VaR Convergence Chart</h6>-->
+    <!--</div>-->
+    <!--<div class="card-section">-->
+      <!--<div *ngIf="backtestLoading"><mat-spinner></mat-spinner></div>-->
+      <!--<canvas id="convergenceCanvas">{{ convergenceChart }}</canvas>-->
+    <!--</div>-->
+  <!--</div>-->
+
 
