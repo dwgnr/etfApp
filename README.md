@@ -3,23 +3,23 @@ An Angular application for ETF data analysis and efficient portfolio constructio
 The app requires a running instance of the corresponding Api. 
 
 <div id="wrapper" style="width:100%; overflow:hidden;">
-    <div id="one" style="width:50%; float:left;">
-      <img width="80%" src="img/3.png">
+    <div id="three" style="width:40%; float:left;">
+      <img width="40%" src="img/1.png">
     </div>
-    <div id="two" style="width:50%; overflow:hidden;">
-    <img width="80%" src="img/4.png">
+    <div id="four" style="width:40%; overflow:hidden;">
+    <img width="40%" src="img/2.png">
     </div>
 </div>
-
 
 <div id="wrapper" style="width:100%; overflow:hidden;">
-    <div id="three" style="width:50%; float:left;">
-      <img width="80%" src="img/1.png">
+    <div id="one" style="width:50%; float:left;">
+      <img width="40%" src="img/3.png">
     </div>
-    <div id="four" style="width:50%; overflow:hidden;">
-    <img width="80%" src="img/2.png">
+    <div id="two" style="width:50%; overflow:hidden;">
+    <img width="40%" src="img/4.png">
     </div>
 </div>
+
 
 ## Development server
 
