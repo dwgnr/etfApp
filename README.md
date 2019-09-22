@@ -2,14 +2,14 @@
 An Angular application for ETF data analysis and efficient portfolio construction.
 The app requires a running instance of the corresponding Api. 
 
-<p float="left">
-  <img src="img/2.png" width="200" />
-  <img src="img/3.png" width="200" /> 
+<p float="middle">
+  <img src="img/2.png" width="400" />
+  <img src="img/3.png" width="400" /> 
 </p>
 
-<p float="left">
-  <img src="img/4.png" width="200" />
-  <img src="img/1.png" width="200" />
+<p float="middle">
+  <img src="img/4.png" width="400" />
+  <img src="img/1.png" width="400" />
 </p>
 
 
