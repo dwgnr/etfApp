@@ -1,6 +1,25 @@
 # EtfApp
+An Angular application for ETF data analysis and efficient portfolio construction.
+The app requires a running instance of the corresponding Api. 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
+<div id="wrapper" style="width:100%; overflow:hidden;">
+    <div id="one" style="width:50%; float:left;">
+      <img width="80%" src="img/3.png">
+    </div>
+    <div id="two" style="width:50%; overflow:hidden;">
+    <img width="80%" src="img/4.png">
+    </div>
+</div>
+
+
+<div id="wrapper" style="width:100%; overflow:hidden;">
+    <div id="three" style="width:50%; float:left;">
+      <img width="80%" src="img/1.png">
+    </div>
+    <div id="four" style="width:50%; overflow:hidden;">
+    <img width="80%" src="img/2.png">
+    </div>
+</div>
 
 ## Development server
 
@@ -14,46 +33,34 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
+## Useful Resources
+These are some resources that helped building the application.
+### Component Sharing
+- https://angularfirebase.com/lessons/sharing-data-between-angular-components-four-methods/#Unrelated-Components-Sharing-Data-with-a-Service
+### Loadguard / Lazy loading
+- https://devblog.dymel.pl/2017/04/10/angular-wait-for-resource-to-load/
+- https://www.concretepage.com/angular/angular-canload-guard-example
+- https://angular-2-training-book.rangle.io/handout/modules/lazy-loading-module.html
+### Observables
+- https://coryrylan.com/blog/angular-observable-data-services
+- https://medium.com/@luukgruijs/understanding-creating-and-subscribing-to-observables-in-angular-426dbf0b04a3
+- https://medium.com/@tkssharma/shopping-cart-app-using-angular-5-observables-subject-subscription-part-2-a007a610491a
+### Ag-Grid and d3
+- https://medium.com/ag-grid/data-visualisation-for-enterprise-with-angular-and-d3-54165a2778a6
+- https://github.com/lsharir/angular-d3-graph-example/tree/master/src
+- https://medium.com/netscape/visualizing-data-with-angular-and-d3-209dde784aeb
+- https://github.com/lsharir/angular-d3-graph-example/tree/master/src/app/d3
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### D3
+- https://github.com/lsharir/angular-d3-graph-example
+- https://medium.com/netscape/visualizing-data-with-angular-and-d3-209dde784aeb
 
-## Running end-to-end tests
+### Data/Variable Sharing
+- https://angularfirebase.com/lessons/sharing-data-between-angular-components-four-methods/
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Login/Registration
+- http://jasonwatmore.com/post/2018/05/16/angular-6-user-registration-and-login-example-tutorial
+- https://github.com/cornflourblue/angular-6-registration-login-example-cli
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-
-# Useful Links
-## Component Sharing
-https://angularfirebase.com/lessons/sharing-data-between-angular-components-four-methods/#Unrelated-Components-Sharing-Data-with-a-Service
-## Loadguard / Lazy loading
-https://devblog.dymel.pl/2017/04/10/angular-wait-for-resource-to-load/
-https://www.concretepage.com/angular/angular-canload-guard-example
-https://angular-2-training-book.rangle.io/handout/modules/lazy-loading-module.html
-## Observables
-https://coryrylan.com/blog/angular-observable-data-services
-https://medium.com/@luukgruijs/understanding-creating-and-subscribing-to-observables-in-angular-426dbf0b04a3
-https://medium.com/@tkssharma/shopping-cart-app-using-angular-5-observables-subject-subscription-part-2-a007a610491a
-## Ag-Grid and d3
-https://medium.com/ag-grid/data-visualisation-for-enterprise-with-angular-and-d3-54165a2778a6
-https://github.com/lsharir/angular-d3-graph-example/tree/master/src
-https://medium.com/netscape/visualizing-data-with-angular-and-d3-209dde784aeb
-https://github.com/lsharir/angular-d3-graph-example/tree/master/src/app/d3
-
-## D3
-https://github.com/lsharir/angular-d3-graph-example
-https://medium.com/netscape/visualizing-data-with-angular-and-d3-209dde784aeb
-
-## Data/Variable Sharing
-https://angularfirebase.com/lessons/sharing-data-between-angular-components-four-methods/
-
-## Login/Registration
-http://jasonwatmore.com/post/2018/05/16/angular-6-user-registration-and-login-example-tutorial
-https://github.com/cornflourblue/angular-6-registration-login-example-cli
-
-## Host Binding
-https://dzone.com/articles/what-are-hostbinding-and-hostlistener-in-angular
+### Host Binding
+- https://dzone.com/articles/what-are-hostbinding-and-hostlistener-in-angular

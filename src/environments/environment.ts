@@ -4,6 +4,7 @@ export interface Env {
   apiUrl: string;
 }
 
+// use 192.168.2.116:5555/api/etf if you want the gringotts diskstation
 export const environment: Env = {
   production: false,
   assets: '/src/app/services/data',
