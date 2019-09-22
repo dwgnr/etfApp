@@ -143,15 +143,12 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
       this.warnMessage.push('Kein Skalierungsfaktor angegeben. Verwende ' + tau + '.');
     }
     if (this.recommendationsChecked) {
-      console.log('Using list stored by user as BlackLitterman Input.');
       symbols = [];
       if (this.currentETFstore && this.currentETFstore.length > 0) {
         for (const etf of this.currentETFstore) {
           symbols.push(etf.isin);
         }
         const newInput: BlackLittermanInput = {symbols, views, date_from, date_to, rf, tau, shrinkage} as BlackLittermanInput;
-        console.log('BlackLitterman Input:');
-        console.log(JSON.stringify(newInput));
         this.portfolioService.getBLPortfolios(newInput).subscribe(portfolios => this.portfolios = portfolios,
           error => this.errorMessage = 'Portfolios konnten nicht konstruiert werden!',
           () => this.handlePortfolioResponse()
@@ -166,8 +163,6 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
           symbols.push(etf.isin);
         }
         const newInput: BlackLittermanInput = {symbols, views, date_from, date_to, rf, tau, shrinkage} as BlackLittermanInput;
-        console.log('BlackLitterman Input:');
-        console.log(JSON.stringify(newInput));
         this.portfolioService.getBLPortfolios(newInput).subscribe(portfolios =>
           this.portfolios = portfolios,
           error => this.errorMessage = 'Portfolios konnten nicht konstruiert werden!',
@@ -185,7 +180,6 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
       this.buildBacktestingInput();
     }
     this.getETFNames();
-    // console.log('>>>>>>>> Sending BacktestingInput:' + JSON.stringify(this.backtestingInput));
     const hist_ret_frontier = [];
     const equilibrium_ret_frontier = [];
     const adj_equilibrium_frontier = [];
@@ -236,8 +230,6 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
 
     }
     this.loading = false;
-    // console.log('equilibrium_ret_frontier:');
-    // console.log(equilibrium_ret_frontier);
     this.plotPortfolios(hist_ret_frontier, equilibrium_ret_frontier,
       adj_equilibrium_frontier, hist_ret_tan, equilibrium_ret_tan, adj_equilibrium_tan);
     // setTimeout(this.createPieCharts(), 10000);
@@ -298,7 +290,6 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
     const a = moment(date_to, dateFormat);
     const b = moment(date_from, dateFormat);
     const timeDiff = a.diff(b, 'days');
-    console.log('Time Difference: ' + timeDiff);
     const tmpMaxDays = Math.max(timeDiff, lookback_days);
     const convergence_days = Math.min(tmpMaxDays, 1000);
 
@@ -522,7 +513,6 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
     if (newView['isin1'].length > 0 && newView['isin2'].length > 0
       && newView['operator'].length > 0 && newView['adjustment']) {
       this.views.push(newView);
-      console.log('Added View' + JSON.stringify(newView));
     } else {
       this.viewErrorMessage = 'Unvollständige Eingabe! View konnte nicht erzeugt werden.';
     }
@@ -535,22 +525,18 @@ export class BlacklittermanComponent implements OnInit, OnDestroy {
   onChanges(): void {
     this.fromDateControl.valueChanges.subscribe(val => {
       this.from_date = this.parseDate(this.fromDateControl.value);
-      // console.log('new from fromDate: ' + this.from_date);
     });
 
     this.toDateControl.valueChanges.subscribe(val => {
       this.to_date = this.parseDate(this.toDateControl.value);
-      // console.log('new from toDate: ' + this.to_date);
     });
 
     this.rfControl.valueChanges.subscribe(val => {
       this.rf = this.rfControl.value / 100;
-      // console.log('new from toDate: ' + this.to_date);
     });
 
     this.tauControl.valueChanges.subscribe(val => {
       this.tau = this.tauControl.value;
-      // console.log('new from toDate: ' + this.to_date);
     });
 
     this.btInitialInvestmentControl.valueChanges.subscribe(val => {

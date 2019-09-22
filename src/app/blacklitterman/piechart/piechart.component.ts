@@ -76,7 +76,6 @@ export class PiechartComponent implements OnInit, OnChanges {
     const labels = [];
     const cols = [];
     // const ctx = 'piecanvas1';
-    console.log('Creating piechart: ' + ctx);
     // console.log('Portfolio weights: ' + JSON.stringify(portfolio.tan_weights));
     let count = 0;
     for (const asset of portfolio.tan_weights) {

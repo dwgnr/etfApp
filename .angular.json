@@ -58,7 +58,7 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "atf-app:build:production"
+              "browserTarget": "etf-app:build:production"
             }
           }
         },

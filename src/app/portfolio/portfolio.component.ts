@@ -79,7 +79,6 @@ export class PortfolioComponent implements OnInit, OnDestroy {
         etfs.push(etf.isin);
       }
       const newInput: PortfolioInput = {num_portfolios, price, date_from, date_to, etfs} as PortfolioInput;
-      console.log(JSON.stringify(newInput));
       this.warning = false;
       this.portfolioService.getETFPortfolios(newInput).subscribe(portfolio => this.handlePortfolioResponse(portfolio)
       );
@@ -164,9 +163,7 @@ export class PortfolioComponent implements OnInit, OnDestroy {
       .CartState
       .subscribe((state: CartState) => {
         this.etflist = state.products;
-        console.log(this.etflist);
       });
-    console.log('Portfolio subscribed to shopping cart');
   }
 
   onButtonPressed() {

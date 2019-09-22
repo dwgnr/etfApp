@@ -126,8 +126,6 @@ export class WorldmapComponent implements OnInit {
 
   initWorldMap() {
     this.setColors();
-    console.log(this.blues);
-    console.log(this.reds);
 
     const projection = d3.geoMercator().scale(this.width / 2 / Math.PI)
       .rotate([-11, 0])
@@ -162,7 +160,6 @@ export class WorldmapComponent implements OnInit {
       for (let i = 0; i < this.sets.length; i++) {
         const perf = this.findPerformance(this.sets[i].index);
         svg.append('path').datum(topojson.merge(this.w, this.w.objects.units.geometries.filter((d) => {
-          // console.log(this.sets[i]);
           return this.sets[i].set.has(d.id);
         })))
           .attr('class', 'regions selected')

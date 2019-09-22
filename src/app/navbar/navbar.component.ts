@@ -60,7 +60,6 @@ export class NavbarComponent implements OnInit {
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    // console.log(event);
 
     if (event.key === KEY_CODE.ESCAPE) {
       this.isOpen = false;
@@ -85,6 +84,5 @@ export class NavbarComponent implements OnInit {
   }
   toggleAnimation() {
     this.isOpen = !this.isOpen;
-    console.log('isOpen is now: ' + this.isOpen);
   }
 }

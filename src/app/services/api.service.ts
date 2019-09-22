@@ -7,9 +7,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/';
 
 
-import { EtfInfo } from '../models/etfinfo.model';
-
-const API_URL = environment.apiUrl;
+const ASSETS: string = environment['assets'];
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -26,11 +24,11 @@ export class ApiService {
   currentMessage = this.messageSource.asObservable();
 
   getJSON (): Observable<any> {
-    return this.http.get('/src/app/services/data/data11.json');
+      return this.http.get(ASSETS + '/data11.json');
   }
 
   getCountriesJSON (): Observable<any> {
-    return this.http.get('/src/app/services/data/countries.json');
+      return this.http.get(ASSETS + '/countries.json');
   }
 
   changeMessage(message: any) {

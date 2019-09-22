@@ -7,10 +7,10 @@ import {ApiService} from '../../../services/api.service';
   template: `
     <svg:line
         class="link"
-        [attr.x1]="link.source.x"
-        [attr.y1]="link.source.y"
-        [attr.x2]="link.target.x"
-        [attr.y2]="link.target.y"
+        [attr.x1]="link.source['x']"
+        [attr.y1]="link.source['y']"
+        [attr.x2]="link.target['x']"
+        [attr.y2]="link.target['y']"
         [ngStyle]="{ stroke: message.hover==true && (message.id==link.source['id'] || message.id==link.target['id'])
          ? '#ffd740' : 'rgb(222,237,250)' }"
     ></svg:line>
@@ -25,7 +25,9 @@ export class LinkVisualComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
+
     this.apiService.currentMessage.subscribe(message => this.message = message);
+
   }
 
 }

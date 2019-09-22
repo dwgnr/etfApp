@@ -69,8 +69,6 @@ export class NetworkComponent implements OnInit {
   }
 
   initGraph() {
-    console.log('Init Graph with ' + this.graphData.nodes.length + ' nodes and '
-      + this.graphData.links.length + ' links');
     for (const n of this.graphData.nodes) {
       this.nodes.push(new Node(n.id, n.linkCount, n.group, n.name, n.swapCount, n.secManagerCount, n.lendingCount));
     }

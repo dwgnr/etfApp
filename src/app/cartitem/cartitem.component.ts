@@ -68,7 +68,6 @@ export class CartitemComponent implements OnInit {
     for (const etf of this.currentETFstore) {
       if (this.product.isin === etf.isin) {
         // this.btnDisabled = true;
-        console.log('Found isin ' + etf.isin);
         found = true;
       }
     }

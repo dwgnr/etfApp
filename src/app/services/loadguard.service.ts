@@ -13,7 +13,6 @@ export class LoadguardService implements CanLoad {
   private subscription: Subscription;
   loaded = false;
   canLoad(route: Route): boolean {
-    console.log('Loadguard: Loaded is currently:' + this.loaded);
 
     // this.subscription = this
     //   .infoService
@@ -24,7 +23,6 @@ export class LoadguardService implements CanLoad {
     //   });
     this.loaded = this.infoService.isLoaded;
     if (this.loaded) {
-      console.log('Loadguard: Loaded is now true');
       return true;
     } else {
       return false;

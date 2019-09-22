@@ -1,4 +1,11 @@
-export const environment = {
+export interface Env {
+  production: boolean;
+  assets: string;
+  apiUrl: string;
+}
+
+export const environment: Env = {
   production: true,
-  apiUrl: 'http://localhost:5000/api/etf'
+  assets: 'http://etf.dominikwagner.myds.me/assets',
+  apiUrl: 'http://dominikwagner.myds.me:5555/api/etf'
 };

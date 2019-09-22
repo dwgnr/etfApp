@@ -25,9 +25,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private userService: UserService, private priceService: PriceService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    // this.currentUser = JSON.parse(localStorage['currentUser']);
 
-    // console.log(localStorage.getItem('currentUser'));
   }
 
   ngOnInit() {
@@ -49,7 +47,6 @@ export class HomeComponent implements OnInit {
   }
 
   changeAdminStatus($event, user: User) {
-    console.log('Switching admin status for user ' + user.name);
     if (user.admin) {
       user.admin = false;
     } else {
@@ -63,7 +60,6 @@ export class HomeComponent implements OnInit {
 
   private loadAllUsers() {
     if (this.currentUser.admin) {
-      console.log('loading all users');
       this.userService.getAll().pipe(first()).subscribe(users => {
         this.users = users;
       });

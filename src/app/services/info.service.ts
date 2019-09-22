@@ -46,25 +46,20 @@ export class InfoService {
   }
 
   initAllETFInfos() {
-    console.log('Initializing all ETF Infos');
     this.getETFInfos(1).subscribe(
       data => this.addETFInfos(data), // Bind to view
       err => {
         // Log errors if any
         console.log(err);
       });
-    console.log('Done initializing all ETF Infos');
-    // console.log(this.ETFInfos);
   }
 
   addProduct(_product: any) {
-    console.log('added to cart');
     this.ETFShoppingList.push(_product);
     this.cartSubject.next(<CartState>{loaded: true, products:  this.ETFShoppingList});
   }
 
   addETFInfos(_product: any) {
-    console.log('added ETFINFO to info service');
     this.ETFInfos.push(_product);
     this.allInfoSubject.next(<InfoState>{loaded: true, products:  this.ETFInfos});
     // console.log(this.ETFInfos);
@@ -72,13 +67,11 @@ export class InfoService {
   }
 
   removeProduct(isin: string) {
-    console.log('removed from cart');
     this.ETFShoppingList = this.ETFShoppingList.filter((_item) =>  _item.isin !== isin );
     this.cartSubject.next(<CartState>{loaded: false , products:  this.ETFShoppingList});
   }
 
   search(query: string) {
-    console.log('searching for ' + query);
     if (query.length > 0) {
       return this.http.get<EtfInfo[]>(API_URL + '/info/search/' + query);
     } else {
@@ -87,7 +80,6 @@ export class InfoService {
   }
 
   public filter(input: InfoFilter, page: number): Observable<EtfInfoResponse> {
-    console.log('Filter Service called');
     return this.http.post<EtfInfoResponse>(API_URL + '/info/filter/' + page, input);
   }
 

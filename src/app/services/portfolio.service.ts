@@ -25,14 +25,12 @@ export class PortfolioService {
 
 
   public getETFPortfolios(input: PortfolioInput): Observable<Portfolio[]> {
-    console.log('Portfolio Service called');
     return this.http
       .post<Portfolio[]>(API_URL + '/portfolio/', input);
   }
 
 
   public getBLPortfolios(input: BlackLittermanInput): Observable<BlackLittermanPortfolio[]> {
-    console.log('Black Litterman Portfolio Service called');
     return this.http
       .post<BlackLittermanPortfolio[]>(API_URL + '/portfolio/blacklitterman', input);
   }

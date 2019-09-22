@@ -98,7 +98,6 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
 
     for (let i = 0; i < links.length; i++) {
       for (let j = 0; j < nodes.length; j++) {
-        // console.log('Comparing: ' + nodes[j].id + ' with ' + JSON.stringify(links[i].source));
         if (nodes[j].id === links[i].source['id']) {
           const checkTarget = links[i].target['id'];
           for (let k = 0; k < nodes.length; k++) {

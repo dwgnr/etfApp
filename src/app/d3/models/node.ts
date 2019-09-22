@@ -45,11 +45,9 @@ export class Node implements d3.SimulationNodeDatum {
     if (this.group.includes(4)) {
       // Gray for ETF Providers, blue for the rest
       const index = Math.floor(APP_CONFIG.GRAYS.length * this.normal() / 10);
-      // console.log(index);
       return APP_CONFIG.GRAYS[index];
     } else {
       const index = Math.floor(APP_CONFIG.BLUES.length * this.normal() / 10);
-      // console.log(index);
       return APP_CONFIG.BLUES[index];
     }
   }

@@ -12,8 +12,8 @@ import {ApiService} from '../../../services/api.service';
           cx="0"
           cy="0"
           [attr.r]="node.r"
-          (mouseover)="onNodeHoverIn($event)"
-          (mouseleave)="onNodeHoverOut($event)"
+          (mouseover)="onNodeHoverIn()"
+          (mouseleave)="onNodeHoverOut()"
           [ngStyle]="{ stroke: hover==true  ? '#ffd740' : 'white' }"
       >
       </svg:circle>
